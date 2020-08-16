@@ -2,7 +2,9 @@
     "name": "panique/mini",
     "type": "project",
     "description": "An extremely simple naked PHP application",
-    "keywords": ["skeleton", "boilerplate", "naked", "barebone", "application"],
+    "keywords": ["skeleton", "boilerplate", "naked", "barebone",
+      "application"
+    ],
     "homepage": "https://github.com/panique/mini",
     "license": "MIT",
     "authors": [
