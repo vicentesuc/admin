@@ -1,77 +1,247 @@
-create table tbl_typology
-(
-    typology_id        bigint       not null primary key auto_increment,
-    description        varchar(100) not null default '%',
-    typology_parent_id bigint       not null default 0,
-    value_1            varchar(50)  not null default '%'
-);
+DROP DATABASE IF EXISTS eventos;
 
-create table tbl_document_account
-(
-    document_account_id bigint primary key not null auto_increment,
-    date_created        datetime
-);
+CREATE DATABASE IF NOT EXISTS eventos
+    CHARACTER SET utf8
+    COLLATE utf8_general_ci;
 
-create table tbl_document
-(
-    document_id  bigint   not null primary key auto_increment,
-    src          text     not null default '/',
-    date_created datetime not null default '1900-01-01 00:00:00',
-    status       bigint   not null default 0 references tbl_typology (typology_id)
-);
+USE eventos;
 
-create table tbl_person
-(
-    person_id           bigint         not null primary key auto_increment,
-    first_name          varchar(100)   not null default 'S/D',
-    last_name           varchar(100)   not null default 'S/D',
-    email               varchar(100)   not null default '@',
-    status              varchar(100)   not null default 100 references tbl_typology (typology_id),
-    is_speaker          enum ('Y','N') not null default 'N',
-    is_assistant        enum ('Y','N') not null default 'N',
-    date_created        datetime       not null default '1900-01-01 00:00:00',
-    document_account_id bigint         not null default 0
-);
 
-create table tbl_user
-(
-    user_id      bigint   not null primary key auto_increment,
-    password     text     not null default '%',
-    person_id    bigint   not null default 0,
-    status       bigint   not null default 0,
-    date_created datetime not null default '1900-01-01 00:00:00',
-    role         bigint   not null default 100 references tbl_typology (typology_id)
+
+
+DROP TABLE IF EXISTS media;
+
+CREATE TABLE IF NOT EXISTS media(
+    id   INT(11)      NOT NULL PRIMARY KEY AUTO_INCREMENT,
+    name VARCHAR(255) NOT NULL
 );
 
 
-create table tbl_event
-(
-    event_id            bigint       not null primary key auto_increment,
-    title               varchar(200) not null default 'S/D',
-    description         text         not null default 'S/D',
-    no_people           bigint       not null default 0,
-    type                bigint       not null default 0 references tbl_typology (typology_id),
-    category            bigint       not null default 0 references tbl_typology (typology_id),
-    speaker             bigint       not null default 0 references tbl_person (person_id),
-    location            text         not null default 'S/D',
-    state               bigint       not null default 0,
-    city                bigint       not null default 0,
-    zone                bigint       not null default 0,
-    date_created        datetime     not null default '1900-01-01 00:00:00',
-    document_account_id bigint       not null default 0
+
+
+
+DROP TABLE IF EXISTS roles;
+
+CREATE TABLE IF NOT EXISTS roles(
+    id   INT(11)      NOT NULL PRIMARY KEY AUTO_INCREMENT,
+    name VARCHAR(255) NOT NULL
+);
+
+INSERT INTO roles (name) VALUES('Administrator');
+INSERT INTO roles (name) VALUES('Suscriptor');
+
+
+
+
+
+DROP TABLE IF EXISTS franchises;
+
+CREATE TABLE IF NOT EXISTS franchises(
+    id   INT(11)      NOT NULL PRIMARY KEY AUTO_INCREMENT,
+    name VARCHAR(255) NOT NULL
+);
+
+INSERT INTO franchises (name) VALUES ('Cardiología');
+INSERT INTO franchises (name) VALUES ('Pediatría');
+
+
+
+
+
+DROP TABLE IF EXISTS users;
+
+CREATE TABLE IF NOT EXISTS users(
+    id             INT(11)      NOT NULL PRIMARY KEY AUTO_INCREMENT,
+    name           VARCHAR(255) NOT NULL,
+    email          VARCHAR(255) NOT NULL,
+    franchise_id   INT(11),
+    role_id        INT(11)      NOT NULL,
+    pass           CHAR(32)     NOT NULL,
+    activation_key CHAR(32),
+    status         INT(11)      NOT NULL,
+    image_id       INT(11),
+    date           DATETIME     DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY(franchise_id)
+        REFERENCES franchises(id)
+        ON UPDATE CASCADE
+        ON DELETE RESTRICT,
+    FOREIGN KEY(role_id)
+        REFERENCES roles(id)
+        ON UPDATE CASCADE
+        ON DELETE RESTRICT,
+    FOREIGN KEY(image_id)
+        REFERENCES media(id)
+        ON UPDATE CASCADE
+        ON DELETE RESTRICT
 );
 
 
-insert into tbl_typology(typology_id, description, typology_parent_id, value_1)
-values (144, 'Roles del sistema', 100, '');
-insert into tbl_typology(typology_id, description, typology_parent_id, value_1)
-values (145, 'Administrador', 144, '');
 
-insert into tbl_typology(typology_id, description, typology_parent_id, value_1)
-values (146, 'Estados del sistema', 100, '');
-insert into tbl_typology(typology_id, description, typology_parent_id, value_1)
-values (147, 'Activo', 146, '');
-insert into tbl_typology(typology_id, description, typology_parent_id, value_1)
-values (148, 'Inactivo', 146, '');
-insert into tbl_typology(typology_id, description, typology_parent_id, value_1)
-values (149, 'Suspendio', 146, '');
+
+DROP TABLE IF EXISTS events;
+
+CREATE TABLE IF NOT EXISTS events(
+    id           INT(11)      NOT NULL PRIMARY KEY AUTO_INCREMENT,
+    title        VARCHAR(255) NOT NULL,
+    description  TEXT,
+    franchise_id INT(11)      NOT NULL,
+    image_id     INT(11)      NOT NULL,
+    event_date   DATETIME     NOT NULL,
+    video_id     INT(11)      NOT NULL,
+    date         DATETIME     DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY(franchise_id)
+        REFERENCES franchises(id)
+        ON UPDATE CASCADE
+        ON DELETE RESTRICT,
+    FOREIGN KEY(image_id)
+        REFERENCES media(id)
+        ON UPDATE CASCADE
+        ON DELETE RESTRICT,
+    FOREIGN KEY(video_id)
+        REFERENCES media(id)
+        ON UPDATE CASCADE
+        ON DELETE RESTRICT
+);
+
+
+
+
+DROP TABLE IF EXISTS speakers;
+
+CREATE TABLE IF NOT EXISTS speakers(
+    id       INT(11)      NOT NULL PRIMARY KEY AUTO_INCREMENT,
+    name     VARCHAR(255) NOT NULL,
+    image_id INT(11)      NOT NULL,
+    FOREIGN KEY(image_id)
+        REFERENCES media(id)
+        ON UPDATE CASCADE
+        ON DELETE RESTRICT
+);
+
+
+
+
+DROP TABLE IF EXISTS user_events;
+
+CREATE TABLE IF NOT EXISTS user_events(
+    user_id  INT(11) NOT NULL,
+    event_id INT(11) NOT NULL,
+    FOREIGN KEY(user_id)
+        REFERENCES users(id)
+        ON UPDATE CASCADE
+        ON DELETE RESTRICT,
+    FOREIGN KEY(event_id)
+        REFERENCES events(id)
+        ON UPDATE CASCADE
+        ON DELETE RESTRICT
+);
+
+
+
+
+
+DROP TABLE IF EXISTS user_diplomas;
+
+CREATE TABLE IF NOT EXISTS user_diplomas(
+    user_id  INT(11) NOT NULL,
+    media_id INT(11) NOT NULL,
+    FOREIGN KEY(user_id)
+        REFERENCES users(id)
+        ON UPDATE CASCADE
+        ON DELETE RESTRICT,
+    FOREIGN KEY(media_id)
+        REFERENCES media(id)
+        ON UPDATE CASCADE
+        ON DELETE RESTRICT
+);
+
+
+
+
+
+DROP TABLE IF EXISTS event_speakers;
+
+CREATE TABLE IF NOT EXISTS event_speakers(
+    event_id   INT(11) NOT NULL,
+    speaker_id INT(11) NOT NULL,
+    FOREIGN KEY(event_id)
+        REFERENCES events(id)
+        ON UPDATE CASCADE
+        ON DELETE RESTRICT,
+    FOREIGN KEY(speaker_id)
+        REFERENCES speakers(id)
+        ON UPDATE CASCADE
+        ON DELETE RESTRICT
+);
+
+
+
+
+
+DROP TABLE IF EXISTS event_media;
+
+CREATE TABLE IF NOT EXISTS event_media(
+    event_id INT(11) NOT NULL,
+    media_id INT(11) NOT NULL,
+    FOREIGN KEY(event_id)
+        REFERENCES events(id)
+        ON UPDATE CASCADE
+        ON DELETE RESTRICT,
+    FOREIGN KEY(media_id)
+        REFERENCES media(id)
+        ON UPDATE CASCADE
+        ON DELETE RESTRICT
+);
+
+
+
+
+
+DROP TABLE IF EXISTS event_stands;
+
+CREATE TABLE IF NOT EXISTS event_stands(
+    id       INT(11) NOT NULL PRIMARY KEY AUTO_INCREMENT,
+    event_id INT(11) NOT NULL,
+    image_id INT(11) NOT NULL,
+    FOREIGN KEY(event_id)
+        REFERENCES events(id)
+        ON UPDATE CASCADE
+        ON DELETE RESTRICT,
+    FOREIGN KEY(image_id)
+        REFERENCES media(id)
+        ON UPDATE CASCADE
+        ON DELETE RESTRICT
+);
+
+
+
+
+
+DROP TABLE IF EXISTS stands_media;
+
+CREATE TABLE IF NOT EXISTS stands_media(
+    stand_id INT(11) NOT NULL,
+    media_id INT(11) NOT NULL,
+    FOREIGN KEY(stand_id)
+        REFERENCES stands(id)
+        ON UPDATE CASCADE
+        ON DELETE RESTRICT,
+    FOREIGN KEY(media_id)
+        REFERENCES media(id)
+        ON UPDATE CASCADE
+        ON DELETE RESTRICT
+);
+
+
+
+
+DROP TABLE IF EXISTS event_interaction_links;
+
+CREATE TABLE IF NOT EXISTS event_interaction_links(
+    event_id INT(11) NOT NULL,
+    link     VARCHAR(255) NOT NULL,
+    FOREIGN KEY(event_id)
+        REFERENCES events(id)
+        ON UPDATE CASCADE
+        ON DELETE RESTRICT
+);

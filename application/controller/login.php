@@ -9,8 +9,11 @@ class Login extends controller
 
     public function index()
     {
-        require APP . 'view/_templates/header.php';
         require APP . 'view/login/index.php';
-        require APP . 'view/_templates/footer.php';
+    }
+
+    public function logout()
+    {
+        header("location:".URL."login" );
     }
 }

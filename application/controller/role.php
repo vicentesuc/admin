@@ -1,11 +1,10 @@
 <?php
-
-class Problem extends controller
+class Role extends controller
 {
     public function index()
     {
         require APP . 'view/_templates/header.php';
-        require APP . 'view/problem/index.php';
+        require APP . 'view/role/index.php';
         require APP . 'view/_templates/footer.php';
     }
 }
