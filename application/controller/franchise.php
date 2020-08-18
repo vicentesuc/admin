@@ -33,4 +33,9 @@ class Franchise extends controller
         require APP . 'view/franchise/create.php';
     }
 
+    function createPost(){
+
+        Helper::binDebug($_REQUEST);
+    }
+
 }

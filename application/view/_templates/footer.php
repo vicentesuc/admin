@@ -27,13 +27,18 @@
             if('ontouchstart' in document.documentElement) document.write("<script src='<?php echo URL; ?>/js/jquery.mobile.custom.min.js'>"+"<"+"/script>");
         </script>
 
-        <script src="<?php echo URL; ?>js/bootstrap/3.3.1/bootstrap.min.js"></script>
-        <script src="<?php echo URL; ?>js/ace-elements.min.js"></script>
-        <script src="<?php echo URL; ?>js/ace.min.js"></script>
+        <script src="<?php echo URL ?>js/bootstrap/3.3.6/bootstrap.min.js"></script>
+        <script src="<?php echo URL ?>js/jquery-ui.custom.min.js"></script>
+        <script src="<?php echo URL ?>js/jquery.ui.touch-punch.min.js"></script>
+        <script src="<?php echo URL ?>js/ace-elements.min.js"></script>
+        <script src="<?php echo URL ?>js/ace.min.js"></script>
         <script src="<?php echo URL ?>js/dataTables/datatables.min.js"></script>
         <script src="<?php echo URL ?>js/dataTables/dataTables.select.min.js"></script>
         <script src="<?php echo URL ?>js/dataTables/dataTables.buttons.min.js"></script>
         <script src="<?php echo URL ?>js/custom/jquery.crm.functions.js"></script>
+        <script src="<?php echo URL ?>js/custom/functions.js"></script>
         <script src="<?php echo URL ?>js/jquery.validate.min.js"></script>
+        <script src="<?php echo URL ?>js/bootbox.min.js"></script>
+        <script src="<?php echo URL ?>js/jquery.gritter.min.js"></script>
     </body>
 </html>

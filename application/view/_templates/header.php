@@ -9,14 +9,15 @@
     <link rel="stylesheet" href="<?php echo URL; ?>font-awesome/4.7.0/css/font-awesome.min.css"/>
     <link rel="stylesheet" href="<?php echo URL; ?>css/ace.min.css" class="ace-main-stylesheet" id="main-ace-style"/>
     <link rel="stylesheet" href="<?php echo URL; ?>css/ace-rtl.min.css" />
+    <link rel="stylesheet" href="<?php echo URL; ?>css/jquery.gritter.min.css"/>
 
     <link href="<?php echo URL ?>css/dataTables/datatables.min.css" rel="stylesheet">
     <link href="<?php echo URL ?>css/dataTables/select.dataTables.min.css" rel="stylesheet">
-<!--    <link href="--><?php //echo URL ?><!--css/dataTables/buttons.dataTables.min.css" rel="stylesheet">-->
-    <script src="<?php echo URL; ?>js/jquery/3.1.1/jquery-3.1.1.min.js"></script>
+    <script src="<?php echo URL; ?>js/jquery/2.1.4/jquery-2.1.4.min.js"></script>
     <script src="<?php echo URL; ?>/js/ace-extra.min.js"></script>
 </head>
 <body class="no-skin">
+
 <div id="modalIni" class="modal fade" role="dialog">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
@@ -117,6 +118,7 @@
 </div>
 
 <div class="main-container" id="main-container">
+
     <script type="text/javascript">
         try {
             ace.settings.check('main-container', 'fixed')
@@ -245,3 +247,4 @@
 
     <div class="main-content">
         <div class="main-content-inner">
+            <input id="gritter-light" checked="" type="checkbox" class="ace ace-switch ace-switch-5" />

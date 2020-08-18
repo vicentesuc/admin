@@ -3,9 +3,18 @@
 
         <form class="form-horizontal" role="form" id="form-franchise">
             <div class="form-group">
-                <label class="col-sm-3 control-label no-padding-right" for="form-field-1">Nombre </label>
+                <label class="col-sm-3 control-label no-padding-right" for="input_franchise_es">Nombre en
+                    español </label>
                 <div class="col-sm-9">
-                    <input type="text" id="form-field-1" required class="col-xs-10 col-sm-5"/>
+                    <input type="text" id="input_franchise_es" name="input_franchise_es" required
+                           class="col-xs-10 col-sm-5"/>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-3 control-label no-padding-right" for="input_franchise_en">Nombre en ingles</label>
+                <div class="col-sm-9">
+                    <input type="text" id="input_franchise_en" name="input_franchise_en" required
+                           class="col-xs-10 col-sm-5"/>
                 </div>
             </div>
 
@@ -23,7 +32,17 @@
 <script>
     $("#btn_franchise_add").click(function () {
         valid_form("form-franchise", () => {
-            alert("success");
+            var arreglo = {
+                url: "<?php  echo URL ?>franchise/createPost",
+                method: "POST",
+                params: form_to_json("form-franchise")
+            }
+
+
+            ajax_send(arreglo, (resp) => {
+                var response = JSON.parse(resp);
+                console.log(response);
+            });
         })
     })
 </script>
