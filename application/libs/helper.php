@@ -1,7 +1,9 @@
 <?php
+
 class Helper
 {
-    static public function debugPDO($raw_sql, $parameters) {
+    static public function debugPDO($raw_sql, $parameters)
+    {
 
         $keys = array();
         $values = $parameters;
@@ -29,10 +31,16 @@ class Helper
         return $raw_sql;
     }
 
-    static public  function  binDebug($data){
+    static public function binDebug($data)
+    {
         print_r("<pre>");
         print_r($data);
         print_r("</pre>");
+    }
+
+    static public function setMessage($title, $code, $event)
+    {
+        return json_encode(array("code" => $code, "event" => $event, "title" => $title));
     }
 
 }

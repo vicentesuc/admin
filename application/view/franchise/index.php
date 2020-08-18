@@ -84,7 +84,8 @@
                                     <td><?php echo ((isset($_REQUEST["language"]) ? $_REQUEST["language"] : null) == "en") ? $value["en_name"] : $value["es_name"]; ?></td>
                                     <td>
                                         <div class="hidden-sm hidden-xs action-buttons">
-                                            <a class="blue" href="#">
+                                            <a class="blue" href="#" id="editFranchise"
+                                               franchise="<?php echo $value["id"]; ?>">
                                                 <i class="ace-icon fa fa-edit bigger-130"></i>
                                             </a>
                                         </div>
@@ -136,6 +137,18 @@
                 title: "Agregar Franquicia",
                 url: "<?php echo URL ?>franchise/create",
                 params: {}
+            }
+            ajax_on_popup(arreglo);
+        })
+
+        $("a#editFranchise").click(function () {
+
+            var arreglo = {
+                title: "Editar Franquicia",
+                url: "<?php echo URL ?>franchise/edit",
+                params: {
+                    id: $(this).attr("franchise")
+                }
             }
             ajax_on_popup(arreglo);
         })

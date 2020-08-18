@@ -27,7 +27,7 @@ class DaoFranchise
 
     function getById($id = 0)
     {
-        return $this->database->select("franchises",
+        return $this->database->get("franchises",
             [
                 "id",
                 "es_name",
