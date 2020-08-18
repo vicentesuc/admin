@@ -1,6 +1,5 @@
 <?php
 
-
 class DaoUser
 {
     private $database;
@@ -13,4 +12,13 @@ class DaoUser
             exit('Database connection could not be established.');
         }
     }
+
+    function getAll($params =array()){
+
+     return   $this->database->select("users",
+         ["[><]"]
+     );
+
+    }
+
 }

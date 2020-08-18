@@ -12,9 +12,37 @@ USE eventos;
 DROP TABLE IF EXISTS media;
 
 CREATE TABLE IF NOT EXISTS media(
-    id   INT(11)      NOT NULL PRIMARY KEY AUTO_INCREMENT,
-    name VARCHAR(255) NOT NULL
+    id          INT(11)      NOT NULL PRIMARY KEY AUTO_INCREMENT,
+    name        VARCHAR(255) NOT NULL,
+    description TEXT
 );
+
+
+
+
+
+DROP TABLE IF EXISTS countries;
+
+CREATE TABLE IF NOT EXISTS countries(
+    id       INT(11)      NOT NULL PRIMARY KEY AUTO_INCREMENT,
+    name     VARCHAR(255) NOT NULL,
+    language CHAR(2)      NOT NULL
+);
+
+INSERT INTO countries (name,language) VALUES ('Guatemala','es');
+INSERT INTO countries (name,language) VALUES ('El Salvador','es');
+INSERT INTO countries (name,language) VALUES ('Honduras','es');
+INSERT INTO countries (name,language) VALUES ('Nicaragua','es');
+INSERT INTO countries (name,language) VALUES ('Costa Rica','es');
+INSERT INTO countries (name,language) VALUES ('Panamá','es');
+INSERT INTO countries (name,language) VALUES ('República Dominicana','es');
+INSERT INTO countries (name,language) VALUES ('Trinidad y Tobago','en');
+INSERT INTO countries (name,language) VALUES ('Jamaica','en');
+INSERT INTO countries (name,language) VALUES ('Bahamas','en');
+INSERT INTO countries (name,language) VALUES ('Barbados','en');
+INSERT INTO countries (name,language) VALUES ('Aruba','en');
+INSERT INTO countries (name,language) VALUES ('Curacao','en');
+INSERT INTO countries (name,language) VALUES ('Belice','en');
 
 
 
@@ -37,12 +65,13 @@ INSERT INTO roles (name) VALUES('Suscriptor');
 DROP TABLE IF EXISTS franchises;
 
 CREATE TABLE IF NOT EXISTS franchises(
-    id   INT(11)      NOT NULL PRIMARY KEY AUTO_INCREMENT,
-    name VARCHAR(255) NOT NULL
+    id      INT(11)      NOT NULL PRIMARY KEY AUTO_INCREMENT,
+    es_name VARCHAR(255) NOT NULL,
+    en_name VARCHAR(255) NOT NULL
 );
 
-INSERT INTO franchises (name) VALUES ('Cardiología');
-INSERT INTO franchises (name) VALUES ('Pediatría');
+INSERT INTO franchises (es_name,en_name) VALUES ('Cardiología','Cardiology');
+INSERT INTO franchises (es_name,en_name) VALUES ('Pediatría','Pediatrics');
 
 
 
@@ -58,8 +87,9 @@ CREATE TABLE IF NOT EXISTS users(
     role_id        INT(11)      NOT NULL,
     pass           CHAR(32)     NOT NULL,
     activation_key CHAR(32),
-    status         INT(11)      NOT NULL,
+    status         TINYINT(1)   NOT NULL,
     image_id       INT(11),
+    country_id     INT(11)      NOT NULL,
     date           DATETIME     DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY(franchise_id)
         REFERENCES franchises(id)
@@ -72,6 +102,10 @@ CREATE TABLE IF NOT EXISTS users(
     FOREIGN KEY(image_id)
         REFERENCES media(id)
         ON UPDATE CASCADE
+        ON DELETE RESTRICT,
+    FOREIGN KEY(country_id)
+        REFERENCES countries(id)
+        ON UPDATE CASCADE
         ON DELETE RESTRICT
 );
 
@@ -83,11 +117,13 @@ DROP TABLE IF EXISTS events;
 CREATE TABLE IF NOT EXISTS events(
     id           INT(11)      NOT NULL PRIMARY KEY AUTO_INCREMENT,
     title        VARCHAR(255) NOT NULL,
-    description  TEXT,
+    description  TEXT         NOT NULL,
     franchise_id INT(11)      NOT NULL,
     image_id     INT(11)      NOT NULL,
     event_date   DATETIME     NOT NULL,
-    video_id     INT(11)      NOT NULL,
+    video_id     INT(11),
+    survey_url   VARCHAR(255) NOT NULL,
+    language     CHAR(2)      NOT NULL,#un select con 2 options, es para Español y en para Ingles
     date         DATETIME     DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY(franchise_id)
         REFERENCES franchises(id)
@@ -106,17 +142,21 @@ CREATE TABLE IF NOT EXISTS events(
 
 
 
+
 DROP TABLE IF EXISTS speakers;
 
 CREATE TABLE IF NOT EXISTS speakers(
-    id       INT(11)      NOT NULL PRIMARY KEY AUTO_INCREMENT,
-    name     VARCHAR(255) NOT NULL,
-    image_id INT(11)      NOT NULL,
+    id           INT(11)      NOT NULL PRIMARY KEY AUTO_INCREMENT,
+    name         VARCHAR(255) NOT NULL,
+    es_specialty VARCHAR(255) NOT NULL,
+    en_specialty VARCHAR(255) NOT NULL,
+    image_id     INT(11)      NOT NULL,
     FOREIGN KEY(image_id)
         REFERENCES media(id)
         ON UPDATE CASCADE
         ON DELETE RESTRICT
 );
+
 
 
 
@@ -164,6 +204,7 @@ DROP TABLE IF EXISTS event_speakers;
 CREATE TABLE IF NOT EXISTS event_speakers(
     event_id   INT(11) NOT NULL,
     speaker_id INT(11) NOT NULL,
+    profile_id TINYINT(1) NOT NULL,#un select con dos options, 1 para Expositor y 2 para Moderador
     FOREIGN KEY(event_id)
         REFERENCES events(id)
         ON UPDATE CASCADE
@@ -223,7 +264,7 @@ CREATE TABLE IF NOT EXISTS stands_media(
     stand_id INT(11) NOT NULL,
     media_id INT(11) NOT NULL,
     FOREIGN KEY(stand_id)
-        REFERENCES stands(id)
+        REFERENCES event_stands(id)
         ON UPDATE CASCADE
         ON DELETE RESTRICT,
     FOREIGN KEY(media_id)

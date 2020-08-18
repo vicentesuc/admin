@@ -34,5 +34,6 @@
         <script src="<?php echo URL ?>js/dataTables/dataTables.select.min.js"></script>
         <script src="<?php echo URL ?>js/dataTables/dataTables.buttons.min.js"></script>
         <script src="<?php echo URL ?>js/custom/jquery.crm.functions.js"></script>
+        <script src="<?php echo URL ?>js/jquery.validate.min.js"></script>
     </body>
 </html>

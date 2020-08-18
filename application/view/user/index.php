@@ -34,16 +34,47 @@
 
             <div class="row">
                 <div class="col-xs-12">
-                    <h3 class="header smaller lighter blue">Listado de usuarios</h3>
-
                     <div class="clearfix">
-                        <div class="pull-right tableTools-container"></div>
+                        <div class="pull-right">
+                            <span class="blue middle bolder"> Otras opciones &nbsp;</span>
+                            <div class="btn-toolbar inline middle no-margin">
+                                <div data-toggle="buttons" class="btn-group no-margin">
+
+                                    <label class="btn btn-sm btn-info">
+                                        <span class="bigger-110" title="Nuevo Usuario">
+                                             <a href="<?php echo URL ?>user">
+                                                <icon class="ace-icon fa fa-user-plus white "></icon>
+                                             </a>
+                                        </span>
+                                    </label>
+
+                                    <label class="btn btn-sm btn-success" id="span_calendar">
+									<span class="bigger-110" title="Eventos">
+										<icon class="ace-icon fa fa-calendar white ">
+										</icon></span>
+                                    </label>
+
+                                    <label class="btn btn-sm btn-danger" id="otras_opciones">
+										<span class="bigger-110" title="Franquicias">
+											<icon class="ace-icon fa fa-building white ">
+											</icon></span>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
                     </div>
+                </div>
+            </div>
+            <br>
+
+
+            <div class="row">
+                <div class="col-xs-12">
                     <div class="table-header">
                         Resultados
                     </div>
                     <div>
-                        <table id="example" class="display table " style="width:100%">
+                        <table id="example" class="display table table-hover " style="width:100%">
                             <thead>
                             <tr>
                                 <th>Nombre</th>
@@ -59,7 +90,32 @@
                                 <td>System Architect</td>
                                 <td>Edinburgh</td>
                                 <td>61</td>
-                                <td></td>
+                                <td>
+                                    <div class="hidden-sm hidden-xs action-buttons">
+                                        <a class="blue" href="#">
+                                            <i class="ace-icon fa fa-edit bigger-130"></i>
+                                        </a>
+                                    </div>
+                                    <div class="hidden-md hidden-lg">
+                                        <div class="inline pos-rel">
+                                            <button class="btn btn-minier btn-yellow dropdown-toggle"
+                                                    data-toggle="dropdown" data-position="auto">
+                                                <i class="ace-icon fa fa-caret-down icon-only bigger-120"></i>
+                                            </button>
+
+                                            <ul class="dropdown-menu dropdown-only-icon dropdown-yellow dropdown-menu-right dropdown-caret dropdown-close">
+                                                <li>
+                                                    <a href="#" class="tooltip-info" data-rel="tooltip" title=""
+                                                       data-original-title="View">
+                                                        <span class="blue">
+                                                            <i class="ace-icon fa fa-edit bigger-120"></i>
+                                                        </span>
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </td>
                             </tr>
                         </table>
                     </div>
