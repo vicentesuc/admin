@@ -21,10 +21,9 @@
 <div class="page-content">
     <div class="row">
         <div class="col-xs-12">
-            <!-- PAGE CONTENT BEGINS -->
             <div class="page-header">
                 <h1>
-                    Franquicias
+                    Speaker
                     <small>
                         <i class="ace-icon fa fa-angle-double-right"></i>
                         Lista principal
@@ -32,37 +31,35 @@
                 </h1>
             </div>
             <div class="row">
-                <div class="col-xs-12">
-                    <div class="clearfix">
-                        <div class="pull-right">
-                            <div class="btn-toolbar inline middle no-margin">
-                                <div data-toggle="buttons" class="btn-group no-margin">
-                                    <a href="#" class="btn btn-success" id="btnAddFranchise">
-                                        <icon class="ace-icon fa fa-plus white "></icon>
-                                        Agregar
-                                    </a>
-                                </div>
+                <div class="clearfix">
+                    <div class="pull-right">
+                        <span class="blue middle bolder"> Otras opciones &nbsp;</span>
+                        <div class="btn-toolbar inline middle no-margin">
+                            <div data-toggle="buttons" class="btn-group no-margin">
+
+                                <label class="btn btn-sm btn-info">
+                                        <span class="bigger-110" title="Nuevo Usuario" id="add_new_speaker">
+                                             <a href="#">
+                                                <icon class="ace-icon fa fa-plus white "></icon>
+                                             </a>
+                                        </span>
+                                </label>
+                                <label class="btn btn-sm btn-success" id="span_calendar">
+									<span class="bigger-110" title="Eventos">
+										<icon class="ace-icon fa fa-calendar white ">
+										</icon></span>
+                                </label>
+                                <label class="btn btn-sm btn-danger" id="otras_opciones">
+										<span class="bigger-110" title="Franquicias">
+											<icon class="ace-icon fa fa-building white ">
+											</icon></span>
+                                </label>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
             <br>
-            <div class="row">
-                <div class="col-md-3 col-lg-3 col-sm-12 col-xs-12">
-                    <div class="form-group">
-                        <label class="col-form-label" for="input_fr_language">Idioma:</label>
-                        <select id="input_fr_language" name="input_fr_language">
-                            <?php foreach ($arrLanguages as $key => $value) {
-                                $selected = (((isset($_REQUEST["language"])) ? $_REQUEST["language"] : null) == $value) ? "selected" : "";
-                                $languaje = ($value == "es") ? "español" : "ingles";
-                                ?>
-                                <option value="<?php echo $value ?>" <?php echo $selected; ?> ><?php echo $languaje; ?></option>
-                            <?php } ?>
-                        </select>
-                    </div>
-                </div>
-            </div>
             <div class="row">
                 <div class="col-xs-12">
                     <div class="table-header">
@@ -72,20 +69,30 @@
                         <table id="example" class="display table table-hover " style="width:100%">
                             <thead>
                             <tr>
-                                <th>Id</th>
-                                <th>Franquicia</th>
+                                <th>Fotografia</th>
+                                <th>Nombre</th>
+                                <th>Especialidad ES</th>
+                                <th>Especialidad En</th>
                                 <th>Opciones</th>
                             </tr>
                             </thead>
                             <tbody>
-                            <?php foreach ($arrFranchise as $key => $value) { ?>
+                            <?php foreach ($arrSpekers as $key => $value) { ?>
                                 <tr>
-                                    <td><?php echo $value["id"]; ?></td>
-                                    <td><?php echo ((isset($_REQUEST["language"]) ? $_REQUEST["language"] : null) == "en") ? $value["en_name"] : $value["es_name"]; ?></td>
+                                    <td>
+                                        <img src="<?php echo URL_PUBLIC_FOLDER . "/" . $value["media_description"]; ?>"
+                                             alt="<?php $value["media_name"] ?>"
+                                             width="25"
+                                             height="25">
+                                    </td>
+                                    <td><?php echo $value["name"]; ?></td>
+                                    <td><?php echo $value["es_specialty"]; ?></td>
+                                    <td><?php echo $value["en_specialty"]; ?></td>
+
                                     <td>
                                         <div class="hidden-sm hidden-xs action-buttons">
-                                            <a class="blue" href="#" id="editFranchise"
-                                               franchise="<?php echo $value["id"]; ?>">
+                                            <a class="blue" href="#" id="edit_speaker"
+                                               speaker="<?php echo $value["id"]; ?>">
                                                 <i class="ace-icon fa fa-edit bigger-130"></i>
                                             </a>
                                         </div>
@@ -120,35 +127,27 @@
 <script>
     $(document).ready(function () {
 
-        $("#input_fr_language").change(function () {
+
+        $("a#edit_speaker").click(function () {
+
             var arreglo = {
-                url: "<?php echo URL ?>franchise",
+                title: "Editar Speaker",
+                url: "<?php echo URL ?>speaker/edit",
                 params: {
-                    language: $(this).val()
-                },
-                method: "GET"
+                    id: $(this).attr("speaker")
+                }
             }
 
-            send_submit(arreglo);
-        })
-
-        $("#btnAddFranchise").click(function () {
-            var arreglo = {
-                title: "Agregar Franquicia",
-                url: "<?php echo URL ?>franchise/create",
-                params: {}
-            }
             ajax_on_popup(arreglo);
         })
 
-        $("a#editFranchise").click(function () {
 
+        $("#add_new_speaker").click(function () {
             var arreglo = {
-                title: "Editar Franquicia",
-                url: "<?php echo URL ?>franchise/edit",
-                params: {
-                    id: $(this).attr("franchise")
-                }
+                url: "<?php echo URL ?>speaker/create",
+                params: {},
+                method: "POST",
+                title: "Agregar Speaker"
             }
             ajax_on_popup(arreglo);
         })

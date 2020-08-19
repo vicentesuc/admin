@@ -217,7 +217,7 @@
                 <b class="arrow"></b>
                 <ul class="submenu">
                     <li class="">
-                        <a href="<?php echo URL ?>user">
+                        <a href="<?php echo URL ?>speaker">
                             <i class="menu-icon fa fa-user-circle-o"></i> Registrados</a>
                         <b class="arrow"></b>
                     </li>
