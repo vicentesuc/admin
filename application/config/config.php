@@ -11,15 +11,15 @@ define('URL_PROTOCOL', '//');
 define('URL_DOMAIN', $_SERVER['HTTP_HOST']);
 define('URL_SUB_FOLDER', str_replace(URL_PUBLIC_FOLDER, '', dirname($_SERVER['SCRIPT_NAME'])));
 define('URL', URL_PROTOCOL . URL_DOMAIN . URL_SUB_FOLDER);
-define('IMAGES',URL."img".URL_PROTOCOL);
+define('IMAGES', URL . "/public");
 define('NOW', date("Y-m-d H:i:s"));
 
 
-define('SPANISH', URL."assets/js/plugins/dataTables/spanish.json");
+define('SPANISH', URL . "assets/js/plugins/dataTables/spanish.json");
 
-if(isset($_SESSION["usuarioId"])){
+if (isset($_SESSION["usuarioId"])) {
     define('USER', $_SESSION["id"]);
-    define('USERNAME',$_SESSION["name"]);
+    define('USERNAME', $_SESSION["name"]);
 }
 
 

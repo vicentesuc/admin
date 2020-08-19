@@ -8,8 +8,10 @@
     <link rel="stylesheet" href="<?php echo URL; ?>css/bootstrap.min.css"/>
     <link rel="stylesheet" href="<?php echo URL; ?>font-awesome/4.7.0/css/font-awesome.min.css"/>
     <link rel="stylesheet" href="<?php echo URL; ?>css/ace.min.css" class="ace-main-stylesheet" id="main-ace-style"/>
-    <link rel="stylesheet" href="<?php echo URL; ?>css/ace-rtl.min.css" />
+    <link rel="stylesheet" href="<?php echo URL; ?>css/ace-rtl.min.css"/>
     <link rel="stylesheet" href="<?php echo URL; ?>css/jquery.gritter.min.css"/>
+    <link rel="stylesheet" href="<?php echo URL; ?>css/bootstrap-datetimepicker.min.css" />
+    <link rel="stylesheet" href="<?php echo URL; ?>css/dropzone.min.css" />
 
     <link href="<?php echo URL ?>css/dataTables/datatables.min.css" rel="stylesheet">
     <link href="<?php echo URL ?>css/dataTables/select.dataTables.min.css" rel="stylesheet">
@@ -25,7 +27,7 @@
                 <h4 class="modal-title" id="modalIni-title"></h4>
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
             </div>
-            <div class="modal-body" id="modalIni-body"> </div>
+            <div class="modal-body" id="modalIni-body"></div>
         </div>
     </div>
 </div>
@@ -174,8 +176,15 @@
                 <b class="arrow"></b>
                 <ul class="submenu">
                     <li class="">
-                        <a href="#">
-                            <i class="menu-icon fa fa-users"></i> Lista de Eventos </a>
+                        <a href="<?php echo URL ?>events">
+                            <i class="menu-icon fa fa-list"></i> Lista de Eventos
+                        </a>
+                        <b class="arrow"></b>
+                    </li>
+                    <li class="">
+                        <a href="<?php echo URL ?>events">
+                            <i class="menu-icon fa fa-calendar"></i> Calendario
+                        </a>
                         <b class="arrow"></b>
                     </li>
                 </ul>
@@ -247,4 +256,4 @@
 
     <div class="main-content">
         <div class="main-content-inner">
-            <input id="gritter-light" checked="" type="checkbox" class="ace ace-switch ace-switch-5" />
+            <input id="gritter-light" checked="" type="checkbox" class="ace ace-switch ace-switch-5"/>

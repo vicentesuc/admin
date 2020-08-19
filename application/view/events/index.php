@@ -12,7 +12,7 @@
             <a href="<?php echo URL ?>home">Home</a>
         </li>
         <li>
-            <a href="<?php echo URL ?>user">Franquicias</a>
+            <a href="<?php echo URL ?>user">Eventos</a>
         </li>
         <li class="active">Nuevo</li>
     </ul>
@@ -21,45 +21,67 @@
 <div class="page-content">
     <div class="row">
         <div class="col-xs-12">
+            <!-- PAGE CONTENT BEGINS -->
             <div class="page-header">
                 <h1>
-                    Speaker
+                    Eventos
                     <small>
                         <i class="ace-icon fa fa-angle-double-right"></i>
-                        Lista principal
+                        Lista de Eventos
                     </small>
                 </h1>
             </div>
             <div class="row">
                 <div class="clearfix">
                     <div class="pull-right">
-                        <span class="blue middle bolder"> Otras opciones &nbsp;</span>
                         <div class="btn-toolbar inline middle no-margin">
                             <div data-toggle="buttons" class="btn-group no-margin">
 
-                                <label class="btn btn-sm btn-info">
-                                        <span class="bigger-110" title="Nuevo Usuario" id="add_new_speaker">
-                                             <a href="#">
+                                <label class="btn btn-sm btn-info" id="btAddEvent">
+                                        <span class="bigger-110" title="Nuevo Evento">
+                                             <a href="#" id="add_new_user">
                                                 <icon class="ace-icon fa fa-plus white "></icon>
                                              </a>
                                         </span>
                                 </label>
                                 <label class="btn btn-sm btn-success" id="span_calendar">
-									<span class="bigger-110" title="Eventos">
+									<span class="bigger-110" title="Calendario">
 										<icon class="ace-icon fa fa-calendar white ">
 										</icon></span>
-                                </label>
-                                <label class="btn btn-sm btn-danger" id="otras_opciones">
-										<span class="bigger-110" title="Franquicias">
-											<icon class="ace-icon fa fa-building white ">
-											</icon></span>
                                 </label>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-            <br>
+            <div class="row">
+                <div class="col-md-2 col-sm-12 col-xs-12 col-lg-2 ">
+                    <div class="form-group">
+                        <label for="">Franquicia</label>
+                        <select class="form-control" id="sel_role" name="sale_role">
+                            <option value="">Todas</option>
+                            <?php foreach ($arrFranchise as $key => $value) {
+                                $selected = ((isset($_REQUEST["role"]) ? $_REQUEST["role"] : null) == $value["id"]) ? "selected" : null;
+                                ?>
+                                <option value="<?php echo $value["id"] ?>" <?php echo $selected; ?> ><?php echo $value["es_name"] ?></option>
+                            <?php } ?>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-md-3 col-lg-3 col-sm-12 col-xs-12">
+                    <div class="form-group">
+                        <label for="input_fr_language">Idioma:</label>
+                        <select class="form-control" id="input_fr_language" name="input_fr_language">
+                            <?php foreach ($arrLanguages as $key => $value) {
+                                $selected = (((isset($_REQUEST["language"])) ? $_REQUEST["language"] : null) == $value) ? "selected" : "";
+                                $languaje = ($value == "es") ? "español" : "ingles";
+                                ?>
+                                <option value="<?php echo $value ?>" <?php echo $selected; ?> ><?php echo $languaje; ?></option>
+                            <?php } ?>
+                        </select>
+                    </div>
+                </div>
+            </div>
             <div class="row">
                 <div class="col-xs-12">
                     <div class="table-header">
@@ -69,30 +91,25 @@
                         <table id="example" class="display table table-hover " style="width:100%">
                             <thead>
                             <tr>
-                                <th>Fotografia</th>
-                                <th>Nombre</th>
-                                <th>Especialidad ES</th>
-                                <th>Especialidad En</th>
+                                <th>Titulo</th>
+                                <th>Descripcion</th>
+                                <th>Fecha Hora</th>
+                                <th>Lenguaje</th>
+                                <th>Franquicia</th>
                                 <th>Opciones</th>
                             </tr>
                             </thead>
                             <tbody>
-                            <?php foreach ($arrSpekers as $key => $value) { ?>
+                            <?php foreach ($arrEvents as $key => $value) { ?>
                                 <tr>
-                                    <td>
-                                        <img src="<?php echo IMAGES . "/" . $value["media_description"]; ?>"
-                                             alt="<?php $value["media_name"] ?>"
-                                             width="25"
-                                             height="25">
-                                    </td>
-                                    <td><?php echo $value["name"]; ?></td>
-                                    <td><?php echo $value["es_specialty"]; ?></td>
-                                    <td><?php echo $value["en_specialty"]; ?></td>
-
+                                    <td><?php echo $value["title"] ?></td>
+                                    <td><?php echo $value["description"] ?></td>
+                                    <td><?php echo $value["event_date"] ?></td>
+                                    <td><?php echo $value["language"] ?></td>
+                                    <td><?php echo $value["es_name"] ?></td>
                                     <td>
                                         <div class="hidden-sm hidden-xs action-buttons">
-                                            <a class="blue" href="#" id="edit_speaker"
-                                               speaker="<?php echo $value["id"]; ?>">
+                                            <a class="blue" href="<?php echo URL ?>events/edit?id=<?php echo $value["id"]; ?>" title="editar" >
                                                 <i class="ace-icon fa fa-edit bigger-130"></i>
                                             </a>
                                         </div>
@@ -102,11 +119,14 @@
                                                         data-toggle="dropdown" data-position="auto">
                                                     <i class="ace-icon fa fa-caret-down icon-only bigger-120"></i>
                                                 </button>
+
                                                 <ul class="dropdown-menu dropdown-only-icon dropdown-yellow dropdown-menu-right dropdown-caret dropdown-close">
                                                     <li>
-                                                        <a href="#" class="tooltip-info" data-rel="tooltip" title=""
+                                                        <a href="<?php echo URL ?>events/edit?id<?php echo $value["id"]; ?>"
+                                                           class="tooltip-info" data-rel="tooltip" title="editar"
                                                            data-original-title="View">
-                                                        <span class="blue">
+                                                        <span class="blue" user="<?php echo $value["id"]; ?>"
+                                                              id="edit_user">
                                                             <i class="ace-icon fa fa-edit bigger-120"></i>
                                                         </span>
                                                         </a>
@@ -124,34 +144,51 @@
         </div>
     </div>
 </div>
+
 <script>
     $(document).ready(function () {
 
-
-        $("a#edit_speaker").click(function () {
+        $("#sel_role ,#sel_country ").change(function () {
 
             var arreglo = {
-                title: "Editar Speaker",
-                url: "<?php echo URL ?>speaker/edit",
+                url: "<?php echo URL ?>user",
+                params: {},
+                method: "GET"
+            }
+            if ($("#sel_role").val() !== "")
+                arreglo.params.role = $("#sel_role").val();
+
+            if ($("#sel_country").val() !== "")
+                arreglo.params.country = $("#sel_country").val();
+
+            send_submit(arreglo);
+        })
+
+        $("a#edit_user").click(function () {
+
+            var arreglo = {
+                title: "Editar Usuario",
+                url: "<?php echo URL ?>user/edit",
                 params: {
-                    id: $(this).attr("speaker")
+                    id: $(this).attr("user")
                 }
             }
 
             ajax_on_popup(arreglo);
         })
 
+        $("#btAddEvent").click(function () {
 
-        $("#add_new_speaker").click(function () {
             var arreglo = {
-                url: "<?php echo URL ?>speaker/create",
+                url: "<?php echo URL ?>events/create",
                 params: {},
                 method: "POST",
-                title: "Agregar Speaker"
+                title: "Agregar Evento"
             }
             ajax_on_popup(arreglo);
         })
 
         $('#example').DataTable({});
     });
+
 </script>

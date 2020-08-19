@@ -40,5 +40,10 @@
         <script src="<?php echo URL ?>js/jquery.validate.min.js"></script>
         <script src="<?php echo URL ?>js/bootbox.min.js"></script>
         <script src="<?php echo URL ?>js/jquery.gritter.min.js"></script>
+        <script src="<?php echo URL ?>js/bootstrap-datepicker.min.js"></script>
+        <script src="<?php echo URL ?>js/bootstrap-timepicker.min.js"></script>
+        <script src="<?php echo URL ?>js/moment.min.js"></script>
+        <script src="<?php echo URL ?>js/bootstrap-datetimepicker.min.js"></script>
+        <script src="<?php echo URL ?>js/dropzone.min.js"></script>
     </body>
 </html>

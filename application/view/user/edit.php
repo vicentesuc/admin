@@ -76,7 +76,7 @@
                 <div class="col-sm-9">
                     <div class="inline">
                         <input type="file" name="file" id="file"/>
-                        <img id="prev_image" src="<?php echo URL_PUBLIC_FOLDER . "/" . $arrMedia["description"]; ?>"
+                        <img id="prev_image" src="<?php echo IMAGES . "/" . $arrMedia["description"]; ?>"
                              alt="your image" width="100" height="75"/>
                     </div>
                 </div>
