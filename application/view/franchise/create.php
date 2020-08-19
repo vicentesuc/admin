@@ -1,6 +1,5 @@
 <div class="row">
     <div class="col-xs-12">
-
         <form class="form-horizontal" role="form" id="form-franchise">
             <div class="form-group">
                 <label class="col-sm-3 control-label no-padding-right" for="input_franchise_es">Nombre en

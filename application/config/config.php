@@ -14,6 +14,7 @@ define('URL', URL_PROTOCOL . URL_DOMAIN . URL_SUB_FOLDER);
 define('IMAGES',URL."img".URL_PROTOCOL);
 define('NOW', date("Y-m-d H:i:s"));
 
+
 define('SPANISH', URL."assets/js/plugins/dataTables/spanish.json");
 
 if(isset($_SESSION["usuarioId"])){

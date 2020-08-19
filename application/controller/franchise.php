@@ -4,9 +4,9 @@ require APP . 'repository/DaoCountries.php';
 
 class Franchise extends controller
 {
-
     private $countries;
 
+    private $franchise;
 
     function __construct()
     {

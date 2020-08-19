@@ -222,6 +222,55 @@ function form_to_json(objeto) {
     return data;
 }
 
+function ajax_send_file(arreglo, callback) {
+    var response = {};
+    rp = {};
+    var fd = new FormData();
+    var files = $('#' + arreglo.image)[0].files[0];
+    fd.append('file', files);
+
+    jQuery.each(arreglo.params, function (i, val) {
+        fd.append(i, val);
+    });
+
+    $.ajax({
+        url: arreglo.url,
+        type: arreglo.method,
+        data: fd,
+        contentType: false,
+        processData: false,
+        success: function (data) {
+            try {
+                resp = JSON.parse(data);
+
+                if (typeof callback !== 'undefined')
+                    callback(data);
+
+            } catch (ex) {
+                rp.msg = "Ha ocurrido un error, comuniquese con el departamento de sistemas";
+                rp.title = "Aviso";
+                rp.event = "error";
+                messages(rp);
+            }
+        },
+        statusCode: {
+            200: function () {
+                stopLoading();
+            },
+            404: function () {
+                response.Code = 404;
+                response.Msg = "Fail";
+                callback(response);
+            },
+            500: function () {
+                response.Code = 500;
+                response.Msg = "Server Error";
+                callback(response);
+            }
+        }
+    });
+}
+
 function ajax_send(arreglo, callback) {
     var response = {};
     startLoading();
@@ -265,43 +314,7 @@ function ajax_send(arreglo, callback) {
     });
 }
 
-function ajax_send_file(arreglo, callback) {
-    var response = {};
 
-    // console.log(arreglo);
-    // document.getElementById(arreglo.input).addEventListener('change', false);
-    var formData = new FormData(document.getElementById(arreglo.form));
-    //$("#loading").show();
-
-    // arreglo.form.preventDefault();
-
-    $.ajax({
-        type: "POST",
-        dataType: "html",
-        data: formData,
-        url: arreglo.url,
-        cache: false,
-        contentType: false,
-        processData: false,
-        success: function (data) {
-
-            if (typeof callback !== 'undefined')
-                callback(data);
-        },
-        statusCode: {
-            404: function () {
-                response.Code = 404;
-                response.Msg = "Fail";
-                callback(response);
-            },
-            500: function () {
-                response.Code = 500;
-                response.Msg = "Server Error";
-                callback(response);
-            }
-        }
-    });
-}
 
 
 function tabladinamica(objeto) {
