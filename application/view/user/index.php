@@ -172,13 +172,14 @@
         $("a#edit_user").click(function () {
 
             var arreglo = {
-                title: "Editar Franquicia",
-                url: "<?php echo URL ?>franchise/edit",
+                title: "Editar Usuario",
+                url: "<?php echo URL ?>user/edit",
                 params: {
-                    id: $(this).attr("franchise")
+                    id: $(this).attr("user")
                 }
             }
-            ajax_send(arreglo);
+
+            ajax_on_popup(arreglo);
         })
 
         $("#add_new_user").click(function () {

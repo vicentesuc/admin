@@ -22,7 +22,7 @@
     <list default="true" id="da35a530-2b5e-45e3-a290-2dd5b36fad21" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/application/controller/user.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/controller/user.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/application/view/user/create.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/view/user/create.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/repository/DaoUser.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/repository/DaoUser.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/application/view/user/edit.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/view/user/edit.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/application/view/user/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/view/user/index.php" afterDir="false" />
     </list>
@@ -82,7 +82,7 @@
       <workItem from="1597701879258" duration="70000" />
       <workItem from="1597712699826" duration="7443000" />
       <workItem from="1597760054610" duration="25000" />
-      <workItem from="1597784532705" duration="10823000" />
+      <workItem from="1597784532705" duration="12501000" />
     </task>
     <servers />
   </component>

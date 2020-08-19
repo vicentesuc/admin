@@ -72,7 +72,7 @@ class DaoUser
             [
                 "users.id",
                 "users.name",
-                "users. email",
+                "users.email",
                 "users.franchise_id",
                 "users.role_id",
                 "users.pass",
@@ -100,7 +100,7 @@ class DaoUser
 
     function update($params = array())
     {
-        $data = $this->database->insert(
+        $data = $this->database->update(
             "users",
             $params,
             [
