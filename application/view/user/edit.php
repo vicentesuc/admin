@@ -169,6 +169,9 @@
         })
     })
 
+
+
+
     $("#file").change(function () {
         readURL(this);
     });

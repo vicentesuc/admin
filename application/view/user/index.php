@@ -115,7 +115,7 @@
                                     <td><?php echo $value["country_desc"] ?></td>
                                     <td>
                                         <div class="hidden-sm hidden-xs action-buttons">
-                                            <a class="blue" href="#">
+                                            <a class="blue" href="#" user="<?php echo $value["id"]; ?>" id="edit_user">
                                                 <i class="ace-icon fa fa-edit bigger-130"></i>
                                             </a>
                                         </div>
@@ -130,7 +130,8 @@
                                                     <li>
                                                         <a href="#" class="tooltip-info" data-rel="tooltip" title=""
                                                            data-original-title="View">
-                                                        <span class="blue">
+                                                        <span class="blue" user="<?php echo $value["id"]; ?>"
+                                                              id="edit_user">
                                                             <i class="ace-icon fa fa-edit bigger-120"></i>
                                                         </span>
                                                         </a>
@@ -168,13 +169,27 @@
             send_submit(arreglo);
         })
 
+        $("a#edit_user").click(function () {
+
+            var arreglo = {
+                title: "Editar Franquicia",
+                url: "<?php echo URL ?>franchise/edit",
+                params: {
+                    id: $(this).attr("franchise")
+                }
+            }
+            ajax_send(arreglo);
+        })
+
         $("#add_new_user").click(function () {
+
             var arreglo = {
                 url: "<?php echo URL ?>user/create",
                 params: {},
-                method: "POST"
+                method: "POST",
+                title: "Agregar Usuario"
             }
-            send_submit(arreglo);
+            ajax_on_popup(arreglo);
         })
 
         $('#example').DataTable({});

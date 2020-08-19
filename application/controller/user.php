@@ -49,9 +49,9 @@ class User extends controller
         $arrCountries = $this->countries->getAll();
         $arrFranchises = $this->franchise->getAll();
 
-        require APP . 'view/_templates/header.php';
+//        require APP . 'view/_templates/header.php';
         require APP . 'view/user/create.php';
-        require APP . 'view/_templates/footer.php';
+//        require APP . 'view/_templates/footer.php';
     }
 
     public function edit()
