@@ -7,16 +7,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="<?php echo URL; ?>css/bootstrap.min.css"/>
     <link rel="stylesheet" href="<?php echo URL; ?>font-awesome/4.7.0/css/font-awesome.min.css"/>
+    <link rel="stylesheet" href="<?php echo URL; ?>css/colorbox.min.css"/>
     <link rel="stylesheet" href="<?php echo URL; ?>css/ace.min.css" class="ace-main-stylesheet" id="main-ace-style"/>
+    <link rel="stylesheet" href="<?php echo URL; ?>css/ace-skins.min.css" />
     <link rel="stylesheet" href="<?php echo URL; ?>css/ace-rtl.min.css"/>
     <link rel="stylesheet" href="<?php echo URL; ?>css/jquery.gritter.min.css"/>
-    <link rel="stylesheet" href="<?php echo URL; ?>css/bootstrap-datetimepicker.min.css" />
-    <link rel="stylesheet" href="<?php echo URL; ?>css/dropzone.min.css" />
+    <link rel="stylesheet" href="<?php echo URL; ?>css/bootstrap-datetimepicker.min.css"/>
+    <link rel="stylesheet" href="<?php echo URL; ?>css/dropzone.min.css"/>
 
     <link href="<?php echo URL ?>css/dataTables/datatables.min.css" rel="stylesheet">
     <link href="<?php echo URL ?>css/dataTables/select.dataTables.min.css" rel="stylesheet">
     <script src="<?php echo URL; ?>js/jquery/2.1.4/jquery-2.1.4.min.js"></script>
-    <script src="<?php echo URL; ?>/js/ace-extra.min.js"></script>
+    <script src="<?php echo URL; ?>js/ace-extra.min.js"></script>
 </head>
 <body class="no-skin">
 

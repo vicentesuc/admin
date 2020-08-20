@@ -2,12 +2,14 @@
 require APP . 'repository/DaoCountries.php';
 require APP . 'repository/DaoMedia.php';
 require APP . 'repository/DaoFranchise.php';
+require APP . 'repository/DaoEventMedia.php';
 
 class Events extends controller
 {
     private $countries;
     private $media;
     private $franchise;
+    private $eventMedia;
 
     function __construct()
     {
@@ -16,6 +18,7 @@ class Events extends controller
         $this->countries = new DaoCountries($this->db);
         $this->media = new DaoMedia($this->db);
         $this->franchise = new DaoFranchise($this->db);
+        $this->eventMedia = new DaoEventMedia($this->db);
     }
 
     function index()
@@ -173,7 +176,51 @@ class Events extends controller
     function postMedia()
     {
 
-        Helper::binDebug(FILES);
+        $media_id = 0;
 
+        if (isset($_FILES) and isset($_FILES["file"]) and (isset($_REQUEST["media_event_id"]))) {
+
+            $directory = "media/" . $_REQUEST["media_event_id"] . "/";
+
+            $uploadOk = 1;
+            $imageFileType = pathinfo($_FILES["file"]["name"], PATHINFO_EXTENSION);
+
+            /* Valid Extensions */
+            $valid_extensions_img = array("jpg", "jpeg", "png");
+            $valid_extensions_video = array("mp4");
+
+            /* Check file extension */
+            if (!in_array(strtolower($imageFileType), $valid_extensions_img))
+                $uploadOk = 0;
+
+
+            if ($uploadOk = 0 and !in_array(strtolower($imageFileType), $valid_extensions_video))
+                $uploadOk = 0;
+
+            $directory .= ($uploadOk = 1 and in_array(strtolower($imageFileType), $valid_extensions_img)) ? "image/" : "video/";
+
+            $target = $directory . $_FILES["file"]["name"];
+            $arrMediaParams ["name"] = basename($_FILES["file"]["name"]);
+            $arrMediaParams ["description"] = $target;
+
+            if ($uploadOk == 0) {
+                echo 0;
+            } else {
+
+                if (!file_exists($directory)) {
+                    mkdir($directory, 0777, true);
+                }
+
+                if (move_uploaded_file($_FILES['file']['tmp_name'], $target)) {
+                    $media_id = $this->media->persist($arrMediaParams);
+
+                    if ((int)$media_id > 0) {
+                        $eventMediaParams["event_id"] = $_REQUEST["media_event_id"];
+                        $eventMediaParams["media_id"] = $media_id;
+                        $this->eventMedia->persist($eventMediaParams);
+                    }
+                }
+            }
+        }
     }
 }

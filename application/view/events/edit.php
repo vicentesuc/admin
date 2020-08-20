@@ -41,15 +41,15 @@
                                 </a>
                             </li>
                             <li>
-                                <a data-toggle="tab" href="#video">
-                                    <i class="blue ace-icon fa fa-video-camera bigger-120"></i>
-                                    Videos
+                                <a data-toggle="tab" href="#images" id="tabImages">
+                                    <i class="red ace-icon fa fa-image bigger-120"></i>
+                                    Imagenes
                                 </a>
                             </li>
                             <li>
-                                <a data-toggle="tab" href="#images">
-                                    <i class="red ace-icon fa fa-image bigger-120"></i>
-                                    Imagenes
+                                <a data-toggle="tab" href="#video" id="tabVideo">
+                                    <i class="blue ace-icon fa fa-video-camera bigger-120"></i>
+                                    Videos
                                 </a>
                             </li>
                             <li>
@@ -144,7 +144,7 @@
                                         <label class="col-sm-3 control-label no-padding-right" for="form-field-tags">Foto</label>
                                         <div class="col-sm-9">
                                             <div class="inline">
-                                                <input type="file" name="file" id="file" />
+                                                <input type="file" name="file" id="file"/>
                                             </div>
                                         </div>
                                     </div>
@@ -173,10 +173,10 @@
                                 </div>
                             </div>
                             <div id="video" class="tab-pane ">
-                                <p>Video.</p>
+                                <div id="div_video"></div>
                             </div>
                             <div id="images" class="tab-pane ">
-                                <p>Images</p>
+                                <div id="div_images"></div>
                             </div>
                             <div id="speaker" class="tab-pane ">
                                 <p>Speakers</p>
@@ -193,7 +193,10 @@
                                 </div>
 
                                 <div>
-                                    <form action="./dummy.html" class="dropzone well" id="dropzone">
+                                    <form action="<?php echo URL ?>events/postMedia" class="dropzone well"
+                                          id="dropzone">
+                                        <input type="hidden" id="media_event_id" name="media_event_id"
+                                               value="<?php echo $arrEvent['id'] ?>">
                                         <div class="fallback">
                                             <input name="file" type="file" multiple=""/>
                                         </div>
@@ -286,89 +289,57 @@
             readURL(this);
         });
 
+        $("#tabImages").click(function () {
+
+            var arreglo = {
+                url: "<?php echo URL ?>media/images",
+                method: "POST",
+                div: "div_images",
+                params: {
+                    id: $("#input_event_id").val()
+                }
+            }
+            ajax_on_div(arreglo);
+        })
+
+        $("#tabVideo").click(function () {
+
+            var arreglo = {
+                url: "<?php echo URL ?>media/video",
+                method: "POST",
+                div: "div_video",
+                params: {
+                    id: $("#input_event_id").val()
+                }
+            }
+            ajax_on_div(arreglo);
+        })
+
+
     </script>
     <script type="text/javascript">
-        jQuery(function($){
-
-            try {
-                Dropzone.autoDiscover = false;
-
-                var myDropzone = new Dropzone('#dropzone', {
-                    previewTemplate: $('#preview-template').html(),
-
-                    thumbnailHeight: 120,
-                    thumbnailWidth: 120,
-                    maxFilesize: 0.5,
 
 
-                    dictDefaultMessage :
-                        '<span class="bigger-150 bolder"><i class="ace-icon fa fa-caret-right red"></i> Drop files</span> to upload \
-                        <span class="smaller-80 grey">(or click)</span> <br /> \
-                        <i class="upload-icon ace-icon fa fa-cloud-upload blue fa-3x"></i>'
-                    ,
+        try {
+            Dropzone.autoDiscover = false;
 
-                    thumbnail: function(file, dataUrl) {
-                        if (file.previewElement) {
-                            $(file.previewElement).removeClass("dz-file-preview");
-                            var images = $(file.previewElement).find("[data-dz-thumbnail]").each(function() {
-                                var thumbnailElement = this;
-                                thumbnailElement.alt = file.name;
-                                thumbnailElement.src = dataUrl;
-                            });
-                            setTimeout(function() { $(file.previewElement).addClass("dz-image-preview"); }, 1);
-                        }
-                    }
+            var myDropzone = new Dropzone("#dropzone", {
 
-                });
+                paramName: "file", // The name that will be used to transfer the file
+                maxFilesize: 10.0, // MB
+                addRemoveLinks: true,
+                previewTemplate: "<div class=\"dz-preview dz-file-preview\">\n  <div class=\"dz-details\">\n    <div class=\"dz-filename\"><span data-dz-name></span></div>\n    <div class=\"dz-size\" data-dz-size></div>\n    <img data-dz-thumbnail />\n  </div>\n  <div class=\"progress progress-small progress-striped active\"><div class=\"progress-bar progress-bar-success\" data-dz-uploadprogress></div></div>\n  <div class=\"dz-success-mark\"><span></span></div>\n  <div class=\"dz-error-mark\"><span></span></div>\n  <div class=\"dz-error-message\"><span data-dz-errormessage></span></div>\n</div>",
+                acceptedFiles: ".jpeg,.jpg,.png,.gif,.JPEG,.JPG,.PNG,.GIF",
+                maxFiles: 1,
+                init: function () {
+                    this.on("success", function (file, responseText) {
+                        array = responseText.split("|");
 
-
-                //simulating upload progress
-                var minSteps = 6,
-                    maxSteps = 60,
-                    timeBetweenSteps = 100,
-                    bytesPerStep = 100000;
-
-                myDropzone.uploadFiles = function(files) {
-                    var self = this;
-
-                    for (var i = 0; i < files.length; i++) {
-                        var file = files[i];
-                        totalSteps = Math.round(Math.min(maxSteps, Math.max(minSteps, file.size / bytesPerStep)));
-
-                        for (var step = 0; step < totalSteps; step++) {
-                            var duration = timeBetweenSteps * (step + 1);
-                            setTimeout(function(file, totalSteps, step) {
-                                return function() {
-                                    file.upload = {
-                                        progress: 100 * (step + 1) / totalSteps,
-                                        total: file.size,
-                                        bytesSent: (step + 1) * file.size / totalSteps
-                                    };
-
-                                    self.emit('uploadprogress', file, file.upload.progress, file.upload.bytesSent);
-                                    if (file.upload.progress == 100) {
-                                        file.status = Dropzone.SUCCESS;
-                                        self.emit("success", file, 'success', null);
-                                        self.emit("complete", file);
-                                        self.processQueue();
-                                    }
-                                };
-                            }(file, totalSteps, step), duration);
-                        }
-                    }
-                }
-
-
-                //remove dropzone instance when leaving this page in ajax mode
-                $(document).one('ajaxloadstart.page', function(e) {
-                    try {
-                        myDropzone.destroy();
-                    } catch(e) {}
-                });
-
-            } catch(e) {
-                alert('Dropzone.js does not support older browsers!');
-            }
-
-        });
+                        console.log(array);
+                    });
+                },
+            });
+        } catch (e) {
+            // alert('Dropzone.js does not support older browsers!');
+        }
     </script>
