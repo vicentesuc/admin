@@ -58,10 +58,10 @@
                 <div class="col-md-2 col-sm-12 col-xs-12 col-lg-2 ">
                     <div class="form-group">
                         <label for="">Franquicia</label>
-                        <select class="form-control" id="sel_role" name="sale_role">
+                        <select class="form-control" id="sel_franchise" name="sel_franchise">
                             <option value="">Todas</option>
                             <?php foreach ($arrFranchise as $key => $value) {
-                                $selected = ((isset($_REQUEST["role"]) ? $_REQUEST["role"] : null) == $value["id"]) ? "selected" : null;
+                                $selected = ((isset($_REQUEST["franchise"]) ? $_REQUEST["franchise"] : null) == $value["id"]) ? "selected" : null;
                                 ?>
                                 <option value="<?php echo $value["id"] ?>" <?php echo $selected; ?> ><?php echo $value["es_name"] ?></option>
                             <?php } ?>
@@ -71,7 +71,8 @@
                 <div class="col-md-3 col-lg-3 col-sm-12 col-xs-12">
                     <div class="form-group">
                         <label for="input_fr_language">Idioma:</label>
-                        <select class="form-control" id="input_fr_language" name="input_fr_language">
+                        <select class="form-control" id="sel_language" name="sel_language">
+                            <option value="">Todas</option>
                             <?php foreach ($arrLanguages as $key => $value) {
                                 $selected = (((isset($_REQUEST["language"])) ? $_REQUEST["language"] : null) == $value) ? "selected" : "";
                                 $languaje = ($value == "es") ? "español" : "ingles";
@@ -109,7 +110,9 @@
                                     <td><?php echo $value["es_name"] ?></td>
                                     <td>
                                         <div class="hidden-sm hidden-xs action-buttons">
-                                            <a class="blue" href="<?php echo URL ?>events/edit?id=<?php echo $value["id"]; ?>" title="editar" >
+                                            <a class="blue"
+                                               href="<?php echo URL ?>events/edit?id=<?php echo $value["id"]; ?>"
+                                               title="editar">
                                                 <i class="ace-icon fa fa-edit bigger-130"></i>
                                             </a>
                                         </div>
@@ -148,18 +151,18 @@
 <script>
     $(document).ready(function () {
 
-        $("#sel_role ,#sel_country ").change(function () {
+        $("#sel_franchise ,#sel_language ").change(function () {
 
             var arreglo = {
-                url: "<?php echo URL ?>user",
+                url: "<?php echo URL ?>events",
                 params: {},
                 method: "GET"
             }
-            if ($("#sel_role").val() !== "")
-                arreglo.params.role = $("#sel_role").val();
+            if ($("#sel_franchise").val() !== "")
+                arreglo.params.franchise = $("#sel_franchise").val();
 
-            if ($("#sel_country").val() !== "")
-                arreglo.params.country = $("#sel_country").val();
+            if ($("#sel_language").val() !== "")
+                arreglo.params.language = $("#sel_language").val();
 
             send_submit(arreglo);
         })

@@ -9,11 +9,13 @@
     <link rel="stylesheet" href="<?php echo URL; ?>font-awesome/4.7.0/css/font-awesome.min.css"/>
     <link rel="stylesheet" href="<?php echo URL; ?>css/colorbox.min.css"/>
     <link rel="stylesheet" href="<?php echo URL; ?>css/ace.min.css" class="ace-main-stylesheet" id="main-ace-style"/>
-    <link rel="stylesheet" href="<?php echo URL; ?>css/ace-skins.min.css" />
+    <link rel="stylesheet" href="<?php echo URL; ?>css/ace-skins.min.css"/>
     <link rel="stylesheet" href="<?php echo URL; ?>css/ace-rtl.min.css"/>
     <link rel="stylesheet" href="<?php echo URL; ?>css/jquery.gritter.min.css"/>
     <link rel="stylesheet" href="<?php echo URL; ?>css/bootstrap-datetimepicker.min.css"/>
+
     <link rel="stylesheet" href="<?php echo URL; ?>css/dropzone.min.css"/>
+    <link rel="stylesheet" href="<?php echo URL; ?>css/fullcalendar.min.css"/>
 
     <link href="<?php echo URL ?>css/dataTables/datatables.min.css" rel="stylesheet">
     <link href="<?php echo URL ?>css/dataTables/select.dataTables.min.css" rel="stylesheet">
@@ -184,7 +186,7 @@
                         <b class="arrow"></b>
                     </li>
                     <li class="">
-                        <a href="<?php echo URL ?>events">
+                        <a href="<?php echo URL ?>events/calendar">
                             <i class="menu-icon fa fa-calendar"></i> Calendario
                         </a>
                         <b class="arrow"></b>

@@ -43,6 +43,7 @@
         <script src="<?php echo URL ?>js/bootstrap-datepicker.min.js"></script>
         <script src="<?php echo URL ?>js/bootstrap-timepicker.min.js"></script>
         <script src="<?php echo URL ?>js/moment.min.js"></script>
+        <script src="<?php echo URL ?>js/fullcalendar.min.js"></script>
         <script src="<?php echo URL ?>js/bootstrap-datetimepicker.min.js"></script>
         <script src="<?php echo URL ?>js/dropzone.min.js"></script>
         <script src="<?php echo URL ?>js/jquery.colorbox.min.js"></script>

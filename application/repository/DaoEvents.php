@@ -13,7 +13,7 @@ class DaoEvents
         }
     }
 
-    function getAll()
+    function getAll($arraParams = array())
     {
         return $this->database->select(
             "events",
@@ -29,11 +29,22 @@ class DaoEvents
                 "franchises.es_name",
                 "franchises.en_name",
                 "events.image_id",
-                "event_date"=>Medoo::raw("date_format(events.event_date,'%Y-%m-%d %H:%i')"),
+                "event_date" => Medoo::raw("date_format(events.event_date,'%Y-%m-%d %H:%i')"),
                 "events.video_id",
                 "events.survey_url",
                 "events.language",
                 "events.date",
+                "event_year" => Medoo::raw("date_format(events.event_date,'%Y')"),
+                "event_month" => Medoo::raw("date_format(events.event_date,'%m')"),
+                "event_day" => Medoo::raw("date_format(events.event_date,'%d')"),
+                "event_hour" => Medoo::raw("date_format(events.event_date,'%h')"),
+                "event_minute" => Medoo::raw("date_format(events.event_date,'%i')"),
+            ],
+            [
+                "AND" => [
+                    "franchises.id" => (isset($arraParams["franchise"])) ? $arraParams["franchise"] : Medoo::raw("franchises.id"),
+                    "events.language" => (isset($arraParams["language"])) ? $arraParams["language"] : Medoo::raw("events.language")
+                ]
             ]
         );
     }
@@ -52,7 +63,7 @@ class DaoEvents
                 "events.description",
                 "events.franchise_id",
                 "events.image_id",
-                "event_date"=>Medoo::raw("date_format(events.event_date,'%Y-%m-%d %H:%i')"),
+                "event_date" => Medoo::raw("date_format(events.event_date,'%Y-%m-%d %H:%i')"),
                 "events.video_id",
                 "events.survey_url",
                 "events.language",

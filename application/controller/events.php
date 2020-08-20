@@ -23,12 +23,51 @@ class Events extends controller
 
     function index()
     {
-        $arrEvents = $this->model->getAll();
+
+        $arrParams = array();
+        if (isset($_REQUEST["franchise"]))
+            $arrParams["franchise"] = $_REQUEST["franchise"];
+
+        if (isset($_REQUEST["language"]))
+            $arrParams["language"] = $_REQUEST["language"];
+
+        $arrEvents = $this->model->getAll($arrParams);
         $arrLanguages = $this->countries->getLanguage();
         $arrFranchise = $this->franchise->getAll();
 
+
         require APP . 'view/_templates/header.php';
         require APP . 'view/events/index.php';
+        require APP . 'view/_templates/footer.php';
+    }
+
+    function calendar()
+    {
+
+        $arrParams = array();
+        if (isset($_REQUEST["franchise"]))
+            $arrParams["franchise"] = $_REQUEST["franchise"];
+
+        if (isset($_REQUEST["language"]))
+            $arrParams["language"] = $_REQUEST["language"];
+
+        $arrEvents = $this->model->getAll($arrParams);
+        $arrLanguages = $this->countries->getLanguage();
+        $arrFranchise = $this->franchise->getAll();
+
+        $events = array();
+        $count = 0;
+        foreach ($arrEvents as $key => $value) {
+            $events[$count]["title"] = $value["title"];
+            $events[$count]["allDay"] = "false";
+            $events[$count]["start"] = $value["event_date"];
+            $events[$count]["className"] = "label-info";
+
+            $count++;
+        }
+
+        require APP . 'view/_templates/header.php';
+        require APP . 'view/events/calendar/index.php';
         require APP . 'view/_templates/footer.php';
     }
 
@@ -85,7 +124,6 @@ class Events extends controller
 
 
                 if ((int)$media_id > 0) {
-
 
                     $arrEventParams["title"] = $_REQUEST["input_event_title"];
                     $arrEventParams["description"] = $_REQUEST["input_event_description"];
