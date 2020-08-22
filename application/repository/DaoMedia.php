@@ -74,7 +74,6 @@ class DaoMedia
             ]
         ]);
 
-        echo $data->rowCount();
-
+        return $data->rowCount();
     }
 }

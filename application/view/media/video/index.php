@@ -10,8 +10,12 @@
                             <source src="<?php echo IMAGES . "/" . $value["media_url"] ?>" type="video/mp4">
                         </video>
                     </a>
-                    <div class="tools">
-                        <a href="#">
+                    <div class="tools tools-top">
+                        <a href="#"
+                           media="<?php echo $value["media_id"] ?>"
+                           event="<?php echo $value["id"] ?>"
+                           id="myvideodocu"
+                        >
                             <i class="ace-icon fa fa-times red"></i>
                         </a>
                     </div>
@@ -20,3 +24,28 @@
         } ?>
     </ul>
 </div>
+<script>
+    jQuery(function ($) {
+
+        $("a#myvideodocu").click(function () {
+
+            var arreglo = {
+                url: "<?php echo URL ?>media/delete",
+                params: {
+                    media: $(this).attr("media"),
+                    event: $(this).attr("event")
+                }
+            }
+
+            ajax_send(arreglo, (resp) => {
+                var response = JSON.parse(resp);
+
+                messages(response)
+
+                if (response.code === "OK") {
+                    $("#tabVideo").trigger("click");
+                }
+            });
+        })
+    })
+</script>

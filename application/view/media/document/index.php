@@ -13,7 +13,10 @@
                         </div>
                     </a>
                     <div class="tools">
-                        <a href="#" document="<?php echo $value["id"] ?>" id="mypdfdocu">
+                        <a href="#"
+                           media="<?php echo $value["media_id"] ?>"
+                           event="<?php echo $value["id"] ?>"
+                           id="mypdfdocu">
                             <i class="ace-icon fa fa-times red"></i>
                         </a>
                     </div>
@@ -52,17 +55,19 @@
 
             var arreglo = {
                 url: "<?php echo URL ?>media/delete",
-                params: form_to_json("form-speaker"),
-                image: "file",
-                method: "POST"
+                params: {
+                    media: $(this).attr("media"),
+                    event: $(this).attr("event")
+                }
             }
 
-            ajax_send_file(arreglo, (resp) => {
+            ajax_send(arreglo, (resp) => {
                 var response = JSON.parse(resp);
 
                 messages(response)
+
                 if (response.code === "OK") {
-                    window.location.href = "<?php echo URL ?>speaker"
+                    $("#tabDocuments").trigger("click");
                 }
             });
         })

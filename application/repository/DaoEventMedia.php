@@ -29,6 +29,7 @@ class DaoEventMedia
                 "events.franchise_id",
                 "media.description(media_url)",
                 "media.name(media_name)",
+                "media.id(media_id)",
                 "events.image_id",
                 "event_date" => Medoo::raw("date_format(events.event_date,'%Y-%m-%d %H:%i')"),
                 "events.video_id",
@@ -63,6 +64,17 @@ class DaoEventMedia
             ]
         );
 
+        return $data->rowCount();
+    }
+
+    function delete($params = array())
+    {
+        $data = $this->database->delete("event_media", [
+            "AND" => [
+                "event_id" => $params["event_id"],
+                "media_id" => $params["media_id"]
+            ]
+        ]);
         return $data->rowCount();
     }
 

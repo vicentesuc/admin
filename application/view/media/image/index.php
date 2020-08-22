@@ -13,7 +13,11 @@
                         </div>
                     </a>
                     <div class="tools">
-                        <a href="#">
+                        <a href="#"
+                           media="<?php echo $value["media_id"] ?>"
+                           event="<?php echo $value["id"] ?>"
+                           id="myimagedocu"
+                        >
                             <i class="ace-icon fa fa-times red"></i>
                         </a>
                     </div>
@@ -51,6 +55,26 @@
         $('#image_list [data-rel="colorbox"]').colorbox(colorbox_params);
         $("#cboxLoadingGraphic").html("<i class='ace-icon fa fa-spinner orange fa-spin'></i>");//let's add a custom loading icon
 
+        $("a#myimagedocu").click(function () {
+
+            var arreglo = {
+                url: "<?php echo URL ?>media/delete",
+                params: {
+                    media: $(this).attr("media"),
+                    event: $(this).attr("event")
+                }
+            }
+
+            ajax_send(arreglo, (resp) => {
+                var response = JSON.parse(resp);
+
+                messages(response)
+
+                if (response.code === "OK") {
+                    $("#tabImages").trigger("click");
+                }
+            });
+        })
 
         $(document).one('ajaxloadstart.page', function (e) {
             $('#colorbox, #cboxOverlay').remove();

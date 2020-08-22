@@ -1,12 +1,18 @@
 <?php
 
+require APP . 'repository/DaoMedia.php';
+
 class Media extends controller
 {
+
+    private $media;
+
 
     function __construct()
     {
         parent::__construct();
         $this->inject('DaoEventMedia');
+        $this->media = new DaoMedia($this->db);
     }
 
     function images()
@@ -42,14 +48,26 @@ class Media extends controller
         if (isset($_REQUEST["id"]))
             $arrMediaImages = $this->model->getAll($_REQUEST["id"]);
 
+//        Helper::binDebug($arrMediaImages);
+
         require APP . 'view/media/document/index.php';
     }
 
     function delete()
     {
         $rowCount = 0;
-        if ($_REQUEST["id"])
-            $rowCount = $this->model->delete($_REQUEST["id"]);
+        if (isset($_REQUEST["media"])) {
+            $id = $_REQUEST["media"];
+            $rowCount = $this->media->delete($id);
+        }
+
+        if (isset($_REQUEST["event"]) and isset($_REQUEST["media"])) {
+
+            $paramsDelete["event_id"] = $_REQUEST["event"];
+            $paramsDelete["media_id"] = $_REQUEST["media"];
+            $rowCount = $this->model->delete($paramsDelete);
+
+        }
 
         if ((int)$rowCount > 0) {
             print_r(Helper::setMessage("Eliminado Exitosamente", "OK", "success"));

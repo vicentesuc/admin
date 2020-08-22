@@ -20,31 +20,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="da35a530-2b5e-45e3-a290-2dd5b36fad21" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/application/view/media/document/index.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/js/fullcalendar/lang.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/application/controller/events.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/controller/events.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/application/controller/franchise.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/controller/franchise.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/application/controller/login.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/controller/login.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/application/controller/media.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/controller/media.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/application/controller/problem.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/controller/problem.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/application/controller/role.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/controller/role.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/application/repository/DaoEvents.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/repository/DaoEvents.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/repository/DaoEventMedia.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/repository/DaoEventMedia.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/application/repository/DaoMedia.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/repository/DaoMedia.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/application/repository/DaoUser.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/repository/DaoUser.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/application/resources/db/V1__dummy_inital_er.sql" beforeDir="false" afterPath="$PROJECT_DIR$/application/resources/db/V1__dummy_inital_er.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/application/view/_templates/footer.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/view/_templates/footer.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/application/view/_templates/header.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/view/_templates/header.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/application/view/events/calendar/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/view/events/calendar/index.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/application/view/events/create.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/view/events/create.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/application/view/events/edit.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/view/events/edit.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/application/view/events/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/view/events/index.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/application/view/franchise/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/view/franchise/index.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/application/view/login/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/view/login/index.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/view/media/document/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/view/media/document/index.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/application/view/media/image/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/view/media/image/index.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/application/view/media/video/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/view/media/video/index.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/application/view/speaker/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/view/speaker/index.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/application/view/user/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/view/user/index.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -110,7 +92,7 @@
       <workItem from="1597944034096" duration="2600000" />
       <workItem from="1597969428080" duration="127000" />
       <workItem from="1598038177017" duration="3725000" />
-      <workItem from="1598118792417" duration="5364000" />
+      <workItem from="1598118792417" duration="6659000" />
     </task>
     <servers />
   </component>
