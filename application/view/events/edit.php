@@ -53,6 +53,12 @@
                                 </a>
                             </li>
                             <li>
+                                <a data-toggle="tab" href="#documents" id="tabDocuments">
+                                    <i class="orange ace-icon fa fa-file-pdf-o bigger-120"></i>
+                                    Documentos
+                                </a>
+                            </li>
+                            <li>
                                 <a data-toggle="tab" href="#speaker">
                                     <i class="purple ace-icon fa fa-user-circle-o bigger-120"></i>
                                     Speakers
@@ -126,6 +132,24 @@
                                     </div>
                                     <div class="form-group">
                                         <label class="col-sm-3 control-label no-padding-right"
+                                               for="input_event_link">Evento (Url)</label>
+                                        <div class="col-sm-9">
+                                            <input type="text"  class="col-xs-10 col-sm-5" id="input_event_link" name="input_event_link"
+                                                   value="<?php echo $arrEvent["event_link"]; ?>"
+                                                   required/>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-sm-3 control-label no-padding-right"
+                                               for="input_event_hashtag">Hashtag</label>
+                                        <div class="col-sm-9">
+                                            <input type="text"  class="col-xs-10 col-sm-5" id="input_event_hashtag" name="input_event_hashtag"
+                                                   value="<?php echo $arrEvent["hashtag"]; ?>"
+                                                   required/>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-sm-3 control-label no-padding-right"
                                                for="input_event_language">Idioma</label>
                                         <div class="col-sm-9">
                                             <select class="col-xs-10 col-sm-5" id="input_event_language"
@@ -177,6 +201,9 @@
                             </div>
                             <div id="images" class="tab-pane ">
                                 <div id="div_images"></div>
+                            </div>
+                            <div id="documents" class="tab-pane ">
+                                <div id="div_documents"></div>
                             </div>
                             <div id="speaker" class="tab-pane ">
                                 <p>Speakers</p>
@@ -308,6 +335,19 @@
                 url: "<?php echo URL ?>media/video",
                 method: "POST",
                 div: "div_video",
+                params: {
+                    id: $("#input_event_id").val()
+                }
+            }
+            ajax_on_div(arreglo);
+        })
+
+        $("#tabDocuments").click(function () {
+
+            var arreglo = {
+                url: "<?php echo URL ?>media/documents",
+                method: "POST",
+                div: "div_documents",
                 params: {
                     id: $("#input_event_id").val()
                 }

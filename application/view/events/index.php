@@ -9,12 +9,12 @@
     <ul class="breadcrumb">
         <li>
             <i class="ace-icon fa fa-home home-icon"></i>
-            <a href="<?php echo URL ?>home">Home</a>
+            <a href="<?php echo URL ?>events/calendar">Home</a>
         </li>
         <li>
-            <a href="<?php echo URL ?>user">Eventos</a>
+            <a href="<?php echo URL ?>events">Eventos</a>
         </li>
-        <li class="active">Nuevo</li>
+        <li class="active">Lista</li>
     </ul>
 </div>
 
@@ -167,18 +167,6 @@
             send_submit(arreglo);
         })
 
-        $("a#edit_user").click(function () {
-
-            var arreglo = {
-                title: "Editar Usuario",
-                url: "<?php echo URL ?>user/edit",
-                params: {
-                    id: $(this).attr("user")
-                }
-            }
-
-            ajax_on_popup(arreglo);
-        })
 
         $("#btAddEvent").click(function () {
 
@@ -192,6 +180,12 @@
         })
 
         $('#example').DataTable({});
+
+        $("#span_calendar").click(function () {
+            window.location.href = "<?php echo URL ?>events/calendar";
+        })
+
     });
+
 
 </script>

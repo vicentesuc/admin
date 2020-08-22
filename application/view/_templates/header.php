@@ -14,6 +14,8 @@
     <link rel="stylesheet" href="<?php echo URL; ?>css/jquery.gritter.min.css"/>
     <link rel="stylesheet" href="<?php echo URL; ?>css/bootstrap-datetimepicker.min.css"/>
 
+
+
     <link rel="stylesheet" href="<?php echo URL; ?>css/dropzone.min.css"/>
     <link rel="stylesheet" href="<?php echo URL; ?>css/fullcalendar.min.css"/>
 
@@ -142,21 +144,21 @@
 
         <div class="sidebar-shortcuts" id="sidebar-shortcuts">
             <div class="sidebar-shortcuts-large" id="sidebar-shortcuts-large">
-                <button class="btn btn-success">
+                <a  href="<?php echo URL ?>user" class="btn btn-success">
                     <i class="ace-icon fa fa-users"></i>
-                </button>
+                </a>
 
-                <button class="btn btn-info">
+                <a href="<?php echo URL ?>events" class="btn btn-info">
                     <i class="ace-icon fa fa-bell"></i>
-                </button>
+                </a>
 
-                <button class="btn btn-warning">
+                <a href="<?php echo URL ?>franchise" class="btn btn-warning">
                     <i class="ace-icon fa fa-building"></i>
-                </button>
+                </a>
 
-                <button class="btn btn-danger">
+                <a href="<?php echo URL ?>speaker" class="btn btn-danger">
                     <i class="ace-icon fa fa-user-circle-o"></i>
-                </button>
+                </a>
             </div>
 
             <div class="sidebar-shortcuts-mini" id="sidebar-shortcuts-mini">
@@ -181,7 +183,7 @@
                 <ul class="submenu">
                     <li class="">
                         <a href="<?php echo URL ?>events">
-                            <i class="menu-icon fa fa-list"></i> Lista de Eventos
+                            <i class="menu-icon fa fa-list"></i> Lista
                         </a>
                         <b class="arrow"></b>
                     </li>
@@ -194,57 +196,25 @@
                 </ul>
             </li>
             <li class="">
-                <a href="#" class="dropdown-toggle">
+                <a href="<?php echo URL ?>user" >
                     <i class="menu-icon fa fa-users"></i>
                     <span class="menu-text"> Usuarios </span>
-                    <b class="arrow fa fa-angle-down"></b>
                 </a>
-                <b class="arrow"></b>
-                <ul class="submenu">
-                    <li class="">
-                        <a href="<?php echo URL ?>user">
-                            <i class="menu-icon fa fa-user"></i> Lista</a>
-                        <b class="arrow"></b>
-                    </li>
-                    <li class="">
-                        <a href="<?php echo URL ?>user/create">
-                            <i class="menu-icon fa fa-user-plus "></i> Crear Nuevo</a>
-                        <b class="arrow"></b>
-                    </li>
-                </ul>
             </li>
             <li>
                 <a href="<?php echo URL ?>franchise">
                     <i class="menu-icon fa fa-building"></i>
                     <span class="menu-text"> Franquicias </span>
                 </a>
-
                 <b class="arrow"></b>
             </li>
             <li class="">
-                <a href="#" class="dropdown-toggle">
+                <a href="<?php echo URL ?>speaker" >
                     <i class="menu-icon fa fa-user-circle-o"></i>
                     <span class="menu-text"> Speakers </span>
-                    <b class="arrow fa fa-angle-down"></b>
                 </a>
-                <b class="arrow"></b>
-                <ul class="submenu">
-                    <li class="">
-                        <a href="<?php echo URL ?>speaker">
-                            <i class="menu-icon fa fa-user-circle-o"></i> Registrados</a>
-                        <b class="arrow"></b>
-                    </li>
-                    <li class="">
-                        <a href="<?php echo URL ?>user/create">
-                            <i class="menu-icon fa fa-plus "></i>Nuevo Speaker</a>
-                        <b class="arrow"></b>
-                    </li>
-                </ul>
             </li>
-
-
-        </ul><!-- /.nav-list -->
-
+        </ul>
         <div class="sidebar-toggle sidebar-collapse" id="sidebar-collapse">
             <i class="ace-icon fa fa-angle-double-left" data-icon1="ace-icon fa fa-angle-double-left"
                data-icon2="ace-icon fa fa-angle-double-right"></i>

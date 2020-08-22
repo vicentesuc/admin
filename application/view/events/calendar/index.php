@@ -1,3 +1,23 @@
+<div class="breadcrumbs" id="breadcrumbs">
+    <script type="text/javascript">
+        try {
+            ace.settings.check('breadcrumbs', 'fixed')
+        } catch (e) {
+        }
+    </script>
+
+    <ul class="breadcrumb">
+        <li>
+            <i class="ace-icon fa fa-home home-icon"></i>
+            <a href="<?php echo URL ?>home">Home</a>
+        </li>
+        <li>
+            <a href="<?php echo URL ?>events">Eventos</a>
+        </li>
+        <li class="active">Calendar</li>
+    </ul>
+</div>
+
 <div class="page-content">
     <div class="row">
         <div class="col-xs-12">
@@ -93,7 +113,7 @@
             },
             events: <?php echo json_encode($events, JSON_PRETTY_PRINT); ?>
             ,
-
+            lang: 'es',
             editable: true,
             droppable: true, // this allows things to be dropped onto the calendar !!!
             drop: function (date) { // this function is called when something is dropped
@@ -127,67 +147,20 @@
             selectHelper: true,
             select: function (start, end, allDay) {
 
-                bootbox.prompt("New Event Title:", function (title) {
-                    if (title !== null) {
-                        calendar.fullCalendar('renderEvent',
-                            {
-                                title: title,
-                                start: start,
-                                end: end,
-                                allDay: allDay,
-                                className: 'label-info'
-                            },
-                            true // make the event "stick"
-                        );
-                    }
-                });
-
-
-                calendar.fullCalendar('unselect');
+                var arreglo = {
+                    url: "<?php echo URL ?>events/create",
+                    params: {
+                        calendar: true
+                    },
+                    method: "POST",
+                    title: "Agregar Evento"
+                }
+                ajax_on_popup(arreglo);
             }
             ,
             eventClick: function (calEvent, jsEvent, view) {
 
-                //display a modal
-                var modal =
-                    '<div class="modal fade">\
-                      <div class="modal-dialog">\
-                       <div class="modal-content">\
-                         <div class="modal-body">\
-                           <button type="button" class="close" data-dismiss="modal" style="margin-top:-10px;">&times;</button>\
-                           <form class="no-margin">\
-                              <label>Change event name &nbsp;</label>\
-                              <input class="middle" autocomplete="off" type="text" value="' + calEvent.title + '" />\
-					 <button type="submit" class="btn btn-sm btn-success"><i class="ace-icon fa fa-check"></i> Save</button>\
-				   </form>\
-				 </div>\
-				 <div class="modal-footer">\
-					<button type="button" class="btn btn-sm btn-danger" data-action="delete"><i class="ace-icon fa fa-trash-o"></i> Delete Event</button>\
-					<button type="button" class="btn btn-sm" data-dismiss="modal"><i class="ace-icon fa fa-times"></i> Cancel</button>\
-				 </div>\
-			  </div>\
-			 </div>\
-			</div>';
-
-                var modal = $(modal).appendTo('body');
-                modal.find('form').on('submit', function (ev) {
-                    ev.preventDefault();
-
-                    calEvent.title = $(this).find("input[type=text]").val();
-                    calendar.fullCalendar('updateEvent', calEvent);
-                    modal.modal("hide");
-                });
-                modal.find('button[data-action=delete]').on('click', function () {
-                    calendar.fullCalendar('removeEvents', function (ev) {
-                        return (ev._id == calEvent._id);
-                    })
-                    modal.modal("hide");
-                });
-
-                modal.modal('show').on('hidden', function () {
-                    modal.remove();
-                });
-
+                window.location.href = "<?php echo URL ?>events/edit?id=" + calEvent.event_id;
             }
         });
     })

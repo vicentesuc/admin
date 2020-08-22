@@ -1,5 +1,4 @@
 <?php
-
 class Problem extends controller
 {
     public function index()

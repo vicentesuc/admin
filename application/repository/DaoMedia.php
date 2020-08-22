@@ -65,4 +65,16 @@ class DaoMedia
 
         return $data->rowCount();
     }
+
+    function delete($id = 0)
+    {
+        $data = $this->database->delete("media", [
+            "AND" => [
+                "id" => $id
+            ]
+        ]);
+
+        echo $data->rowCount();
+
+    }
 }

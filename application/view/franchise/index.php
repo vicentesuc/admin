@@ -49,21 +49,6 @@
             </div>
             <br>
             <div class="row">
-                <div class="col-md-3 col-lg-3 col-sm-12 col-xs-12">
-                    <div class="form-group">
-                        <label class="col-form-label" for="input_fr_language">Idioma:</label>
-                        <select id="input_fr_language" name="input_fr_language">
-                            <?php foreach ($arrLanguages as $key => $value) {
-                                $selected = (((isset($_REQUEST["language"])) ? $_REQUEST["language"] : null) == $value) ? "selected" : "";
-                                $languaje = ($value == "es") ? "español" : "ingles";
-                                ?>
-                                <option value="<?php echo $value ?>" <?php echo $selected; ?> ><?php echo $languaje; ?></option>
-                            <?php } ?>
-                        </select>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
                 <div class="col-xs-12">
                     <div class="table-header">
                         Resultados
@@ -73,7 +58,8 @@
                             <thead>
                             <tr>
                                 <th>Id</th>
-                                <th>Franquicia</th>
+                                <th>es_name</th>
+                                <th>en_name</th>
                                 <th>Opciones</th>
                             </tr>
                             </thead>
@@ -81,7 +67,8 @@
                             <?php foreach ($arrFranchise as $key => $value) { ?>
                                 <tr>
                                     <td><?php echo $value["id"]; ?></td>
-                                    <td><?php echo ((isset($_REQUEST["language"]) ? $_REQUEST["language"] : null) == "en") ? $value["en_name"] : $value["es_name"]; ?></td>
+                                    <td><?php echo $value["es_name"]; ?></td>
+                                    <td><?php echo $value["en_name"]; ?></td>
                                     <td>
                                         <div class="hidden-sm hidden-xs action-buttons">
                                             <a class="blue" href="#" id="editFranchise"

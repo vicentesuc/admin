@@ -9,15 +9,13 @@
     <ul class="breadcrumb">
         <li>
             <i class="ace-icon fa fa-home home-icon"></i>
-            <a href="<?php echo URL ?>home">Home</a>
+            <a href="<?php echo URL ?>events/calendar">Home</a>
         </li>
         <li>
-            <a href="<?php echo URL ?>user">Franquicias</a>
+            <a href="<?php echo URL ?>speaker">Speakers</a>
         </li>
-        <li class="active">Nuevo</li>
     </ul>
 </div>
-
 <div class="page-content">
     <div class="row">
         <div class="col-xs-12">
@@ -31,29 +29,16 @@
                 </h1>
             </div>
             <div class="row">
-                <div class="clearfix">
-                    <div class="pull-right">
-                        <span class="blue middle bolder"> Otras opciones &nbsp;</span>
-                        <div class="btn-toolbar inline middle no-margin">
-                            <div data-toggle="buttons" class="btn-group no-margin">
-
-                                <label class="btn btn-sm btn-info">
-                                        <span class="bigger-110" title="Nuevo Usuario" id="add_new_speaker">
-                                             <a href="#">
-                                                <icon class="ace-icon fa fa-plus white "></icon>
-                                             </a>
-                                        </span>
-                                </label>
-                                <label class="btn btn-sm btn-success" id="span_calendar">
-									<span class="bigger-110" title="Eventos">
-										<icon class="ace-icon fa fa-calendar white ">
-										</icon></span>
-                                </label>
-                                <label class="btn btn-sm btn-danger" id="otras_opciones">
-										<span class="bigger-110" title="Franquicias">
-											<icon class="ace-icon fa fa-building white ">
-											</icon></span>
-                                </label>
+                <div class="col-xs-12">
+                    <div class="clearfix">
+                        <div class="pull-right">
+                            <div class="btn-toolbar inline middle no-margin">
+                                <div data-toggle="buttons" class="btn-group no-margin">
+                                    <a href="#" class="btn btn-info" id="add_new_speaker">
+                                        <icon class="ace-icon fa fa-plus white "></icon>
+                                        Nuevo
+                                    </a>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -147,7 +132,7 @@
                 url: "<?php echo URL ?>speaker/create",
                 params: {},
                 method: "POST",
-                title: "Agregar Speaker"
+                title: "Nuevo Speaker"
             }
             ajax_on_popup(arreglo);
         })

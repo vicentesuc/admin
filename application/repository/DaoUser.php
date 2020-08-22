@@ -52,15 +52,16 @@ class DaoUser
         );
     }
 
-    function getByEmail($email = "")
+    function getByEmail($paramas = array())
     {
-        return $this->database->get("users",
+        return $this->database->    get("users",
             [
                 "id",
-                "name"
+                "name",
+                "pass"
             ],
             [
-                "email" => $email
+                "email" => $paramas["email"]
             ]
         );
     }

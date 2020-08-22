@@ -1,4 +1,5 @@
 <?php
+
 class Role extends controller
 {
     public function index()

@@ -10,6 +10,11 @@
                             <source src="<?php echo IMAGES . "/" . $value["media_url"] ?>" type="video/mp4">
                         </video>
                     </a>
+                    <div class="tools">
+                        <a href="#">
+                            <i class="ace-icon fa fa-times red"></i>
+                        </a>
+                    </div>
                 </li>
             <?php }
         } ?>

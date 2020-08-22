@@ -1,5 +1,4 @@
 <?php
-
 require APP . 'repository/DaoCountries.php';
 
 class Franchise extends controller

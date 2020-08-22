@@ -50,6 +50,22 @@
                 </div>
             </div>
             <div class="form-group">
+                <label class="col-sm-3 control-label no-padding-right"
+                       for="input_event_link">Evento (Url)</label>
+                <div class="col-sm-9">
+                    <input type="text"  class="col-xs-10 col-sm-5" id="input_event_link" name="input_event_link"
+                           required/>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-3 control-label no-padding-right"
+                       for="input_event_hashtag">Hashtag</label>
+                <div class="col-sm-9">
+                    <input type="text"  class="col-xs-10 col-sm-5" id="input_event_hashtag" name="input_event_hashtag"
+                           required/>
+                </div>
+            </div>
+            <div class="form-group">
                 <label class="col-sm-3 control-label no-padding-right" for="input_event_language">Idioma</label>
                 <div class="col-sm-9">
                     <select class="col-xs-10 col-sm-5" id="input_event_language" name="input_event_language" required>

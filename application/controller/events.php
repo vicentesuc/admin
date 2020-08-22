@@ -62,6 +62,7 @@ class Events extends controller
             $events[$count]["allDay"] = "false";
             $events[$count]["start"] = $value["event_date"];
             $events[$count]["className"] = "label-info";
+            $events[$count]["event_id"] = $value["id"];
 
             $count++;
         }
@@ -132,7 +133,9 @@ class Events extends controller
                     $arrEventParams["event_date"] = $_REQUEST["input_event_date"];
                     $arrEventParams["video_id"] = $media_id;
                     $arrEventParams["survey_url"] = $_REQUEST["input_event_survey"];
+                    $arrEventParams["event_link"] = $_REQUEST["input_event_link"];
                     $arrEventParams["language"] = $_REQUEST["input_event_language"];
+                    $arrEventParams["hashtag"] = $_REQUEST["input_event_hashtag"];
                     $arrEventParams["date"] = NOW;
 
                     $event_id = $this->model->persist($arrEventParams);
@@ -194,6 +197,8 @@ class Events extends controller
             $arrEventParams["franchise_id"] = $_REQUEST["input_event_franchise"];
             $arrEventParams["event_date"] = $_REQUEST["input_event_date"];
             $arrEventParams["survey_url"] = $_REQUEST["input_event_survey"];
+            $arrEventParams["event_link"] = $_REQUEST["input_event_link"];
+            $arrEventParams["hashtag"] = $_REQUEST["input_event_hashtag"];
             $arrEventParams["language"] = $_REQUEST["input_event_language"];
             $arrEventParams["date"] = NOW;
 

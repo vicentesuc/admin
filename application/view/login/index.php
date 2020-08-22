@@ -34,7 +34,7 @@ unset($_SESSION['logueado']);
                             <div class="widget-body">
                                 <div class="widget-main">
                                     <div class="space-6"></div>
-                                    <form method="POST" id="form_ingreso" action="security.php">
+                                    <form method="POST" id="from_validate" action="<?php echo URL ?>login/validate">
                                         <center>
                                             <img src="<?php echo URL; ?>/avatars/icon-user.png" alt="..."
                                                  class="img-circle img-responsive">
@@ -47,20 +47,20 @@ unset($_SESSION['logueado']);
                                             <label class="block clearfix">
 														<span class="block input-icon input-icon-right">
 															<input type="text"
-                                                                   id="txt_user"
-                                                                   name="txt_user"
+                                                                   id="input_email"
+                                                                   name="input_email"
                                                                    class="form-control"
                                                                    required
-                                                                   placeholder="Username o Email"/>
+                                                                   placeholder="Email"/>
 															<i class="ace-icon fa fa-user"></i>
 														</span>
                                             </label>
                                             <label class="block clearfix">
 														<span class="block input-icon input-icon-right">
 															<input type="password"
-                                                                   id="txt_pass"
+                                                                   id="input_pwd"
                                                                    required
-                                                                   name="txt_pass"
+                                                                   name="input_pwd"
                                                                    class="form-control" placeholder="Password"/>
 															<i class="ace-icon fa fa-lock"></i>
 														</span>
@@ -100,8 +100,8 @@ unset($_SESSION['logueado']);
     $(document).ready(function () {
         $("#btn_ingresar").click(function () {
 
-            valid_form("form_ingreso", () => {
-                document.getElementById("form_ingreso").submit();
+            valid_form("from_validate", () => {
+                document.getElementById("from_validate").submit();
             })
         });
     })
