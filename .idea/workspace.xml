@@ -20,13 +20,16 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="da35a530-2b5e-45e3-a290-2dd5b36fad21" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/application/repository/DaoEventSpeaker.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/application/view/events/speaker/index.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/css/dualist/bootstrap-duallistbox.min.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/dualist/jquery.bootstrap-duallistbox.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/application/controller/media.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/controller/media.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/application/repository/DaoEventMedia.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/repository/DaoEventMedia.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/application/repository/DaoMedia.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/repository/DaoMedia.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/application/view/media/document/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/view/media/document/index.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/application/view/media/image/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/view/media/image/index.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/application/view/media/video/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/view/media/video/index.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/config/config.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/config/config.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/controller/events.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/controller/events.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/view/_templates/footer.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/view/_templates/footer.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/view/_templates/header.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/view/_templates/header.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/view/events/edit.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/view/events/edit.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -92,7 +95,7 @@
       <workItem from="1597944034096" duration="2600000" />
       <workItem from="1597969428080" duration="127000" />
       <workItem from="1598038177017" duration="3725000" />
-      <workItem from="1598118792417" duration="6659000" />
+      <workItem from="1598118792417" duration="13858000" />
     </task>
     <servers />
   </component>
@@ -132,11 +135,15 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="465" y="135" key="NewPhpClassDialog/0.0.1536.824/1920.0.1920.1040@0.0.1536.824" timestamp="1597799355261" />
-    <state x="604" y="336" key="NewPhpFileDialog" timestamp="1598122032668">
+    <state x="604" y="336" key="NewPhpFileDialog" timestamp="1598129082438">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="604" y="336" key="NewPhpFileDialog/0.0.1536.824/1920.0.1920.1040@0.0.1536.824" timestamp="1598122032668" />
+    <state x="604" y="336" key="NewPhpFileDialog/0.0.1536.824/1920.0.1920.1040@0.0.1536.824" timestamp="1598129082438" />
     <state x="604" y="336" key="NewPhpFileDialog/0.0.1536.824@0.0.1536.824" timestamp="1597718488816" />
+    <state x="425" y="187" key="run.anything.popup" timestamp="1598133853020">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="425" y="187" key="run.anything.popup/0.0.1536.824/1920.0.1920.1040@0.0.1536.824" timestamp="1598133853020" />
     <state x="425" y="66" width="672" height="678" key="search.everywhere.popup" timestamp="1597887089133">
       <screen x="0" y="0" width="1536" height="824" />
     </state>

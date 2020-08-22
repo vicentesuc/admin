@@ -3,6 +3,8 @@ require APP . 'repository/DaoCountries.php';
 require APP . 'repository/DaoMedia.php';
 require APP . 'repository/DaoFranchise.php';
 require APP . 'repository/DaoEventMedia.php';
+require APP . 'repository/DaoSpeaker.php';
+require APP . 'repository/DaoEventSpeaker.php';
 
 class Events extends controller
 {
@@ -10,6 +12,8 @@ class Events extends controller
     private $media;
     private $franchise;
     private $eventMedia;
+    private $speaker;
+    private $eventSpeaker;
 
     function __construct()
     {
@@ -19,6 +23,8 @@ class Events extends controller
         $this->media = new DaoMedia($this->db);
         $this->franchise = new DaoFranchise($this->db);
         $this->eventMedia = new DaoEventMedia($this->db);
+        $this->speaker = new DaoSpeaker($this->db);
+        $this->eventSpeaker = new DaoEventSpeaker($this->db);
     }
 
     function index()
@@ -40,6 +46,57 @@ class Events extends controller
         require APP . 'view/events/index.php';
         require APP . 'view/_templates/footer.php';
     }
+
+    function speakers()
+    {
+
+        $arrModerator = array();
+        $arrSpeakers = array();
+        $arrExpositor = array();
+        if ($_REQUEST["id"]) {
+
+            $arraParams["event_id"] = $_REQUEST["id"];
+            $arraParams["profile_id"] = MODERATOR;
+
+            $arrModerator = $this->eventSpeaker->getAll($arraParams);
+
+            $arraParams["profile_id"] = EXPOSITOR;
+            $arrExpositor = $this->eventSpeaker->getAll($arraParams);
+
+        }
+
+//        Helper::binDebug($arrExpositor);
+
+        $arrSpeakers = $this->speaker->getAll();
+        require APP . 'view/events/speaker/index.php';
+    }
+
+    function postSpeaker()
+    {
+        $id = 0;
+        if (isset($_REQUEST["speaker"]) and isset($_REQUEST["event"])) {
+
+            $arrParams["profile_id"] = $_REQUEST["profile"];
+            $arrParams["event_id"] = $_REQUEST["event"];
+            $this->eventSpeaker->delete($arrParams);
+            $row = 0;
+
+            if (!empty($_REQUEST["speaker"])) {
+                foreach ($_REQUEST["speaker"] as $key) {
+
+                    $arrParams["speaker_id"] = $key;
+
+
+                    if (empty($this->eventSpeaker->getById($arrParams))) {
+                        $this->eventSpeaker->persist($arrParams);
+                    }
+
+                }
+            }
+        }
+        print_r(Helper::setMessage("Actualizado", "OK", "success"));
+    }
+
 
     function calendar()
     {

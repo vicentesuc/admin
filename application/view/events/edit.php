@@ -59,7 +59,7 @@
                                 </a>
                             </li>
                             <li>
-                                <a data-toggle="tab" href="#speaker">
+                                <a data-toggle="tab" href="#speaker" id="tabSpeaker" >
                                     <i class="purple ace-icon fa fa-user-circle-o bigger-120"></i>
                                     Speakers
                                 </a>
@@ -206,7 +206,7 @@
                                 <div id="div_documents"></div>
                             </div>
                             <div id="speaker" class="tab-pane ">
-                                <p>Speakers</p>
+                                <div id="div_speakers"></div>
                             </div>
                             <div id="uploads" class="tab-pane ">
 
@@ -348,6 +348,19 @@
                 url: "<?php echo URL ?>media/documents",
                 method: "POST",
                 div: "div_documents",
+                params: {
+                    id: $("#input_event_id").val()
+                }
+            }
+            ajax_on_div(arreglo);
+        })
+
+        $("#tabSpeaker").click(function () {
+
+            var arreglo = {
+                url: "<?php echo URL ?>events/speakers",
+                method: "POST",
+                div: "div_speakers",
                 params: {
                     id: $("#input_event_id").val()
                 }

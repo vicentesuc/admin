@@ -13,7 +13,7 @@
     <link rel="stylesheet" href="<?php echo URL; ?>css/ace-rtl.min.css"/>
     <link rel="stylesheet" href="<?php echo URL; ?>css/jquery.gritter.min.css"/>
     <link rel="stylesheet" href="<?php echo URL; ?>css/bootstrap-datetimepicker.min.css"/>
-
+    <link rel="stylesheet" href="<?php echo URL; ?>css/dualist/bootstrap-duallistbox.min.css"/>
 
 
     <link rel="stylesheet" href="<?php echo URL; ?>css/dropzone.min.css"/>
