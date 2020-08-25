@@ -60,7 +60,7 @@
 
                 messages(response)
                 if (response.code === "OK") {
-                    window.location.href = "<?php echo URL ?>speaker"
+                    $("#media").trigger("click");
                 }
             });
         })

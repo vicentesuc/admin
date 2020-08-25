@@ -61,12 +61,12 @@
         ajax_on_popup(arreglo);
     })
 
-    $("#stand_image").click(function () {
+    $("a#stand_image").click(function () {
 
         var arreglo = {
             url: "<?php echo URL ?>stand/list",
             params: {
-                id: "<?php echo $_REQUEST["id"]; ?>",
+                id: $(this).attr("stand")
             },
             method: "POST",
             div: "div_stand_image"
@@ -77,7 +77,7 @@
         var arreglo = {
             url: "<?php echo URL ?>stand/upload",
             params: {
-                id: "<?php echo $_REQUEST["id"]; ?>",
+                id: $(this).attr("stand")
             },
             method: "POST",
             div: "div_stand_img_upload"

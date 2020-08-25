@@ -23,6 +23,7 @@ class Stand extends controller
         $arrStandsParams["event_id"] = isset($_REQUEST["id"]) ? $_REQUEST["id"] : 0;
         $arrStands = $this->model->getAll($arrStandsParams);
 
+//        Helper::binDebug($arrStands);
 
         /* Valid Extensions */
         $valid_extensions = array("jpg", "jpeg", "png");

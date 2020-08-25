@@ -19,7 +19,7 @@ class DaoEventStand
         return $this->database->select(
             "event_stands",
             [
-                "[><]events" => ["event_stands.id" => "id"],
+                "[><]events" => ["event_stands.event_id" => "id"],
                 "[><]media" => ["event_stands.image_id" => "id"]
             ],
             [

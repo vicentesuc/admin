@@ -418,8 +418,6 @@
                     id: $("#input_event_id").val()
                 }
             }
-            $("#div_stand_image").val("");
-            $("#div_stand_img_upload").val("");
             ajax_on_div(arreglo);
         })
 
