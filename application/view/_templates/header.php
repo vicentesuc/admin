@@ -1,3 +1,9 @@
+<?php
+
+$arrayUrl = array("events", "events/calendar");
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -109,7 +115,7 @@
 
         <div class="sidebar-shortcuts" id="sidebar-shortcuts">
             <div class="sidebar-shortcuts-large" id="sidebar-shortcuts-large">
-                <a  href="<?php echo URL ?>user" class="btn btn-success">
+                <a href="<?php echo URL ?>user" class="btn btn-success">
                     <i class="ace-icon fa fa-users"></i>
                 </a>
 
@@ -138,7 +144,7 @@
         </div><!-- /.sidebar-shortcuts -->
 
         <ul class="nav nav-list">
-            <li class="">
+            <li class="<?php echo (in_array((isset($_REQUEST["url"]) ? $_REQUEST["url"] : ""), $arrayUrl)) ? "active open" : ""; ?>">
                 <a href="#" class="dropdown-toggle">
                     <i class="menu-icon fa fa-bell"></i>
                     <span class="menu-text"> Eventos </span>
@@ -146,13 +152,13 @@
                 </a>
                 <b class="arrow"></b>
                 <ul class="submenu">
-                    <li class="">
+                    <li class="<?php echo ((isset($_REQUEST["url"]) ? $_REQUEST["url"] : "") == "events") ? "active" : ""; ?>">
                         <a href="<?php echo URL ?>events">
                             <i class="menu-icon fa fa-list"></i> Lista
                         </a>
                         <b class="arrow"></b>
                     </li>
-                    <li class="">
+                    <li class="<?php echo ((isset($_REQUEST["url"]) ? $_REQUEST["url"] : "") == "events/calendar") ? "active" : ""; ?>">
                         <a href="<?php echo URL ?>events/calendar">
                             <i class="menu-icon fa fa-calendar"></i> Calendario
                         </a>
@@ -160,21 +166,21 @@
                     </li>
                 </ul>
             </li>
-            <li class="">
-                <a href="<?php echo URL ?>user" >
+            <li class="<?php echo ((isset($_REQUEST["url"]) ? $_REQUEST["url"] : "") == "user") ? "active" : ""; ?>">
+                <a href="<?php echo URL ?>user">
                     <i class="menu-icon fa fa-users"></i>
                     <span class="menu-text"> Usuarios </span>
                 </a>
             </li>
-            <li>
+            <li class="<?php echo ((isset($_REQUEST["url"]) ? $_REQUEST["url"] : "") == "franchise") ? "active" : ""; ?>">
                 <a href="<?php echo URL ?>franchise">
                     <i class="menu-icon fa fa-building"></i>
                     <span class="menu-text"> Franquicias </span>
                 </a>
                 <b class="arrow"></b>
             </li>
-            <li class="">
-                <a href="<?php echo URL ?>speaker" >
+            <li class="<?php echo ((isset($_REQUEST["url"]) ? $_REQUEST["url"] : "") == "speaker") ? "active" : ""; ?>">
+                <a href="<?php echo URL ?>speaker">
                     <i class="menu-icon fa fa-user-circle-o"></i>
                     <span class="menu-text"> Speakers </span>
                 </a>
