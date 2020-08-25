@@ -53,7 +53,7 @@ define('DB_PASS', 'password');
 you can use buldAndRun.sh to  download/build/run changes from git repository 
 
 ## RUN
-Use docker compose.yml  to RUN Service ,   use this image for RUN Service      image: hub.mypeopleapps.com/sgp-monitor:${beta}  or ${latest}
+Use docker compose.yml  to RUN Service ,   use this image for RUN Service      image: hub.yourhub.com/eventos:${beta}  or ${latest}
 ```yaml
 version: '3'
 services:
