@@ -30,7 +30,7 @@ class Speaker extends controller
 
     public function createPost()
     {
-        $directory = "media/";
+        $directory = DIRECTORY_SPEAKER_MEDIA;
         $target = $directory . $_FILES["file"]["name"];
 
         $uploadOk = 1;
@@ -100,7 +100,7 @@ class Speaker extends controller
 
         if (isset($_FILES) and isset($_FILES["file"])) {
 
-            $directory = "media/";
+            $directory = DIRECTORY_SPEAKER_MEDIA;
             $target = $directory . $_FILES["file"]["name"];
 
             $uploadOk = 1;

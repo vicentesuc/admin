@@ -154,7 +154,7 @@ class Events extends controller
     function createPost()
     {
 
-        $directory = "media/";
+        $directory = DIRECTORY_EVENTS_MEDIA;
         $target = $directory . $_FILES["file"]["name"];
 
         $uploadOk = 1;
@@ -216,7 +216,7 @@ class Events extends controller
 
         if (isset($_FILES) and isset($_FILES["file"])) {
 
-            $directory = "media/";
+            $directory = DIRECTORY_EVENTS_MEDIA;
             $target = $directory . $_FILES["file"]["name"];
 
             $uploadOk = 1;
@@ -280,31 +280,43 @@ class Events extends controller
 
         if (isset($_FILES) and isset($_FILES["file"]) and (isset($_REQUEST["media_event_id"]))) {
 
-            $directory = "media/" . $_REQUEST["media_event_id"] . "/";
+            $directory = DIRECTORY_EVENTS_MEDIA.$_REQUEST["media_event_id"]."/";
 
-            $uploadOk = 1;
+
+            $uploadOk = 0;
             $imageFileType = pathinfo($_FILES["file"]["name"], PATHINFO_EXTENSION);
 
             /* Valid Extensions */
             $valid_extensions_img = array("jpg", "jpeg", "png");
             $valid_extensions_video = array("mp4");
+            $valid_extensions_pdf = array("pdf");
+
 
             /* Check file extension */
-            if (!in_array(strtolower($imageFileType), $valid_extensions_img))
-                $uploadOk = 0;
+            if (in_array(strtolower($imageFileType), $valid_extensions_img)) {
+                $uploadOk = 1;
+                $directory .= DIRECTORY_EVENTS_MEDIA_IMG;
+            }
 
 
-            if ($uploadOk = 0 and !in_array(strtolower($imageFileType), $valid_extensions_video))
-                $uploadOk = 0;
+            if ($uploadOk == 0 and in_array(strtolower($imageFileType), $valid_extensions_video)) {
+                $uploadOk = 1;
+                $directory .= DIRECTORY_EVENTS_MEDIA_VIDEO;
+            }
 
-            $directory .= ($uploadOk = 1 and in_array(strtolower($imageFileType), $valid_extensions_img)) ? "image/" : "video/";
+
+            if ($uploadOk == 0 and in_array(strtolower($imageFileType), $valid_extensions_pdf)) {
+                $uploadOk = 1;
+                $directory .= DIRECTORY_EVENTS_MEDIA_DOCS;
+            }
+
 
             $target = $directory . $_FILES["file"]["name"];
             $arrMediaParams ["name"] = basename($_FILES["file"]["name"]);
             $arrMediaParams ["description"] = $target;
 
             if ($uploadOk == 0) {
-                echo 0;
+                echo "upload " . $uploadOk;
             } else {
 
                 if (!file_exists($directory)) {

@@ -28,7 +28,7 @@
                     <li>
                         <a id="stand_image" stand="<?php echo $value["stand_id"]; ?>" data-rel="colorbox">
                             <img width="150" height="150" alt="150x150"
-                                 src="<?php echo IMAGES . "/avatars/pdf.png" ?>"/>
+                                 src="<?php echo IMAGES . "/".$value["media_url"]; ?>"/>
                             <div class="text">
                                 <div class="inner"><?php echo $value["media_name"]; ?></div>
                             </div>

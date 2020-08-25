@@ -26,6 +26,8 @@ class Stand extends controller
         /* Valid Extensions */
         $valid_extensions = array("jpg", "jpeg", "png");
 
+//        Helper::binDebug($arrStands);
+
         require APP . 'view/events/stand/index.php';
     }
 
@@ -35,6 +37,7 @@ class Stand extends controller
         $arrStands = $this->standMedia->getAll($arrStandsParams);
         /* Valid Extensions */
         $valid_extensions = array("jpg", "jpeg", "png");
+
 
         require APP . 'view/events/stand/media/index.php';
     }
@@ -53,7 +56,7 @@ class Stand extends controller
     function createPost()
     {
 
-        $directory = "media/";
+        $directory = DIRECTORY_STANDS_MEDIA;
         $target = $directory . $_FILES["file"]["name"];
 
         $uploadOk = 1;
@@ -106,7 +109,7 @@ class Stand extends controller
 
         if (isset($_FILES) and isset($_FILES["file"]) and (isset($_REQUEST["input_stand_id"]))) {
 
-            $directory = "media/stand/" . $_REQUEST["input_stand_id"] . "/";
+            $directory = DIRECTORY_STANDS_MEDIA;
 
 
             $uploadOk = 1;

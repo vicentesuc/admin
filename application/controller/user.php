@@ -76,7 +76,7 @@ class User extends controller
 
         if (isset($_FILES) and isset($_FILES["file"])) {
 
-            $directory = "media/";
+            $directory = DIRECTORY_USER_MEDIA;
             $target = $directory . $_FILES["file"]["name"];
 
             $uploadOk = 1;
@@ -140,7 +140,7 @@ class User extends controller
 
         if (isset($_FILES) and isset($_FILES["file"])) {
 
-            $directory = "media/";
+            $directory = DIRECTORY_USER_MEDIA;
             $target = $directory . $_FILES["file"]["name"];
 
             $uploadOk = 1;
