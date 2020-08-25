@@ -27,9 +27,13 @@ class Login extends controller
 
             $arrUser = $this->model->getByEmail($arrParams);
 
+            Helper::binDebug($arrUser);
+
             if (count($arrUser) > 0) {
 
                 if ($arrUser["pass"] == $_REQUEST["input_pwd"]) {
+
+                    $_SESSION["name"] =$arrUser["name"];
 
                     header("location:" . URL . "events/calendar");
 

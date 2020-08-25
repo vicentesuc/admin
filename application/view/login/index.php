@@ -1,5 +1,4 @@
 <?php
-session_start();
 unset($_SESSION['logueado']);
 ?>
 <!DOCTYPE html>

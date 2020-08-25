@@ -21,13 +21,10 @@
   <component name="ChangeListManager">
     <list default="true" id="da35a530-2b5e-45e3-a290-2dd5b36fad21" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/application/controller/media.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/controller/media.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/application/controller/stand.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/controller/stand.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/application/repository/DaoEventStand.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/repository/DaoEventStand.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/application/view/events/stand/create.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/view/events/stand/create.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/application/view/events/stand/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/view/events/stand/index.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/application/view/events/stand/media/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/view/events/stand/media/index.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/controller/login.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/controller/login.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/view/_templates/header.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/view/_templates/header.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/view/login/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/view/login/index.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/public/index.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -96,7 +93,7 @@
       <workItem from="1598118792417" duration="16983000" />
       <workItem from="1598273256318" duration="1323000" />
       <workItem from="1598302305111" duration="13857000" />
-      <workItem from="1598364877699" duration="2649000" />
+      <workItem from="1598364877699" duration="3094000" />
     </task>
     <servers />
   </component>
