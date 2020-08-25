@@ -15,6 +15,8 @@ class Login extends controller
 
     function logout()
     {
+        session_destroy();
+
         header("location:" . URL . "login");
     }
 

@@ -2,6 +2,10 @@
 
 $arrayUrl = array("events", "events/calendar");
 
+if(empty($_SESSION))
+    header("location:" . URL . "login/logout");
+
+
 ?>
 
 <!DOCTYPE html>
