@@ -20,16 +20,18 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="da35a530-2b5e-45e3-a290-2dd5b36fad21" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/application/repository/DaoEventSpeaker.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/application/view/events/speaker/index.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/css/dualist/bootstrap-duallistbox.min.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/js/dualist/jquery.bootstrap-duallistbox.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/application/controller/stand.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/application/repository/DaoEventStand.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/application/repository/DaoStandMedia.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/application/view/events/stand/create.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/application/view/events/stand/index.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/application/view/events/stand/media/index.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/application/view/events/stand/media/upload.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/application/config/config.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/config/config.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/application/controller/events.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/controller/events.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/application/view/_templates/footer.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/view/_templates/footer.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/application/view/_templates/header.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/view/_templates/header.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/controller/media.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/controller/media.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/controller/user.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/controller/user.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/application/view/events/edit.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/view/events/edit.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/view/user/edit.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/view/user/edit.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -95,7 +97,10 @@
       <workItem from="1597944034096" duration="2600000" />
       <workItem from="1597969428080" duration="127000" />
       <workItem from="1598038177017" duration="3725000" />
-      <workItem from="1598118792417" duration="13858000" />
+      <workItem from="1598118792417" duration="16983000" />
+      <workItem from="1598273256318" duration="1323000" />
+      <workItem from="1598302305111" duration="13857000" />
+      <workItem from="1598364877699" duration="473000" />
     </task>
     <servers />
   </component>
@@ -135,18 +140,22 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="465" y="135" key="NewPhpClassDialog/0.0.1536.824/1920.0.1920.1040@0.0.1536.824" timestamp="1597799355261" />
-    <state x="604" y="336" key="NewPhpFileDialog" timestamp="1598129082438">
+    <state x="604" y="336" key="NewPhpFileDialog" timestamp="1598330813832">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="604" y="336" key="NewPhpFileDialog/0.0.1536.824/1920.0.1920.1040@0.0.1536.824" timestamp="1598129082438" />
+    <state x="604" y="336" key="NewPhpFileDialog/0.0.1536.824/1920.0.1920.1040@0.0.1536.824" timestamp="1598330813832" />
     <state x="604" y="336" key="NewPhpFileDialog/0.0.1536.824@0.0.1536.824" timestamp="1597718488816" />
+    <state width="498" height="451" key="SwitcherDM" timestamp="1598135359667">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="498" height="451" key="SwitcherDM/0.0.1536.824/1920.0.1920.1040@0.0.1536.824" timestamp="1598135359667" />
     <state x="425" y="187" key="run.anything.popup" timestamp="1598133853020">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="425" y="187" key="run.anything.popup/0.0.1536.824/1920.0.1920.1040@0.0.1536.824" timestamp="1598133853020" />
-    <state x="425" y="66" width="672" height="678" key="search.everywhere.popup" timestamp="1597887089133">
+    <state x="425" y="66" width="672" height="678" key="search.everywhere.popup" timestamp="1598329228806">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="425" y="66" width="672" height="678" key="search.everywhere.popup/0.0.1536.824/1920.0.1920.1040@0.0.1536.824" timestamp="1597887089133" />
+    <state x="425" y="66" width="672" height="678" key="search.everywhere.popup/0.0.1536.824/1920.0.1920.1040@0.0.1536.824" timestamp="1598329228806" />
   </component>
 </project>

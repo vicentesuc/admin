@@ -59,9 +59,15 @@
                                 </a>
                             </li>
                             <li>
-                                <a data-toggle="tab" href="#speaker" id="tabSpeaker" >
+                                <a data-toggle="tab" href="#speaker" id="tabSpeaker">
                                     <i class="purple ace-icon fa fa-user-circle-o bigger-120"></i>
                                     Speakers
+                                </a>
+                            </li>
+                            <li>
+                                <a data-toggle="tab" href="#stand" id="tabStand">
+                                    <i class="blue ace-icon fa fa-building-o bigger-120"></i>
+                                    Stands
                                 </a>
                             </li>
                             <li>
@@ -134,7 +140,8 @@
                                         <label class="col-sm-3 control-label no-padding-right"
                                                for="input_event_link">Evento (Url)</label>
                                         <div class="col-sm-9">
-                                            <input type="text"  class="col-xs-10 col-sm-5" id="input_event_link" name="input_event_link"
+                                            <input type="text" class="col-xs-10 col-sm-5" id="input_event_link"
+                                                   name="input_event_link"
                                                    value="<?php echo $arrEvent["event_link"]; ?>"
                                                    required/>
                                         </div>
@@ -143,7 +150,8 @@
                                         <label class="col-sm-3 control-label no-padding-right"
                                                for="input_event_hashtag">Hashtag</label>
                                         <div class="col-sm-9">
-                                            <input type="text"  class="col-xs-10 col-sm-5" id="input_event_hashtag" name="input_event_hashtag"
+                                            <input type="text" class="col-xs-10 col-sm-5" id="input_event_hashtag"
+                                                   name="input_event_hashtag"
                                                    value="<?php echo $arrEvent["hashtag"]; ?>"
                                                    required/>
                                         </div>
@@ -207,6 +215,39 @@
                             </div>
                             <div id="speaker" class="tab-pane ">
                                 <div id="div_speakers"></div>
+                            </div>
+                            <div id="stand" class="tab-pane ">
+                                <div class="row">
+                                    <div class="col-md-3">
+                                        <div id="div_stands"></div>
+                                    </div>
+                                    <div class="col-md-9">
+                                        <div class="tabbable">
+                                            <ul class="nav nav-tabs" id="myTab">
+                                                <li class="active">
+                                                    <a data-toggle="tab" href="#tabImagesStand">
+                                                        <i class="green ace-icon fa fa-image bigger-120"></i>
+                                                        Imagenes
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a data-toggle="tab" href="#tabUploadStands">
+                                                        <i class="blue ace-icon fa fa-upload bigger-120"></i>
+                                                        Upload
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                            <div class="tab-content">
+                                                <div id="tabImagesStand" class="tab-pane fade in active">
+                                                    <div id="div_stand_image"></div>
+                                                </div>
+                                                <div id="tabUploadStands" class="tab-pane fade">
+                                                    <div id="div_stand_img_upload"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                             <div id="uploads" class="tab-pane ">
 
@@ -368,6 +409,20 @@
             ajax_on_div(arreglo);
         })
 
+        $("#tabStand").click(function () {
+            var arreglo = {
+                url: "<?php echo URL ?>stand",
+                method: "POST",
+                div: "div_stands",
+                params: {
+                    id: $("#input_event_id").val()
+                }
+            }
+            $("#div_stand_image").val("");
+            $("#div_stand_img_upload").val("");
+            ajax_on_div(arreglo);
+        })
+
 
     </script>
     <script type="text/javascript">
@@ -396,3 +451,4 @@
             // alert('Dropzone.js does not support older browsers!');
         }
     </script>
+

@@ -179,11 +179,11 @@ class User extends controller
             $arrUserParams["franchise_id"] = $_REQUEST["sel_user_franchise"];
             $arrUserParams["role_id"] = $_REQUEST["sel_user_role"];
 
-            if($_REQUEST["input_user_pwd"]!="*****")
-            $arrUserParams["pass"] = $_REQUEST["input_user_pwd"];
+            if ($_REQUEST["input_user_pwd"] != "*****")
+                $arrUserParams["pass"] = $_REQUEST["input_user_pwd"];
 
             $arrUserParams["activation_key"] = '%';
-            $arrUserParams["status"] = 1;
+            $arrUserParams["status"] = isset($_REQUEST["chk_user_status"]) ? 1 : 0;
 
             if ((int)$media_id > 0)
                 $arrUserParams["image_id"] = $media_id;

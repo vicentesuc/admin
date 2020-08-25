@@ -72,6 +72,19 @@
             </div>
             <div class="space-4"></div>
             <div class="form-group">
+                <label class="col-sm-3 control-label no-padding-right" for="form-field-1">Status </label>
+                <div class="col-sm-9">
+                    <div class="col-xs-3">
+                        <?php $checked = ($arrUser["status"] == 1) ? "checked" : ""; ?>
+                        <label>
+                            <input <?php echo $checked; ?>  name="chk_user_status" id="chk_user_status" class="ace ace-switch" type="checkbox"/>
+                            <span class="lbl"></span>
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <div class="space-4"></div>
+            <div class="form-group">
                 <label class="col-sm-3 control-label no-padding-right" for="form-field-tags">Foto</label>
                 <div class="col-sm-9">
                     <div class="inline">

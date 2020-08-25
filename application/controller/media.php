@@ -1,18 +1,20 @@
 <?php
 
 require APP . 'repository/DaoMedia.php';
+require APP . 'repository/DaoStandMedia.php';
 
 class Media extends controller
 {
 
     private $media;
-
+    private $standMedia;
 
     function __construct()
     {
         parent::__construct();
         $this->inject('DaoEventMedia');
         $this->media = new DaoMedia($this->db);
+        $this->standMedia = new DaoStandMedia($this->db);
     }
 
     function images()
@@ -20,13 +22,13 @@ class Media extends controller
 
         $valid_extensions = array("jpg", "jpeg", "png");
 
-
         $arrMediaImages = array();
         if (isset($_REQUEST["id"]))
             $arrMediaImages = $this->model->getAll($_REQUEST["id"]);
 
         require APP . 'view/media/image/index.php';
     }
+
 
     function video()
     {
@@ -67,6 +69,28 @@ class Media extends controller
             $paramsDelete["media_id"] = $_REQUEST["media"];
             $rowCount = $this->model->delete($paramsDelete);
 
+        }
+
+        if ((int)$rowCount > 0) {
+            print_r(Helper::setMessage("Eliminado Exitosamente", "OK", "success"));
+        } else {
+            print_r(Helper::setMessage("No se pudo Eliminar", "FAIL", "error"));
+        }
+    }
+
+    function stand_delete()
+    {
+        $rowCount = 0;
+        if (isset($_REQUEST["media"])) {
+            $id = $_REQUEST["media"];
+            $rowCount = $this->media->delete($id);
+        }
+
+        if (isset($_REQUEST["stand"]) and isset($_REQUEST["media"])) {
+
+            $paramsDelete["stand_id"] = $_REQUEST["stand"];
+            $paramsDelete["media_id"] = $_REQUEST["media"];
+            $rowCount = $this->standMedia->delete($paramsDelete);
         }
 
         if ((int)$rowCount > 0) {
