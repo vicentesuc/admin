@@ -37,7 +37,7 @@
                             <a href="#"
                                stand="<?php echo $value["stand_id"] ?>"
                                event="<?php echo $value["event_id"] ?>"
-                               id="mystandDoc">
+                               id="myStandPrincipal">
                                 <i class="ace-icon fa fa-times red"></i>
                             </a>
                         </div>
@@ -83,7 +83,27 @@
             div: "div_stand_img_upload"
         }
         ajax_on_div(arreglo);
+    })
 
+    $("a#myStandPrincipal").click(function (){
+
+        var arreglo = {
+            url: "<?php echo URL ?>media/stand_delete",
+            params: {
+                event: $(this).attr("event"),
+                stand: $(this).attr("stand")
+            }
+        }
+
+        ajax_send(arreglo, (resp) => {
+            var response = JSON.parse(resp);
+
+            messages(response)
+
+            if (response.code === "OK") {
+               $("#tabStand").trigger("click");
+            }
+        });
     })
 
 </script>

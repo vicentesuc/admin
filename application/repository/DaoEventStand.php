@@ -73,7 +73,7 @@ class DaoEventStand
             "event_stands", [
             "AND" => [
                 "event_id" => $params["event_id"],
-                "profile_id" => $params["profile_id"]
+                "id" => $params["stand_id"]
             ]
         ]);
         return $data->rowCount();

@@ -58,7 +58,7 @@
         $("a#mylistImageDoc").click(function () {
 
             var arreglo = {
-                url: "<?php echo URL ?>media/stand_delete",
+                url: "<?php echo URL ?>media/stand_media_delete",
                 params: {
                     media: $(this).attr("media"),
                     stand: $(this).attr("stand")

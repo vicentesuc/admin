@@ -24,7 +24,7 @@
         </form>
         <div class="clearfix form-actions">
             <div class="col-md-offset-3 col-md-9">
-                <button class="btn btn-info" type="button" id="btn_speaker">
+                <button class="btn btn-info" type="button" id="btn_create_stand">
                     <i class="ace-icon fa fa-check bigger-110"></i>
                     Guardar
                 </button>
@@ -46,7 +46,7 @@
         }
     }
 
-    $("#btn_speaker").click(function () {
+    $("#btn_create_stand").click(function () {
 
         valid_form("form-stand", () => {
             var arreglo = {
@@ -60,7 +60,8 @@
 
                 messages(response)
                 if (response.code === "OK") {
-                    $("#media").trigger("click");
+                    $("#tabStand").trigger("click");
+                    $("#modalIni").modal("hide");
                 }
             });
         })
