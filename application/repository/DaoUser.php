@@ -54,7 +54,7 @@ class DaoUser
 
     function getByEmail($paramas = array())
     {
-        return $this->database->    get("users",
+        return $this->database->get("users",
             [
                 "id",
                 "name",
@@ -62,6 +62,21 @@ class DaoUser
             ],
             [
                 "email" => $paramas["email"]
+            ]
+        );
+    }
+
+    function getByEmailAndPass($params = array())
+    {
+        return $this->database->get("users",
+            [
+                "id",
+                "name",
+                "pass"
+            ],
+            [
+                "email" => $params["email"],
+                "pass" => Medoo::raw("md5('" . $params["pwd"] . "')"),
             ]
         );
     }

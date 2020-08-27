@@ -1,4 +1,5 @@
 <?php
+
 class Login extends controller
 {
 
@@ -27,15 +28,16 @@ class Login extends controller
             $arrParams["email"] = $_REQUEST["input_email"];
             $arrParams["pwd"] = $_REQUEST["input_pwd"];
 
-            $arrUser = $this->model->getByEmail($arrParams);
+            $arrUserEmail = $this->model->getByEmail($arrParams);
 
-            Helper::binDebug($arrUser);
+            if (count($arrUserEmail) > 0) {
 
-            if (count($arrUser) > 0) {
+                $arrUserPass = $this->model->getByEmailAndPass($arrParams);
 
-                if ($arrUser["pass"] == $_REQUEST["input_pwd"]) {
 
-                    $_SESSION["name"] =$arrUser["name"];
+                if (count($arrUserPass) > 0) {
+
+                    $_SESSION["name"] = $arrUserPass["name"];
 
                     header("location:" . URL . "events/calendar");
 

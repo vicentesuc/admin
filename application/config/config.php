@@ -19,7 +19,7 @@ define('EXPOSITOR', 1);
 
 define('SPANISH', URL . "assets/js/plugins/dataTables/spanish.json");
 
-if (isset($_SESSION["usuarioId"])) {
+if (isset($_SESSION["id"])) {
     define('USER', $_SESSION["id"]);
     define('USERNAME', $_SESSION["name"]);
 }
@@ -27,7 +27,7 @@ if (isset($_SESSION["usuarioId"])) {
 
 define('DB_TYPE', 'mysql');
 define('DB_HOST', '172.20.0.1');
-define('DB_NAME', 'eventos');
+define('DB_NAME', 'merckemc_eventos');
 define('DB_USER', 'root');
 define('DB_PASS', 'root');
 define('DB_CHARSET', 'utf8');

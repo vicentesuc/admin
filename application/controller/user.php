@@ -108,7 +108,7 @@ class User extends controller
                         $arrUserParams["email"] = $_REQUEST["input_user_email"];
                         $arrUserParams["franchise_id"] = $_REQUEST["sel_user_franchise"];
                         $arrUserParams["role_id"] = $_REQUEST["sel_user_role"];
-                        $arrUserParams["pass"] = $_REQUEST["input_user_pwd"];
+                        $arrUserParams["pass"] = Medoo::raw("md5('" . $_REQUEST["input_user_pwd"] . "')");
                         $arrUserParams["activation_key"] = '%';
                         $arrUserParams["status"] = 1;
                         $arrUserParams["image_id"] = $media_id;
@@ -180,7 +180,7 @@ class User extends controller
             $arrUserParams["role_id"] = $_REQUEST["sel_user_role"];
 
             if ($_REQUEST["input_user_pwd"] != "*****")
-                $arrUserParams["pass"] = $_REQUEST["input_user_pwd"];
+                $arrUserParams["pass"] = Medoo::raw("md5('" . $_REQUEST["input_user_pwd"] . "')");
 
             $arrUserParams["activation_key"] = '%';
             $arrUserParams["status"] = isset($_REQUEST["chk_user_status"]) ? 1 : 0;
