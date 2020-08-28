@@ -71,19 +71,19 @@
                 id: "<?php echo isset($_REQUEST["id"]) ? $_REQUEST["id"] : "0"; ?>"
             },
             method: "POST",
-            div: "div_stand_image"
+            div: "div_stand_video"
         }
         ajax_on_div(arreglo);
     }
 
     var startDocsStand = function () {
         var arreglo = {
-            url: "<?php echo URL ?>stand/docs",
+            url: "<?php echo URL ?>stand/document",
             params: {
                 id: "<?php echo isset($_REQUEST["id"]) ? $_REQUEST["id"] : "0"; ?>"
             },
             method: "POST",
-            div: "div_stand_image"
+            div: "div_stand_document"
         }
         ajax_on_div(arreglo);
     }
@@ -94,18 +94,26 @@
         startImagesStand();
     })
 
+    $("#tabStandVideoHref").click(function () {
+        startVideoStand();
+    })
+
+    $("#tabStandDocumentHref").click(function () {
+        startDocsStand();
+    })
+
     try {
         var myDropzone = new Dropzone("#dropzoneStand", {
 
             paramName: "file", // The name that will be used to transfer the file
             maxFilesize: 10.0, // MB
             addRemoveLinks: true,
-            acceptedFiles: ".jpeg,.jpg,.png,.gif,.JPEG,.JPG,.PNG,.GIF",
+            acceptedFiles: ".jpeg,.jpg,.png,.gif,.JPEG,.JPG,.PNG,.GIF,.pdf,.mp4",
             maxFiles: 1,
             init: function () {
                 this.on("success", function (file, responseText) {
                     array = responseText.split("|");
-                    console.log(array);
+                    // console.log(array);
                 });
             },
         });

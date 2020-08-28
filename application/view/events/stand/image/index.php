@@ -1,6 +1,6 @@
 <div>
     <ul class="ace-thumbnails clearfix" id="image_list_stand">
-        <?php foreach ($arrStands as $key => $value) {
+        <?php foreach ($arrStandsMedia as $key => $value) {
             $imageFileType = pathinfo($value["media_url"], PATHINFO_EXTENSION);
             if (in_array($imageFileType, $valid_extensions)) {
                 ?>
@@ -77,7 +77,7 @@
                 messages(response)
 
                 if (response.code === "OK") {
-                    $("#stand_image").trigger("click");
+                    $("#tabImagesStandHref").trigger("click");
                 }
             });
         })

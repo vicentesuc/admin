@@ -397,14 +397,8 @@
             }
             ajax_on_div(arreglo);
         })
-
-
-    </script>
-    <script type="text/javascript">
-
-
         try {
-            Dropzone.autoDiscover = false;
+            // Dropzone.autoDiscover = false;
 
             var myDropzone = new Dropzone("#dropzone", {
 
@@ -412,18 +406,18 @@
                 maxFilesize: 10.0, // MB
                 addRemoveLinks: true,
                 previewTemplate: "<div class=\"dz-preview dz-file-preview\">\n  <div class=\"dz-details\">\n    <div class=\"dz-filename\"><span data-dz-name></span></div>\n    <div class=\"dz-size\" data-dz-size></div>\n    <img data-dz-thumbnail />\n  </div>\n  <div class=\"progress progress-small progress-striped active\"><div class=\"progress-bar progress-bar-success\" data-dz-uploadprogress></div></div>\n  <div class=\"dz-success-mark\"><span></span></div>\n  <div class=\"dz-error-mark\"><span></span></div>\n  <div class=\"dz-error-message\"><span data-dz-errormessage></span></div>\n</div>",
-                acceptedFiles: ".jpeg,.jpg,.png,.gif,.JPEG,.JPG,.PNG,.GIF",
+                acceptedFiles: ".jpeg,.jpg,.png,.gif,.JPEG,.JPG,.PNG,.GIF,.pdf,.mp4",
                 maxFiles: 1,
                 init: function () {
                     this.on("success", function (file, responseText) {
                         array = responseText.split("|");
 
-                        console.log(array);
                     });
                 },
             });
         } catch (e) {
             // alert('Dropzone.js does not support older browsers!');
         }
+
     </script>
 

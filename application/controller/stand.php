@@ -36,19 +36,39 @@ class Stand extends controller
 
     function images()
     {
-        $arrStandsParams["stand_id"] = isset($_REQUEST["id"]) ? $_REQUEST["id"] : 0;
-        $arrStands = $this->standMedia->getAll($arrStandsParams);
-
-//        Helper::binDebug($arrStands);
-        /* Valid Extensions */
         $valid_extensions = array("jpg", "jpeg", "png");
 
-        require APP . 'view/events/stand/media/index.php';
+        $arrStandsParams["stand_id"] = isset($_REQUEST["id"]) ? $_REQUEST["id"] : 0;
+        $arrStandsMedia = $this->standMedia->getAll($arrStandsParams);
+
+
+        require APP . 'view/events/stand/image/index.php';
+    }
+
+    function video()
+    {
+        $valid_extensions = array("mp4", "avi");
+
+        $arrStandsParams["stand_id"] = isset($_REQUEST["id"]) ? $_REQUEST["id"] : 0;
+        $arrStandsMedia = $this->standMedia->getAll($arrStandsParams);
+
+        require APP . 'view/events/stand/video/index.php';
+    }
+
+    function document()
+    {
+        $valid_extensions = array("pdf");
+
+        $arrStandsParams["stand_id"] = isset($_REQUEST["id"]) ? $_REQUEST["id"] : 0;
+        $arrStandsMedia = $this->standMedia->getAll($arrStandsParams);
+
+
+        require APP . 'view/events/stand/document/index.php';
     }
 
     function upload()
     {
-        require APP . 'view/events/stand/media/upload.php';
+        require APP . 'view/events/stand/image/upload.php';
     }
 
     function create()
@@ -124,22 +144,33 @@ class Stand extends controller
             $directory = DIRECTORY_STANDS_MEDIA . $_REQUEST["input_stand_id"] . "/";
 
 
-            $uploadOk = 1;
+            $uploadOk = 0;
             $imageFileType = pathinfo($_FILES["file"]["name"], PATHINFO_EXTENSION);
 
             /* Valid Extensions */
             $valid_extensions_img = array("jpg", "jpeg", "png");
             $valid_extensions_video = array("mp4");
+            $valid_extensions_pdf = array("pdf");
+
+
 
             /* Check file extension */
-            if (!in_array(strtolower($imageFileType), $valid_extensions_img))
-                $uploadOk = 0;
+            if (in_array(strtolower($imageFileType), $valid_extensions_img)) {
+                $uploadOk = 1;
+                $directory .= DIRECTORY_STAND_MEDIA_IMG;
+            }
 
 
-            if ($uploadOk = 0 and !in_array(strtolower($imageFileType), $valid_extensions_video))
-                $uploadOk = 0;
+            if ($uploadOk == 0 and in_array(strtolower($imageFileType), $valid_extensions_video)) {
+                $uploadOk = 1;
+                $directory .= DIRECTORY_STAND_MEDIA_VIDEO;
+            }
 
-            $directory .= ($uploadOk = 1 and in_array(strtolower($imageFileType), $valid_extensions_img)) ? "image/" : "video/";
+
+            if ($uploadOk == 0 and in_array(strtolower($imageFileType), $valid_extensions_pdf)) {
+                $uploadOk = 1;
+                $directory .= DIRECTORY_STAND_MEDIA_DOCS;
+            }
 
             $target = $directory . $_FILES["file"]["name"];
             $arrMediaParams["name"] = basename($_FILES["file"]["name"]);

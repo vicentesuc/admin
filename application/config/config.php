@@ -40,3 +40,7 @@ define('DIRECTORY_STANDS_MEDIA','media/events/stands/');
 define('DIRECTORY_EVENTS_MEDIA_VIDEO','video/');
 define('DIRECTORY_EVENTS_MEDIA_IMG','images/');
 define('DIRECTORY_EVENTS_MEDIA_DOCS','docs/');
+
+define('DIRECTORY_STAND_MEDIA_VIDEO','video/');
+define('DIRECTORY_STAND_MEDIA_IMG','images/');
+define('DIRECTORY_STAND_MEDIA_DOCS','docs/');
