@@ -29,10 +29,17 @@ class Stand extends controller
         require APP . 'view/events/stand/index.php';
     }
 
-    function list()
+    function tabs(){
+
+        require APP . 'view/events/stand/stand_tabs.php';
+    }
+
+    function images()
     {
         $arrStandsParams["stand_id"] = isset($_REQUEST["id"]) ? $_REQUEST["id"] : 0;
         $arrStands = $this->standMedia->getAll($arrStandsParams);
+
+//        Helper::binDebug($arrStands);
         /* Valid Extensions */
         $valid_extensions = array("jpg", "jpeg", "png");
 

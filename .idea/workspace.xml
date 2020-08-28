@@ -20,12 +20,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="da35a530-2b5e-45e3-a290-2dd5b36fad21" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/application/view/events/stand/stand_tabs.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/application/controller/stand.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/controller/stand.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/application/repository/DaoStandMedia.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/repository/DaoStandMedia.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/application/view/events/edit.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/view/events/edit.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/application/view/events/stand/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/view/events/stand/index.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/application/view/events/stand/media/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/view/events/stand/media/index.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -98,7 +97,7 @@
       <workItem from="1598393897050" duration="3184000" />
       <workItem from="1598479532061" duration="1549000" />
       <workItem from="1598569793584" duration="13150000" />
-      <workItem from="1598624175635" duration="5005000" />
+      <workItem from="1598624175635" duration="7330000" />
     </task>
     <servers />
   </component>
@@ -138,10 +137,10 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="465" y="135" key="NewPhpClassDialog/0.0.1536.824/1920.0.1920.1040@0.0.1536.824" timestamp="1597799355261" />
-    <state x="604" y="336" key="NewPhpFileDialog" timestamp="1598624524338">
+    <state x="604" y="336" key="NewPhpFileDialog" timestamp="1598635370071">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="604" y="336" key="NewPhpFileDialog/0.0.1536.824/1920.0.1920.1040@0.0.1536.824" timestamp="1598624524338" />
+    <state x="604" y="336" key="NewPhpFileDialog/0.0.1536.824/1920.0.1920.1040@0.0.1536.824" timestamp="1598635370070" />
     <state x="604" y="336" key="NewPhpFileDialog/0.0.1536.824@0.0.1536.824" timestamp="1597718488816" />
     <state width="498" height="451" key="SwitcherDM" timestamp="1598135359667">
       <screen x="0" y="0" width="1536" height="824" />

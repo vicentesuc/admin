@@ -222,48 +222,7 @@
                                         <div id="div_stands"></div>
                                     </div>
                                     <div class="col-md-9">
-                                        <div class="tabbable">
-                                            <ul class="nav nav-tabs" id="myTab">
-                                                <li class="active">
-                                                    <a data-toggle="tab" href="#tabImagesStand">
-                                                        <i class="green ace-icon fa fa-image bigger-120"></i>
-                                                        Imagenes
-                                                    </a>
-                                                </li>
-                                                <li>
-                                                    <a data-toggle="tab" href="#tabStandVideo">
-                                                        <i class="blue ace-icon fa fa-video-camera bigger-120"></i>
-                                                        Video
-                                                    </a>
-                                                </li>
-                                                <li>
-                                                    <a data-toggle="tab" href="#tabStandDocument">
-                                                        <i class="purple ace-icon fa fa-file-pdf-o bigger-120"></i>
-                                                        Document
-                                                    </a>
-                                                </li>
-                                                <li>
-                                                    <a data-toggle="tab" href="#tabUploadStands">
-                                                        <i class="blue ace-icon fa fa-upload bigger-120"></i>
-                                                        Upload
-                                                    </a>
-                                                </li>
-                                            </ul>
-                                            <div class="tab-content">
-                                                <div id="tabImagesStand" class="tab-pane fade in active">
-                                                    <div id="div_stand_image"></div>
-                                                </div>
-                                                <div id="tabStandVideo" class="tab-pane fade ">
-                                                    <div id="div_stand_video"></div>
-                                                </div>
-                                                <div id="tabStandDocument" class="tab-pane fade ">
-                                                    <div id="div_stand_document"></div>
-                                                </div>
-                                                <div id="tabUploadStands" class="tab-pane fade">
-                                                    <div id="div_stand_img_upload"></div>
-                                                </div>
-                                            </div>
-                                        </div>
+                                        <div id="div_stands_tabs" ></div>
                                     </div>
                                 </div>
                             </div>

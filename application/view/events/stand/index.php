@@ -72,23 +72,12 @@
     $("a#stand_image").click(function () {
 
         var arreglo = {
-            url: "<?php echo URL ?>stand/list",
+            url: "<?php echo URL ?>stand/tabs",
             params: {
                 id: $(this).attr("stand")
             },
             method: "POST",
-            div: "div_stand_image"
-        }
-        ajax_on_div(arreglo);
-
-
-        var arreglo = {
-            url: "<?php echo URL ?>stand/upload",
-            params: {
-                id: $(this).attr("stand")
-            },
-            method: "POST",
-            div: "div_stand_img_upload"
+            div: "div_stands_tabs"
         }
         ajax_on_div(arreglo);
     })
