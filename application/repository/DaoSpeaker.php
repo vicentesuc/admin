@@ -27,6 +27,7 @@ class DaoSpeaker
                 "speakers.en_specialty",
                 "speakers.image_id",
                 "media.name(media_name)",
+                "media.url(media_url)",
                 "media.description(media_description)",
             ]
         );
@@ -46,6 +47,7 @@ class DaoSpeaker
                 "speakers.en_specialty",
                 "speakers.image_id",
                 "media.name(media_name)",
+                "media.url(media_url)",
                 "media.description(media_description)",
             ],
             [

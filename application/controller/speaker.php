@@ -35,7 +35,8 @@ class Speaker extends controller
 
         $uploadOk = 1;
         $arrMediaParams ["name"] = basename($_FILES["file"]["name"]);
-        $arrMediaParams ["description"] = $target;
+        $arrMediaParams["url"] = $target;
+        $arrMediaParams["description"] = "%";
         $imageFileType = pathinfo($target, PATHINFO_EXTENSION);
 
         /* Valid Extensions */
@@ -46,34 +47,42 @@ class Speaker extends controller
         }
 
         if ($uploadOk == 0) {
-            echo 0;
+            print_r(Helper::setMessage("Usuario No Creado (B)", "FAIL", "error"));
         } else {
 
-            if (!file_exists($directory)) {
-                mkdir($directory, 0777, true);
-            }
+            $arrMediaParams["id"] = $this->media->persist($arrMediaParams);
 
-            if (move_uploaded_file($_FILES['file']['tmp_name'], $target)) {
-                $media_id = $this->media->persist($arrMediaParams);
+            if ((int)$arrMediaParams["id"] > 0) {
 
-                if ((int)$media_id > 0) {
+                $arrSpeakerParams["name"] = $_REQUEST["input_speaker_name"];
+                $arrSpeakerParams["es_specialty"] = $_REQUEST["input_speaker_es_specialty"];
+                $arrSpeakerParams["en_specialty"] = $_REQUEST["input_speaker_en_specialty"];
+                $arrSpeakerParams["image_id"] = $arrMediaParams["id"];
 
-                    $arrSpeakerParams["name"] = $_REQUEST["input_speaker_name"];
-                    $arrSpeakerParams["es_specialty"] = $_REQUEST["input_speaker_es_specialty"];
-                    $arrSpeakerParams["en_specialty"] = $_REQUEST["input_speaker_en_specialty"];
-                    $arrSpeakerParams["image_id"] = $media_id;
+                $speaker_id = $this->model->persist($arrSpeakerParams);
 
-                    $user_id = $this->model->persist($arrSpeakerParams);
+                $target = $directory . $speaker_id . "/" . $_FILES["file"]["name"];
+                $directoryp = $directory . $speaker_id . "/";
 
-                    if ((int)$user_id > 0) {
+                if (!file_exists($directoryp)) {
+                    mkdir($directoryp, 0777, true);
+                }
+
+                if (move_uploaded_file($_FILES['file']['tmp_name'], $target)) {
+
+                    $arrMediaParams["url"] = $target;
+                    $media = $this->media->update($arrMediaParams);
+
+                    if ((int)$speaker_id > 0) {
                         print_r(Helper::setMessage("Speaker Creado", "OK", "success"));
                     } else {
                         print_r(Helper::setMessage("Speaker No Creado", "FAIL", "error"));
                     }
+                } else {
+                    $this->media->delete($arrMediaParams["id"]);
+                    $this->model->delete($speaker_id);
+                    print_r(Helper::setMessage("Imagen No Creada", "FAIL", "error"));
                 }
-
-            } else {
-                echo 0;
             }
         }
     }
@@ -105,7 +114,8 @@ class Speaker extends controller
 
             $uploadOk = 1;
             $arrMediaParams ["name"] = basename($_FILES["file"]["name"]);
-            $arrMediaParams ["description"] = $target;
+            $arrMediaParams["url"] = $target;
+            $arrMediaParams["description"] = "%";
             $imageFileType = pathinfo($target, PATHINFO_EXTENSION);
 
             /* Valid Extensions */
@@ -115,9 +125,9 @@ class Speaker extends controller
                 $uploadOk = 0;
             }
 
-
             if ($uploadOk == 0) {
-                echo 0;
+                $this->media->delete($arrMediaParams["id"]);
+                print_r(Helper::setMessage("Speaker no Agregado (B)", "FAIL", "error"));
             } else {
 
                 if (!file_exists($directory)) {

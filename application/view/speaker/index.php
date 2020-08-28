@@ -65,7 +65,7 @@
                             <?php foreach ($arrSpekers as $key => $value) { ?>
                                 <tr>
                                     <td>
-                                        <img src="<?php echo IMAGES . "/" . $value["media_description"]; ?>"
+                                        <img src="<?php echo IMAGES . "/" . $value["media_url"]; ?>"
                                              alt="<?php $value["media_name"] ?>"
                                              width="25"
                                              height="25">

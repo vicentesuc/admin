@@ -2,7 +2,7 @@
     <div class="col-xs-12">
         <!-- PAGE CONTENT BEGINS -->
         <form class="form-horizontal" role="form" id="form-user">
-            <input type="hidden" id="input_user_id" name="input_user_id" value="<?php echo $arrUser["id"]; ?> ">
+            <input type="hidden" id="input_user_id" name="input_user_id" value="<?php echo $arrUser["id"]; ?>">
             <div class="form-group">
                 <label class="col-sm-3 control-label no-padding-right" for="input_user_name">Nombre </label>
                 <div class="col-sm-9">

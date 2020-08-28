@@ -96,7 +96,6 @@ class User extends controller
             }
 
             if ($uploadOk == 0) {
-                $this->media->delete($arrMediaParams["id"]);
                 print_r(Helper::setMessage("Usuario No Actualizado (B)", "FAIL", "error"));
 
             } else {
