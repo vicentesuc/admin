@@ -35,7 +35,7 @@ define('DB_CHARSET', 'utf8');
 define('DIRECTORY_USER_MEDIA','media/user/');
 define('DIRECTORY_SPEAKER_MEDIA','media/speaker/');
 define('DIRECTORY_EVENTS_MEDIA','media/events/');
-define('DIRECTORY_STANDS_MEDIA','media/stands/');
+define('DIRECTORY_STANDS_MEDIA','media/events/stands/');
 
 define('DIRECTORY_EVENTS_MEDIA_VIDEO','video/');
 define('DIRECTORY_EVENTS_MEDIA_IMG','images/');

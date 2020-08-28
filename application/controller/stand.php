@@ -26,8 +26,6 @@ class Stand extends controller
         /* Valid Extensions */
         $valid_extensions = array("jpg", "jpeg", "png");
 
-//        Helper::binDebug($arrStands);
-
         require APP . 'view/events/stand/index.php';
     }
 
@@ -37,7 +35,6 @@ class Stand extends controller
         $arrStands = $this->standMedia->getAll($arrStandsParams);
         /* Valid Extensions */
         $valid_extensions = array("jpg", "jpeg", "png");
-
 
         require APP . 'view/events/stand/media/index.php';
     }
@@ -60,8 +57,9 @@ class Stand extends controller
         $target = $directory . $_FILES["file"]["name"];
 
         $uploadOk = 1;
-        $arrMediaParams ["name"] = basename($_REQUEST["input_stand_name"]);
-        $arrMediaParams ["description"] = $target;
+        $arrMediaParams["name"] = basename($_REQUEST["input_stand_name"]);
+        $arrMediaParams["url"] = $target;
+        $arrMediaParams["description"] = "%";
         $imageFileType = pathinfo($target, PATHINFO_EXTENSION);
 
         /* Valid Extensions */
@@ -72,24 +70,31 @@ class Stand extends controller
         }
 
         if ($uploadOk == 0) {
-            echo 0;
+            print_r(Helper::setMessage("Stand No creado (B)", "FAIL", "error"));
         } else {
 
-            if (!file_exists($directory)) {
-                mkdir($directory, 0777, true);
-            }
+            $arrMediaParams["id"] = $this->media->persist($arrMediaParams);
 
-            if (move_uploaded_file($_FILES['file']['tmp_name'], $target)) {
-                $media_id = $this->media->persist($arrMediaParams);
+            if ((int)$arrMediaParams["id"] > 0) {
 
-                if ((int)$media_id > 0) {
+                $arrEventStand["event_id"] = $_REQUEST["input_stand_event"];
+                $arrEventStand["image_id"] = $arrMediaParams["id"];
 
-                    $arrEventStand["event_id"] = $_REQUEST["input_stand_event"];
-                    $arrEventStand["image_id"] = $media_id;
+                $eventStandId = $this->model->persist($arrEventStand);
 
-                    $user_id = $this->model->persist($arrEventStand);
+                $target = $directory . $eventStandId . "/" . $_FILES["file"]["name"];
+                $directoryp = $directory . $eventStandId . "/";
 
-                    if ((int)$user_id > 0) {
+                if (!file_exists($directoryp)) {
+                    mkdir($directoryp, 0777, true);
+                }
+
+                if (move_uploaded_file($_FILES['file']['tmp_name'], $target)) {
+
+                    $arrMediaParams["url"] = $target;
+                    $media = $this->media->update($arrMediaParams);
+
+                    if ((int)$media > 0) {
                         print_r(Helper::setMessage("Stand Creado", "OK", "success"));
                     } else {
                         print_r(Helper::setMessage("Stand No Creado", "FAIL", "error"));

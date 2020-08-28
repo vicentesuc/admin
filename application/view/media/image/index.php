@@ -89,7 +89,6 @@
         });
 
         $("a#myimagedocuEdit").click(function () {
-
             var arreglo = {
                 url: "<?php echo URL ?>media/edit",
                 params: {
@@ -98,11 +97,7 @@
                 },
                 title: "Editar"
             }
-
             ajax_on_popup(arreglo)
-
-            console.log(arreglo);
-
         })
     })
 </script>

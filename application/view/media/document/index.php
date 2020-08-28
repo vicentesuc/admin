@@ -19,6 +19,13 @@
                            id="mypdfdocu">
                             <i class="ace-icon fa fa-times red"></i>
                         </a>
+                        <a href="#"
+                           media="<?php echo $value["media_id"] ?>"
+                           event="<?php echo $value["id"] ?>"
+                           id="mypdfdocuEdit"
+                        >
+                            <i class="ace-icon fa fa-edit blue"></i>
+                        </a>
                     </div>
                 </li>
             <?php }
@@ -70,6 +77,18 @@
                     $("#tabDocuments").trigger("click");
                 }
             });
+        })
+
+        $("a#mypdfdocuEdit").click(function () {
+            var arreglo = {
+                url: "<?php echo URL ?>media/edit",
+                params: {
+                    media: $(this).attr("media"),
+                    event: $(this).attr("event")
+                },
+                title: "Editar"
+            }
+            ajax_on_popup(arreglo)
         })
 
         $(document).one('ajaxloadstart.page', function (e) {

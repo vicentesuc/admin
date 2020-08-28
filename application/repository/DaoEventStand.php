@@ -25,8 +25,9 @@ class DaoEventStand
             [
                 "event_stands.id(stand_id)",
                 "event_stands.event_id",
-                "media.description(media_url)",
+                "media.url(media_url)",
                 "media.name(media_name)",
+                "media.id(media_id)",
             ],
             [
                 "AND" => [
