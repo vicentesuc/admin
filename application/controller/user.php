@@ -96,7 +96,7 @@ class User extends controller
             }
 
             if ($uploadOk == 0) {
-                print_r(Helper::setMessage("Usuario No Actualizado (B)", "FAIL", "error"));
+                print_r(Helper::setMessage("Usuario No creado (B)", "FAIL", "error"));
 
             } else {
 

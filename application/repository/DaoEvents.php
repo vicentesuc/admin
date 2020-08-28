@@ -72,7 +72,7 @@ class DaoEvents
                 "events.event_link",
                 "events.language",
                 "events.date",
-                "media.description(media_url)",
+                "media.url(media_url)",
             ],
             [
                 "events.id" => $id

@@ -145,7 +145,6 @@ class Events extends controller
         if (isset($_REQUEST["id"]))
             $arrEvent = $this->model->getById($_REQUEST["id"]);
 
-
         require APP . 'view/_templates/header.php';
         require APP . 'view/events/edit.php';
         require APP . 'view/_templates/footer.php';
@@ -158,8 +157,9 @@ class Events extends controller
         $target = $directory . $_FILES["file"]["name"];
 
         $uploadOk = 1;
-        $arrMediaParams ["name"] = basename($_FILES["file"]["name"]);
-        $arrMediaParams ["description"] = $target;
+        $arrMediaParams["name"] = basename($_FILES["file"]["name"]);
+        $arrMediaParams["url"] = $target;
+        $arrMediaParams["description"] = "%";
         $imageFileType = pathinfo($target, PATHINFO_EXTENSION);
 
         /* Valid Extensions */
@@ -170,32 +170,38 @@ class Events extends controller
         }
 
         if ($uploadOk == 0) {
-            echo 0;
+            print_r(Helper::setMessage("Evento No creado (B)", "FAIL", "error"));
         } else {
 
-            if (!file_exists($directory)) {
-                mkdir($directory, 0777, true);
-            }
+            $arrMediaParams["id"] = $this->media->persist($arrMediaParams);
 
-            if (move_uploaded_file($_FILES['file']['tmp_name'], $target)) {
-                $media_id = $this->media->persist($arrMediaParams);
+            if ($arrMediaParams["id"] > 0) {
 
+                $arrEventParams["title"] = $_REQUEST["input_event_title"];
+                $arrEventParams["description"] = $_REQUEST["input_event_description"];
+                $arrEventParams["franchise_id"] = $_REQUEST["input_event_franchise"];
+                $arrEventParams["image_id"] = $arrMediaParams["id"];
+                $arrEventParams["event_date"] = $_REQUEST["input_event_date"];
+                $arrEventParams["video_id"] = $arrMediaParams["id"];
+                $arrEventParams["survey_url"] = $_REQUEST["input_event_survey"];
+                $arrEventParams["event_link"] = $_REQUEST["input_event_link"];
+                $arrEventParams["language"] = $_REQUEST["input_event_language"];
+                $arrEventParams["hashtag"] = $_REQUEST["input_event_hashtag"];
+                $arrEventParams["date"] = NOW;
 
-                if ((int)$media_id > 0) {
+                $event_id = $this->model->persist($arrEventParams);
 
-                    $arrEventParams["title"] = $_REQUEST["input_event_title"];
-                    $arrEventParams["description"] = $_REQUEST["input_event_description"];
-                    $arrEventParams["franchise_id"] = $_REQUEST["input_event_franchise"];
-                    $arrEventParams["image_id"] = $media_id;
-                    $arrEventParams["event_date"] = $_REQUEST["input_event_date"];
-                    $arrEventParams["video_id"] = $media_id;
-                    $arrEventParams["survey_url"] = $_REQUEST["input_event_survey"];
-                    $arrEventParams["event_link"] = $_REQUEST["input_event_link"];
-                    $arrEventParams["language"] = $_REQUEST["input_event_language"];
-                    $arrEventParams["hashtag"] = $_REQUEST["input_event_hashtag"];
-                    $arrEventParams["date"] = NOW;
+                $target = $directory . $event_id . "/" . $_FILES["file"]["name"];
+                $directoryp = $directory . $event_id . "/";
 
-                    $event_id = $this->model->persist($arrEventParams);
+                if (!file_exists($directoryp)) {
+                    mkdir($directoryp, 0777, true);
+                }
+
+                if (move_uploaded_file($_FILES['file']['tmp_name'], $target)) {
+
+                    $arrMediaParams["url"] = $target;
+                    $media = $this->media->update($arrMediaParams);
 
                     if ((int)$event_id > 0) {
                         print_r(Helper::setMessage("Evento Creado", "OK", "success"));
@@ -203,26 +209,34 @@ class Events extends controller
                         print_r(Helper::setMessage("Evento No Creado", "FAIL", "error"));
                     }
 
+                } else {
+                    $this->media->delete($arrMediaParams["id"]);
+//                    $this->model->delete($user_id);
+                    print_r(Helper::setMessage("Imagen No Creada", "FAIL", "error"));
                 }
-            } else {
-                echo 0;
             }
         }
     }
 
     function editPost()
     {
+
         $media_id = 0;
+        $arrMediaParams["id"] = 0;
+        $uploadOk = 1;
 
         if (isset($_FILES) and isset($_FILES["file"])) {
 
             $directory = DIRECTORY_EVENTS_MEDIA;
             $target = $directory . $_FILES["file"]["name"];
 
-            $uploadOk = 1;
-            $arrMediaParams ["name"] = basename($_FILES["file"]["name"]);
-            $arrMediaParams ["description"] = $target;
+
+            $arrMediaParams["name"] = basename($_FILES["file"]["name"]);
+            $arrMediaParams["url"] = $target;
+            $arrMediaParams["description"] = "%";
+
             $imageFileType = pathinfo($target, PATHINFO_EXTENSION);
+            $arrMediaParams["id"] = $this->media->persist($arrMediaParams);
 
             /* Valid Extensions */
             $valid_extensions = array("jpg", "jpeg", "png");
@@ -231,44 +245,57 @@ class Events extends controller
                 $uploadOk = 0;
             }
 
-
-            if ($uploadOk == 0) {
-                echo 0;
-            } else {
-
-                if (!file_exists($directory)) {
-                    mkdir($directory, 0777, true);
-                }
-
-                if (move_uploaded_file($_FILES['file']['tmp_name'], $target)) {
-                    $media_id = $this->media->persist($arrMediaParams);
-                }
-            }
         }
+        if ($uploadOk == 0) {
 
-        if (isset($_REQUEST["input_event_id"])) {
+            $this->media->delete($arrMediaParams["id"]);
+            print_r(Helper::setMessage("Usuario No Actualizado (A)", "FAIL", "error"));
 
-            $arrEventParams["id"] = $_REQUEST["input_event_id"];
-            $arrEventParams["title"] = $_REQUEST["input_event_title"];
-            $arrEventParams["description"] = $_REQUEST["input_event_description"];
-            $arrEventParams["franchise_id"] = $_REQUEST["input_event_franchise"];
-            $arrEventParams["event_date"] = $_REQUEST["input_event_date"];
-            $arrEventParams["survey_url"] = $_REQUEST["input_event_survey"];
-            $arrEventParams["event_link"] = $_REQUEST["input_event_link"];
-            $arrEventParams["hashtag"] = $_REQUEST["input_event_hashtag"];
-            $arrEventParams["language"] = $_REQUEST["input_event_language"];
-            $arrEventParams["date"] = NOW;
+        } else {
 
-            if ((int)$media_id > 0) {
-                $arrEventParams["image_id"] = $media_id;
-                $arrEventParams["video_id"] = $media_id;
-            }
+            if (isset($_REQUEST["input_event_id"])) {
 
-            $row_upd = $this->model->update($arrEventParams);
-            if ((int)$row_upd > 0) {
-                print_r(Helper::setMessage("Evento Actualizado", "OK", "success"));
-            } else {
-                print_r(Helper::setMessage("Evento No Actualizado", "FAIL", "error"));
+                $arrEventParams["id"] = $_REQUEST["input_event_id"];
+                $arrEventParams["title"] = $_REQUEST["input_event_title"];
+                $arrEventParams["description"] = $_REQUEST["input_event_description"];
+                $arrEventParams["franchise_id"] = $_REQUEST["input_event_franchise"];
+                $arrEventParams["event_date"] = $_REQUEST["input_event_date"];
+                $arrEventParams["survey_url"] = $_REQUEST["input_event_survey"];
+                $arrEventParams["event_link"] = $_REQUEST["input_event_link"];
+                $arrEventParams["hashtag"] = $_REQUEST["input_event_hashtag"];
+                $arrEventParams["language"] = $_REQUEST["input_event_language"];
+                $arrEventParams["date"] = NOW;
+
+                if ((int)$arrMediaParams["id"] > 0) {
+                    $arrEventParams["image_id"] = $arrMediaParams["id"];
+                    $arrEventParams["video_id"] = $arrMediaParams["id"];
+                }
+
+                $row_upd = $this->model->update($arrEventParams);
+
+                if ($arrMediaParams["id"] > 0) {
+
+                    $target = $directory . $arrEventParams["id"] . "/" . $_FILES["file"]["name"];
+                    $directoryp = $directory . $arrEventParams["id"] . "/";
+
+                    if (!file_exists($directoryp)) {
+                        mkdir($directoryp, 0777, true);
+                    }
+
+                    if (move_uploaded_file($_FILES['file']['tmp_name'], $target)) {
+                        $arrMediaParams["url"] = $target;
+                        $media = $this->media->update($arrMediaParams);
+
+                        if ((int)$media > 0) {
+                            print_r(Helper::setMessage("Usuario Actualizado", "OK", "success"));
+                        } else {
+                            print_r(Helper::setMessage("Usuario No Actualizado", "FAIL", "error"));
+                        }
+                    }
+
+                } else {
+                    print_r(Helper::setMessage("Usuario Actualizado", "OK", "success"));
+                }
             }
         }
     }
@@ -280,7 +307,7 @@ class Events extends controller
 
         if (isset($_FILES) and isset($_FILES["file"]) and (isset($_REQUEST["media_event_id"]))) {
 
-            $directory = DIRECTORY_EVENTS_MEDIA.$_REQUEST["media_event_id"]."/";
+            $directory = DIRECTORY_EVENTS_MEDIA . $_REQUEST["media_event_id"] . "/";
 
 
             $uploadOk = 0;
