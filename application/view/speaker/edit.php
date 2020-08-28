@@ -3,7 +3,7 @@
         <!-- PAGE CONTENT BEGINS -->
         <form class="form-horizontal" role="form" id="form-speaker">
             <input type="hidden" id="input_speaker_id" name="input_speaker_id"
-                   value="<?php echo $arrSpeaker["id"]; ?> ">
+                   value="<?php echo $arrSpeaker["id"]; ?>">
             <div class="form-group">
                 <label class="col-sm-3 control-label no-padding-right" for="input_user_name">Nombre </label>
                 <div class="col-sm-9">

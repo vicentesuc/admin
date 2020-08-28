@@ -224,6 +224,7 @@ class User extends controller
                             print_r(Helper::setMessage("Usuario No Actualizado", "FAIL", "error"));
                         }
                     }
+
                 } else {
                     print_r(Helper::setMessage("Usuario Actualizado", "OK", "success"));
                 }
