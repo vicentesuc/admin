@@ -67,6 +67,9 @@ class User extends controller
         if (count($arrUser) > 0)
             $arrMedia = $this->media->getById($arrUser["image_id"]);
 
+
+//        Helper::binDebug($arrMedia);
+
         require APP . 'view/user/edit.php';
 
     }
@@ -77,11 +80,12 @@ class User extends controller
         if (isset($_FILES) and isset($_FILES["file"])) {
 
             $directory = DIRECTORY_USER_MEDIA;
-            $target = $directory . $_FILES["file"]["name"];
+            $target = $directory . "/" . $_FILES["file"]["name"];
 
             $uploadOk = 1;
-            $arrMediaParams ["name"] = basename($_FILES["file"]["name"]);
-            $arrMediaParams ["description"] = $target;
+            $arrMediaParams["name"] = basename($_FILES["file"]["name"]);
+            $arrMediaParams["url"] = $target;
+            $arrMediaParams["description"] = "%";
             $imageFileType = pathinfo($target, PATHINFO_EXTENSION);
 
             /* Valid Extensions */
@@ -92,113 +96,139 @@ class User extends controller
             }
 
             if ($uploadOk == 0) {
-                echo 0;
+                $this->media->delete($arrMediaParams["id"]);
+                print_r(Helper::setMessage("Usuario No Actualizado (B)", "FAIL", "error"));
+
             } else {
 
-                if (!file_exists($directory)) {
-                    mkdir($directory, 0777, true);
-                }
+                $arrMediaParams["id"] = $this->media->persist($arrMediaParams);
 
-                if (move_uploaded_file($_FILES['file']['tmp_name'], $target)) {
-                    $media_id = $this->media->persist($arrMediaParams);
+                if ((int)$arrMediaParams["id"] > 0) {
 
-                    if ((int)$media_id > 0) {
+                    $arrUserParams["name"] = $_REQUEST["input_user_name"];
+                    $arrUserParams["email"] = $_REQUEST["input_user_email"];
+                    $arrUserParams["franchise_id"] = $_REQUEST["sel_user_franchise"];
+                    $arrUserParams["role_id"] = $_REQUEST["sel_user_role"];
+                    $arrUserParams["pass"] = Medoo::raw("md5('" . $_REQUEST["input_user_pwd"] . "')");
+                    $arrUserParams["activation_key"] = '%';
+                    $arrUserParams["status"] = 1;
+                    $arrUserParams["image_id"] = $arrMediaParams["id"];
+                    $arrUserParams["country_id"] = $_REQUEST["sel_user_country"];
+                    $arrUserParams["date"] = NOW;
 
-                        $arrUserParams["name"] = $_REQUEST["input_user_name"];
-                        $arrUserParams["email"] = $_REQUEST["input_user_email"];
-                        $arrUserParams["franchise_id"] = $_REQUEST["sel_user_franchise"];
-                        $arrUserParams["role_id"] = $_REQUEST["sel_user_role"];
-                        $arrUserParams["pass"] = Medoo::raw("md5('" . $_REQUEST["input_user_pwd"] . "')");
-                        $arrUserParams["activation_key"] = '%';
-                        $arrUserParams["status"] = 1;
-                        $arrUserParams["image_id"] = $media_id;
-                        $arrUserParams["country_id"] = $_REQUEST["sel_user_country"];
-                        $arrUserParams["date"] = NOW;
+                    $user_id = $this->model->persist($arrUserParams);
 
-                        $user_id = $this->model->persist($arrUserParams);
+                    $target = $directory . $user_id . "/" . $_FILES["file"]["name"];
+                    $directoryp = $directory . $user_id . "/";
 
-                        if ((int)$user_id > 0) {
+                    if (!file_exists($directoryp)) {
+                        mkdir($directoryp, 0777, true);
+                    }
+
+                    if (move_uploaded_file($_FILES['file']['tmp_name'], $target)) {
+
+                        $arrMediaParams["url"] = $target;
+                        $media = $this->media->update($arrMediaParams);
+
+                        if ((int)$media > 0) {
                             print_r(Helper::setMessage("Usuario Creado", "OK", "success"));
                         } else {
                             print_r(Helper::setMessage("Usuario No Creado", "FAIL", "error"));
                         }
+
+                    } else {
+
+                        $this->media->delete($arrMediaParams["id"]);
+                        $this->model->delete($user_id);
+
+                        print_r(Helper::setMessage("Imagen No Creada", "FAIL", "error"));
                     }
-
-                } else {
-                    echo 0;
                 }
-
             }
         }
-
     }
 
     function editPost()
     {
 
         $media_id = 0;
-
+        $arrMediaParams["id"] = 0;
+        $uploadOk = 1;
         if (isset($_FILES) and isset($_FILES["file"])) {
 
             $directory = DIRECTORY_USER_MEDIA;
             $target = $directory . $_FILES["file"]["name"];
 
-            $uploadOk = 1;
-            $arrMediaParams ["name"] = basename($_FILES["file"]["name"]);
-            $arrMediaParams ["description"] = $target;
-            $imageFileType = pathinfo($target, PATHINFO_EXTENSION);
+            $arrMediaParams["name"] = basename($_FILES["file"]["name"]);
+            $arrMediaParams["url"] = $target;
+            $arrMediaParams["description"] = "%";
 
+            $imageFileType = pathinfo($target, PATHINFO_EXTENSION);
+            $arrMediaParams["id"] = $this->media->persist($arrMediaParams);
             /* Valid Extensions */
             $valid_extensions = array("jpg", "jpeg", "png");
             /* Check file extension */
+
             if (!in_array(strtolower($imageFileType), $valid_extensions)) {
                 $uploadOk = 0;
             }
 
-//            Helper::binDebug($target);
-
-            if ($uploadOk == 0) {
-                echo 0;
-            } else {
-
-                if (!file_exists($directory)) {
-                    mkdir($directory, 0777, true);
-                }
-
-                if (move_uploaded_file($_FILES['file']['tmp_name'], $target)) {
-                    $media_id = $this->media->persist($arrMediaParams);
-                }
-            }
         }
 
-        if (isset($_REQUEST["input_user_id"])) {
 
-            $arrUserParams["id"] = $_REQUEST["input_user_id"];
-            $arrUserParams["name"] = $_REQUEST["input_user_name"];
-            $arrUserParams["email"] = $_REQUEST["input_user_email"];
-            $arrUserParams["franchise_id"] = $_REQUEST["sel_user_franchise"];
-            $arrUserParams["role_id"] = $_REQUEST["sel_user_role"];
+        if ($uploadOk == 0) {
 
-            if ($_REQUEST["input_user_pwd"] != "*****")
-                $arrUserParams["pass"] = Medoo::raw("md5('" . $_REQUEST["input_user_pwd"] . "')");
+            $this->media->delete($arrMediaParams["id"]);
+            print_r(Helper::setMessage("Usuario No Actualizado (A)", "FAIL", "error"));
 
-            $arrUserParams["activation_key"] = '%';
-            $arrUserParams["status"] = isset($_REQUEST["chk_user_status"]) ? 1 : 0;
+        } else {
 
-            if ((int)$media_id > 0)
-                $arrUserParams["image_id"] = $media_id;
+            if (isset($_REQUEST["input_user_id"])) {
 
-            $arrUserParams["country_id"] = $_REQUEST["sel_user_country"];
-            $arrUserParams["date"] = NOW;
+                $arrUserParams["id"] = $_REQUEST["input_user_id"];
+                $arrUserParams["name"] = $_REQUEST["input_user_name"];
+                $arrUserParams["email"] = $_REQUEST["input_user_email"];
+                $arrUserParams["franchise_id"] = $_REQUEST["sel_user_franchise"];
+                $arrUserParams["role_id"] = $_REQUEST["sel_user_role"];
 
-            $row_upd = $this->model->update($arrUserParams);
+                if ($_REQUEST["input_user_pwd"] != "*****")
+                    $arrUserParams["pass"] = Medoo::raw("md5('" . $_REQUEST["input_user_pwd"] . "')");
 
-            if ((int)$row_upd > 0) {
-                print_r(Helper::setMessage("Usuario Actualizado", "OK", "success"));
-            } else {
-                print_r(Helper::setMessage("Usuario No Actualizado", "FAIL", "error"));
+                $arrUserParams["activation_key"] = '%';
+                $arrUserParams["status"] = isset($_REQUEST["chk_user_status"]) ? 1 : 0;
+
+                if ((int)$arrMediaParams["id"] > 0)
+                    $arrUserParams["image_id"] = $arrMediaParams["id"];
+
+                $arrUserParams["country_id"] = $_REQUEST["sel_user_country"];
+                $arrUserParams["date"] = NOW;
+
+                $row_upd = $this->model->update($arrUserParams);
+
+
+                if ($arrMediaParams["id"] > 0) {
+
+                    $target = $directory . $arrUserParams["id"] . "/" . $_FILES["file"]["name"];
+                    $directoryp = $directory . $arrUserParams["id"] . "/";
+
+                    if (!file_exists($directoryp)) {
+                        mkdir($directoryp, 0777, true);
+                    }
+
+                    if (move_uploaded_file($_FILES['file']['tmp_name'], $target)) {
+                        $arrMediaParams["url"] = $target;
+                        $media = $this->media->update($arrMediaParams);
+
+                        if ((int)$media > 0) {
+                            print_r(Helper::setMessage("Usuario Actualizado", "OK", "success"));
+                        } else {
+                            print_r(Helper::setMessage("Usuario No Actualizado", "FAIL", "error"));
+                        }
+                    }
+                } else {
+                    print_r(Helper::setMessage("Usuario Actualizado", "OK", "success"));
+                }
             }
-
         }
     }
 }

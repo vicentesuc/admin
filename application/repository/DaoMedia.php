@@ -13,17 +13,6 @@ class DaoMedia
         }
     }
 
-    function getAll()
-    {
-
-        return $this->database->select("franchises",
-            [
-                "id",
-                "es_name",
-                "en_name"
-            ]
-        );
-    }
 
     function getById($id = 0)
     {
@@ -31,7 +20,8 @@ class DaoMedia
             [
                 "id",
                 "name",
-                "description"
+                "description",
+                "url"
             ],
             [
                 "id" => $id
@@ -41,11 +31,9 @@ class DaoMedia
 
     function persist($params = array())
     {
-        $this->database->insert("media",
-            [
-                "name" => $params["name"],
-                "description" => $params["description"]
-            ]
+        $this->database->insert(
+            "media",
+            $params
         );
 
         return $this->database->id();
@@ -53,11 +41,10 @@ class DaoMedia
 
     function update($params = array())
     {
-        $data = $this->database->update("media",
-            [
-                "name" => $params["name"],
-                "description" => $params["description"]
-            ],
+
+        $data = $this->database->update(
+            "media",
+            $params,
             [
                 "id" => $params["id"]
             ]

@@ -37,7 +37,8 @@ class DaoUser
                 "users.status",
                 "users.image_id",
                 "media.name(media_name)",
-                "media.description",
+                "media.description(media_desc)",
+                "media.url(media_url)",
                 "users.country_id",
                 "countries.name(country_desc)",
                 "users.date"
@@ -125,6 +126,19 @@ class DaoUser
         );
 
         return $data->rowCount();
+    }
+
+    function delete($params =array()){
+        $data = $this->database->update(
+            "users",
+            $params,
+            [
+                "id" => $params["id"]
+            ]
+        );
+
+        return $data->rowCount();
+
     }
 
 }

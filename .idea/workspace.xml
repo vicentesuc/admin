@@ -21,11 +21,10 @@
   <component name="ChangeListManager">
     <list default="true" id="da35a530-2b5e-45e3-a290-2dd5b36fad21" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/application/config/config.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/config/config.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/application/controller/login.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/controller/login.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/application/controller/user.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/controller/user.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/repository/DaoMedia.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/repository/DaoMedia.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/application/repository/DaoUser.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/repository/DaoUser.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/application/resources/db/V1__dummy_inital_er.sql" beforeDir="false" afterPath="$PROJECT_DIR$/application/resources/db/V1__dummy_inital_er.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/view/user/edit.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/view/user/edit.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -97,7 +96,7 @@
       <workItem from="1598364877699" duration="7662000" />
       <workItem from="1598393897050" duration="3184000" />
       <workItem from="1598479532061" duration="1549000" />
-      <workItem from="1598569793584" duration="851000" />
+      <workItem from="1598569793584" duration="9452000" />
     </task>
     <servers />
   </component>
