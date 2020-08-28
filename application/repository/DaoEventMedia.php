@@ -27,7 +27,7 @@ class DaoEventMedia
                 "events.title",
                 "events.description",
                 "events.franchise_id",
-                "media.description(media_url)",
+                "media.url(media_url)",
                 "media.name(media_name)",
                 "media.id(media_id)",
                 "events.image_id",

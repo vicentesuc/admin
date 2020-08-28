@@ -20,6 +20,14 @@
                         >
                             <i class="ace-icon fa fa-times red"></i>
                         </a>
+
+                        <a href="#"
+                           media="<?php echo $value["media_id"] ?>"
+                           event="<?php echo $value["id"] ?>"
+                           id="myimagedocuEdit"
+                        >
+                            <i class="ace-icon fa fa-edit blue"></i>
+                        </a>
                     </div>
                 </li>
             <?php }
@@ -79,5 +87,22 @@
         $(document).one('ajaxloadstart.page', function (e) {
             $('#colorbox, #cboxOverlay').remove();
         });
+
+        $("a#myimagedocuEdit").click(function () {
+
+            var arreglo = {
+                url: "<?php echo URL ?>media/edit",
+                params: {
+                    media: $(this).attr("media"),
+                    event: $(this).attr("event")
+                },
+                title: "Editar"
+            }
+
+            ajax_on_popup(arreglo)
+
+            console.log(arreglo);
+
+        })
     })
 </script>

@@ -16,7 +16,8 @@ class DaoMedia
 
     function getById($id = 0)
     {
-        return $this->database->get("media",
+        return $this->database->get(
+            "media",
             [
                 "id",
                 "name",

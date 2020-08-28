@@ -340,7 +340,8 @@ class Events extends controller
 
             $target = $directory . $_FILES["file"]["name"];
             $arrMediaParams ["name"] = basename($_FILES["file"]["name"]);
-            $arrMediaParams ["description"] = $target;
+            $arrMediaParams ["description"] = "%";
+            $arrMediaParams ["url"] = $target;
 
             if ($uploadOk == 0) {
                 echo "upload " . $uploadOk;

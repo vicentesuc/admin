@@ -59,6 +59,30 @@ class Media extends controller
         require APP . 'view/media/document/index.php';
     }
 
+    function edit()
+    {
+        $arrMedia = $this->media->getById($_REQUEST["media"]);
+
+        require APP . 'view/media/edit.php';
+    }
+
+
+    function editPost()
+    {
+        if (isset($_REQUEST["input_media_id"])) {
+
+            $arrMediaParams["id"] = $_REQUEST["input_media_id"];
+            $arrMediaParams["name"] = $_REQUEST["input_media_name"];
+            $arrMediaParams["description"] = $_REQUEST["input_media_desc"];
+            $rowCount = $this->media->update($arrMediaParams);
+
+            print_r(Helper::setMessage("Actualizado Exitosamente", "OK", "success"));
+
+        } else {
+            print_r(Helper::setMessage("No se pudo Actualizar", "FAIL", "error"));
+        }
+    }
+
     function delete()
     {
         $rowCount = 0;
@@ -111,17 +135,17 @@ class Media extends controller
 
         foreach ($arrStands as $key => $value) {
             $rowCount = 0;
-                $id = $value["media_id"];
-                $rowCount = $this->media->delete($id);
+            $id = $value["media_id"];
+            $rowCount = $this->media->delete($id);
 
-                $paramsDelete["stand_id"] = $value["stand_id"];
-                $paramsDelete["media_id"] = $value["media_id"];
-                $rowCount = $this->standMedia->delete($paramsDelete);
+            $paramsDelete["stand_id"] = $value["stand_id"];
+            $paramsDelete["media_id"] = $value["media_id"];
+            $rowCount = $this->standMedia->delete($paramsDelete);
         }
 
-        $paramsEventStand["event_id"] =$_REQUEST["event"];
-        $paramsEventStand["stand_id"] =$_REQUEST["stand"];
-        $rowCount =$this->eventStand->delete($paramsEventStand);
+        $paramsEventStand["event_id"] = $_REQUEST["event"];
+        $paramsEventStand["stand_id"] = $_REQUEST["stand"];
+        $rowCount = $this->eventStand->delete($paramsEventStand);
 
         if ((int)$rowCount > 0) {
             print_r(Helper::setMessage("Eliminado Exitosamente", "OK", "success"));
