@@ -20,6 +20,12 @@
                         >
                             <i class="ace-icon fa fa-times red"></i>
                         </a>
+                        <a href="#"
+                           stand="<?php echo $value["stand_id"] ?>"
+                           media="<?php echo $value["media_id"] ?>"
+                           id="mylistImageDocEdit">
+                            <i class="ace-icon fa fa-edit blue"></i>
+                        </a>
                     </div>
                 </li>
             <?php }
@@ -74,6 +80,18 @@
                     $("#stand_image").trigger("click");
                 }
             });
+        })
+
+        $("a#mylistImageDocEdit").click(function () {
+            var arreglo = {
+                url: "<?php echo URL ?>media/edit",
+                params: {
+                    media: $(this).attr("media"),
+                    stand: $(this).attr("stand")
+                },
+                title: "Editar"
+            }
+            ajax_on_popup(arreglo)
         })
 
         $(document).one('ajaxloadstart.page', function (e) {

@@ -23,7 +23,7 @@ class DaoStandMedia
             ],
             [                "stands_media.stand_id(stand_id)",
                 "media.id(media_id)",
-                "media.description(media_url)",
+                "media.url(media_url)",
                 "media.name(media_name)",
             ],
             [

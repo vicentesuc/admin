@@ -19,7 +19,7 @@
 </div>
 <br>
 <div class="row">
-    <div class="col-md-12">
+    <div class="col-md-12 col-sm-12 col-xs-12 col-lg-12">
         <ul class="ace-thumbnails clearfix" id="document_list">
             <?php foreach ($arrStands as $key => $value) {
                 $imageFileType = pathinfo($value["media_url"], PATHINFO_EXTENSION);

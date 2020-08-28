@@ -114,7 +114,7 @@ class Stand extends controller
 
         if (isset($_FILES) and isset($_FILES["file"]) and (isset($_REQUEST["input_stand_id"]))) {
 
-            $directory = DIRECTORY_STANDS_MEDIA;
+            $directory = DIRECTORY_STANDS_MEDIA . $_REQUEST["input_stand_id"] . "/";
 
 
             $uploadOk = 1;
@@ -135,8 +135,10 @@ class Stand extends controller
             $directory .= ($uploadOk = 1 and in_array(strtolower($imageFileType), $valid_extensions_img)) ? "image/" : "video/";
 
             $target = $directory . $_FILES["file"]["name"];
-            $arrMediaParams ["name"] = basename($_FILES["file"]["name"]);
-            $arrMediaParams ["description"] = $target;
+            $arrMediaParams["name"] = basename($_FILES["file"]["name"]);
+            $arrMediaParams["url"] = $target;
+            $arrMediaParams["description"] = "%";
+
 
             if ($uploadOk == 0) {
                 echo 0;
