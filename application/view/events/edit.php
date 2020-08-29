@@ -190,6 +190,25 @@
                                                  width="100" height="75">
                                         </div>
                                     </div>
+                                    <hr>
+                                    <div class="form-group">
+                                        <label class="col-sm-3 control-label no-padding-right" for="form-field-tags">Diploma</label>
+                                        <div class="col-sm-9">
+                                            <div class="inline">
+                                                <input type="file" name="filed" id="filed" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-sm-3 control-label no-padding-right" for="form-field-tags">Vista
+                                            Previa(Diploma)</label>
+                                        <div class="col-sm-9">
+                                            <img id="prev_image_d" class="img img-responsive "
+                                                 src="<?php echo IMAGES . "/" . $arrEvent["media_url_diploma"]; ?>"
+                                                 alt="your image" width="100"
+                                                 height="75"/>
+                                        </div>
+                                    </div>
                                 </form>
                                 <div class="clearfix form-actions">
                                     <div class="col-md-offset-3 col-md-9">
@@ -297,14 +316,12 @@
         </div>
     </div>
     <script>
-        function readURL(input) {
+        function readURL(input, image_input) {
             if (input.files && input.files[0]) {
                 var reader = new FileReader();
-
                 reader.onload = function (e) {
-                    $('#prev_image').attr('src', e.target.result);
+                    $('#' + image_input).attr('src', e.target.result);
                 }
-
                 reader.readAsDataURL(input.files[0]); // convert to base64 string
             }
         }
@@ -317,9 +334,11 @@
                     url: "<?php echo URL ?>events/editPost",
                     params: form_to_json("form-event"),
                     image: "file",
+                    image_d: "filed",
                     method: "POST"
                 }
-                ajax_send_file(arreglo, (resp) => {
+
+                ajax_send_file_double(arreglo, (resp) => {
                     var response = JSON.parse(resp);
 
                     messages(response)
@@ -331,7 +350,11 @@
         })
 
         $("#file").change(function () {
-            readURL(this);
+            readURL(this, "prev_image");
+        });
+
+        $("#filed").change(function () {
+            readURL(this, "prev_image_d");
         });
 
         $("#tabImages").click(function () {

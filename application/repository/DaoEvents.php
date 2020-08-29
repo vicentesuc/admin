@@ -46,7 +46,8 @@ class DaoEvents
                 "AND" => [
                     "franchises.id" => (isset($arraParams["franchise"])) ? $arraParams["franchise"] : Medoo::raw("franchises.id"),
                     "events.language" => (isset($arraParams["language"])) ? $arraParams["language"] : Medoo::raw("events.language")
-                ]
+                ],
+                "ORDER" => ["events.id" => "DESC"]
             ]
         );
     }
@@ -57,7 +58,8 @@ class DaoEvents
             "events",
             [
                 "[><]franchises" => ["events.franchise_id" => "id"],
-                "[><]media" => ["events.image_id" => "id"]
+                "[><]media" => ["events.image_id" => "id"],
+                "[>]media(media_diploma)" => ["events.diploma_image_id" => "id"]
             ],
             [
                 "events.id",
@@ -73,6 +75,8 @@ class DaoEvents
                 "events.language",
                 "events.date",
                 "media.url(media_url)",
+                "media_diploma.url(media_url_diploma)",
+
             ],
             [
                 "events.id" => $id

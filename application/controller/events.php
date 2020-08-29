@@ -42,6 +42,8 @@ class Events extends controller
         $arrFranchise = $this->franchise->getAll();
 
 
+//        Helper::binDebug($arrEvents);
+
         require APP . 'view/_templates/header.php';
         require APP . 'view/events/index.php';
         require APP . 'view/_templates/footer.php';
@@ -145,6 +147,8 @@ class Events extends controller
         if (isset($_REQUEST["id"]))
             $arrEvent = $this->model->getById($_REQUEST["id"]);
 
+//        Helper::binDebug($arrEvent);
+
         require APP . 'view/_templates/header.php';
         require APP . 'view/events/edit.php';
         require APP . 'view/_templates/footer.php';
@@ -190,13 +194,8 @@ class Events extends controller
 
             $arrMediaDiplomaParams["id"] = 0;
             if (isset($_FILES["filed"])) {
-
-//                Helper::binDebug($arrMediaDiplomaParams);
-
                 $arrMediaDiplomaParams["id"] = $this->media->persist($arrMediaDiplomaParams);
             }
-
-//            Helper::binDebug($arrMediaDiplomaParams);
 
 
             if ($arrMediaParams["id"] > 0) {
@@ -222,8 +221,8 @@ class Events extends controller
                 $targetd = "";
                 $directoryd = "";
                 if (isset($_FILES["filed"])) {
-                    $targetd = $directory . $event_id . "/" . $_FILES["filed"]["name"];
-                    $directoryd = $directory . $event_id . DIRECTORY_EVENTS_MEDIA_DIPLOMA;
+                    $targetd = $directory . $event_id . "/" . DIRECTORY_EVENTS_MEDIA_DIPLOMA . $_FILES["filed"]["name"];
+                    $directoryd = $directory . $event_id . "/" . DIRECTORY_EVENTS_MEDIA_DIPLOMA;
                 }
 
 
@@ -276,16 +275,18 @@ class Events extends controller
 
         if (isset($_FILES) and isset($_FILES["file"])) {
 
-            $directory = DIRECTORY_EVENTS_MEDIA;
+            $directory = DIRECTORY_EVENTS_MEDIA . $_REQUEST["input_event_id"] . "/";
+
             $target = $directory . $_FILES["file"]["name"];
 
-
+            /*image principal*/
             $arrMediaParams["name"] = basename($_FILES["file"]["name"]);
             $arrMediaParams["url"] = $target;
             $arrMediaParams["description"] = "%";
 
             $imageFileType = pathinfo($target, PATHINFO_EXTENSION);
             $arrMediaParams["id"] = $this->media->persist($arrMediaParams);
+
 
             /* Valid Extensions */
             $valid_extensions = array("jpg", "jpeg", "png");
@@ -294,7 +295,43 @@ class Events extends controller
                 $uploadOk = 0;
             }
 
+            if (!file_exists($directory)) {
+                mkdir($directory, 0777, true);
+            }
+
+            move_uploaded_file($_FILES['file']['tmp_name'], $target);
+
         }
+
+        $arrMediaDiplomaParams["id"] = 0;
+        if (isset($_FILES) and isset($_FILES["filed"])) {
+
+            $directory = DIRECTORY_EVENTS_MEDIA . $_REQUEST["input_event_id"] . "/" . DIRECTORY_EVENTS_MEDIA_DIPLOMA;
+            $targetd = $directory . $_FILES["filed"]["name"];
+
+            $uploadOk = 1;
+            $arrMediaDiplomaParams["name"] = basename($_FILES["filed"]["name"]);
+            $arrMediaDiplomaParams["url"] = $targetd;
+            $arrMediaDiplomaParams["description"] = "%";
+            $arrMediaDiplomaParams["id"] = $this->media->persist($arrMediaDiplomaParams);
+
+            $imageFileType = pathinfo($targetd, PATHINFO_EXTENSION);
+
+            /* Valid Extensions */
+            $valid_extensions = array("jpg", "jpeg", "png");
+            /* Check file extension */
+            if (!in_array(strtolower($imageFileType), $valid_extensions)) {
+                $uploadOk = 0;
+            }
+
+            if (!file_exists($directory)) {
+                mkdir($directory, 0777, true);
+            }
+
+            move_uploaded_file($_FILES['filed']['tmp_name'], $targetd);
+        }
+
+
         if ($uploadOk == 0) {
 
             $this->media->delete($arrMediaParams["id"]);
@@ -320,30 +357,16 @@ class Events extends controller
                     $arrEventParams["video_id"] = $arrMediaParams["id"];
                 }
 
+                if ((int)$arrMediaDiplomaParams["id"] > 0) {
+                    $arrEventParams["diploma_image_id"] = $arrMediaDiplomaParams["id"];
+                }
+
                 $row_upd = $this->model->update($arrEventParams);
 
-                if ($arrMediaParams["id"] > 0) {
-
-                    $target = $directory . $arrEventParams["id"] . "/" . $_FILES["file"]["name"];
-                    $directoryp = $directory . $arrEventParams["id"] . "/";
-
-                    if (!file_exists($directoryp)) {
-                        mkdir($directoryp, 0777, true);
-                    }
-
-                    if (move_uploaded_file($_FILES['file']['tmp_name'], $target)) {
-                        $arrMediaParams["url"] = $target;
-                        $media = $this->media->update($arrMediaParams);
-
-                        if ((int)$media > 0) {
-                            print_r(Helper::setMessage("Usuario Actualizado", "OK", "success"));
-                        } else {
-                            print_r(Helper::setMessage("Usuario No Actualizado", "FAIL", "error"));
-                        }
-                    }
-
-                } else {
+                if ($row_upd > 0) {
                     print_r(Helper::setMessage("Usuario Actualizado", "OK", "success"));
+                } else {
+                    print_r(Helper::setMessage("Usuario No Actualizado", "FAIL", "error"));
                 }
             }
         }

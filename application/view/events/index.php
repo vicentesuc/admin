@@ -92,6 +92,7 @@
                         <table id="example" class="display table table-hover " style="width:100%">
                             <thead>
                             <tr>
+                                <th>No.</th>
                                 <th>Titulo</th>
                                 <th>Descripcion</th>
                                 <th>Fecha Hora</th>
@@ -103,6 +104,7 @@
                             <tbody>
                             <?php foreach ($arrEvents as $key => $value) { ?>
                                 <tr>
+                                    <td><?php echo $value["id"] ?></td>
                                     <td><?php echo $value["title"] ?></td>
                                     <td><?php echo $value["description"] ?></td>
                                     <td><?php echo $value["event_date"] ?></td>
@@ -179,7 +181,9 @@
             ajax_on_popup(arreglo);
         })
 
-        $('#example').DataTable({});
+        $('#example').DataTable({
+            "order": [[ 0, "desc" ]]
+        });
 
         $("#span_calendar").click(function () {
             window.location.href = "<?php echo URL ?>events/calendar";

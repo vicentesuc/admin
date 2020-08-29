@@ -151,7 +151,7 @@
                 var response = JSON.parse(resp);
                 messages(response)
                 if (response.code === "OK") {
-                    //window.location.href = "<?php //echo URL ?>//events"
+                    window.location.href = "<?php echo URL ?>events"
                 }
             });
         })
