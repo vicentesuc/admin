@@ -29,7 +29,8 @@ class Stand extends controller
         require APP . 'view/events/stand/index.php';
     }
 
-    function tabs(){
+    function tabs()
+    {
 
         require APP . 'view/events/stand/stand_tabs.php';
     }
@@ -80,7 +81,7 @@ class Stand extends controller
     function createPost()
     {
 
-        $directory = DIRECTORY_STANDS_MEDIA;
+        $directory = DIRECTORY_EVENTS_MEDIA . $_REQUEST["input_stand_event"] . "/" . DIRECTORY_STANDS_MEDIA;
         $target = $directory . $_FILES["file"]["name"];
 
         $uploadOk = 1;
@@ -141,7 +142,7 @@ class Stand extends controller
 
         if (isset($_FILES) and isset($_FILES["file"]) and (isset($_REQUEST["input_stand_id"]))) {
 
-            $directory = DIRECTORY_STANDS_MEDIA . $_REQUEST["input_stand_id"] . "/";
+            $directory = DIRECTORY_EVENTS_MEDIA . $_REQUEST["input_stand_event_id"] . "/" . DIRECTORY_STANDS_MEDIA . $_REQUEST["input_stand_id"] . "/";
 
 
             $uploadOk = 0;
@@ -151,7 +152,6 @@ class Stand extends controller
             $valid_extensions_img = array("jpg", "jpeg", "png");
             $valid_extensions_video = array("mp4");
             $valid_extensions_pdf = array("pdf");
-
 
 
             /* Check file extension */

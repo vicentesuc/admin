@@ -15,13 +15,13 @@
                     <div class="tools">
                         <a href="#"
                            media="<?php echo $value["media_id"] ?>"
-                           event="<?php echo $value["id"] ?>"
+                           stand="<?php echo $value["stand_id"] ?>"
                            id="mypdfdocu">
                             <i class="ace-icon fa fa-times red"></i>
                         </a>
                         <a href="#"
                            media="<?php echo $value["media_id"] ?>"
-                           event="<?php echo $value["id"] ?>"
+                           stand="<?php echo $value["stand_id"] ?>"
                            id="mypdfdocuEdit"
                         >
                             <i class="ace-icon fa fa-edit blue"></i>
@@ -61,10 +61,10 @@
         $("a#mypdfdocu").click(function () {
 
             var arreglo = {
-                url: "<?php echo URL ?>media/delete",
+                url: "<?php echo URL ?>media/stand_media_delete",
                 params: {
                     media: $(this).attr("media"),
-                    event: $(this).attr("event")
+                    stand: $(this).attr("stand")
                 }
             }
 
@@ -84,7 +84,7 @@
                 url: "<?php echo URL ?>media/edit",
                 params: {
                     media: $(this).attr("media"),
-                    event: $(this).attr("event")
+                    stand: $(this).attr("stand")
                 },
                 title: "Editar"
             }

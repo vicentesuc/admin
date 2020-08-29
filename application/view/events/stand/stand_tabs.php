@@ -40,6 +40,7 @@
                   class="dropzone well"
                   id="dropzoneStand">
                 <input type="hidden" value="<?php echo $_REQUEST["id"]; ?>" id="input_stand_id" name="input_stand_id">
+                <input type="hidden" value="<?php echo $_REQUEST["event"]; ?>" id="input_stand_event_id" name="input_stand_event_id">
 
                 <div class="fallback">
                     <input name="file" type="file" multiple=""/>

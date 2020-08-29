@@ -26,7 +26,7 @@
                 if (in_array($imageFileType, $valid_extensions)) {
                     ?>
                     <li>
-                        <a id="stand_image" stand="<?php echo $value["stand_id"]; ?>" data-rel="colorbox">
+                        <a id="stand_image" stand="<?php echo $value["stand_id"]; ?>" event="<?php echo $value["event_id"] ?>" data-rel="colorbox">
                             <img width="150" height="150" alt="150x150"
                                  src="<?php echo IMAGES . "/".$value["media_url"]; ?>"/>
                             <div class="text">
@@ -74,7 +74,9 @@
         var arreglo = {
             url: "<?php echo URL ?>stand/tabs",
             params: {
-                id: $(this).attr("stand")
+                id: $(this).attr("stand"),
+                event: $(this).attr("event")
+
             },
             method: "POST",
             div: "div_stands_tabs"
