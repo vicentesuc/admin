@@ -39,6 +39,7 @@
                         <select class="col-xs-10 col-sm-5 chosen-select " id="input_event_id" name="input_event_id"
                                 data-placeholder="Choose a State..."
                                 required>
+                            <option value="">Seleccione un evento</option>
                             <?php foreach ($arrEvents as $key => $value) {
                                 $selected = (((isset($_REQUEST["event"])) ? $_REQUEST["event"] : null) == $value["id"]) ? "selected" : "";
                                 ?>
@@ -53,7 +54,7 @@
                     <label class="col-sm-3 control-label no-padding-right" for="form-field-tags">Foto</label>
                     <div class="col-sm-9">
                         <div class="inline">
-                            <input name="file" id="file" type="file" accept=".csv"/>
+                            <input name="file" id="file" type="file" accept=".csv" required/>
                         </div>
                     </div>
                 </div>
@@ -75,17 +76,27 @@
             var form = $("#form-diploma");
             var rp = {msg: "", event: "", title: ""}
             form.validate().settings.ignore = ":disabled,:hidden";
+
+
             if (form.valid()) {
-                document.getElementById("form-diploma").submit();
+
+                if ($("#input_event_id").val() !== "") {
+                    document.getElementById("form-diploma").submit();
+                } else {
+                    rp.msg = "seleccione un evento ";
+                    rp.title = "Aviso";
+                    rp.event = "error";
+                    messages(rp)
+                }
             } else {
                 rp.msg = "Debe llenar todos los campos";
                 rp.title = "Aviso";
                 rp.event = "error";
-                toastNotificacion(rp);
+                messages(rp)
             }
             return false;
         })
 
-        $('.chosen-select').chosen({allow_single_deselect:true});
+        $('.chosen-select').chosen({allow_single_deselect: true});
     })
 </script>
