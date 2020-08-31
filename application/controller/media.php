@@ -86,17 +86,21 @@ class Media extends controller
     function delete()
     {
         $rowCount = 0;
+
+        $arrMedia = $this->media->getById($_REQUEST["media"]);
+
+        if (count($arrMedia) > 0 && file_exists($arrMedia["url"]))
+            unlink($arrMedia["url"]);
+
         if (isset($_REQUEST["media"])) {
             $id = $_REQUEST["media"];
             $rowCount = $this->media->delete($id);
         }
 
         if (isset($_REQUEST["event"]) and isset($_REQUEST["media"])) {
-
             $paramsDelete["event_id"] = $_REQUEST["event"];
             $paramsDelete["media_id"] = $_REQUEST["media"];
             $rowCount = $this->model->delete($paramsDelete);
-
         }
 
         if ((int)$rowCount > 0) {
@@ -104,18 +108,30 @@ class Media extends controller
         } else {
             print_r(Helper::setMessage("No se pudo Eliminar", "FAIL", "error"));
         }
+
     }
 
     function stand_media_delete()
     {
         $rowCount = 0;
+
+        /*delete media image first*/
+        $arrMedia = $this->media->getById($_REQUEST["media"]);
+
+        if (count($arrMedia) > 0 && file_exists($arrMedia["url"]))
+            unlink($arrMedia["url"]);
+
+        /*delete media from database*/
         if (isset($_REQUEST["media"])) {
             $id = $_REQUEST["media"];
             $rowCount = $this->media->delete($id);
         }
 
-        if (isset($_REQUEST["stand"]) and isset($_REQUEST["media"])) {
+        /*delete media from */
 
+        $arrMedia = $this->media->getById($_REQUEST["media"]);
+
+        if (isset($_REQUEST["stand"]) and isset($_REQUEST["media"])) {
             $paramsDelete["stand_id"] = $_REQUEST["stand"];
             $paramsDelete["media_id"] = $_REQUEST["media"];
             $rowCount = $this->standMedia->delete($paramsDelete);
