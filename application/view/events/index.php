@@ -17,7 +17,30 @@
         <li class="active">Lista</li>
     </ul>
 </div>
+<script>
+    var deleteEvent = function (event_id) {
 
+        bootbox.confirm("Estas seguro?", function (result) {
+            if (result) {
+                var arreglo = {
+                    url: "<?php echo URL ?>/events/delete",
+                    method: "POST",
+                    params: {
+                        event: event_id
+                    }
+                }
+                ajax_send(arreglo, (resp) => {
+                    var response = JSON.parse(resp);
+
+                    messages(response)
+                    if (response.code === "OK") {
+
+                    }
+                });
+            }
+        });
+    }
+</script>
 <div class="page-content">
     <div class="row">
         <div class="col-xs-12">
@@ -117,6 +140,13 @@
                                                title="editar">
                                                 <i class="ace-icon fa fa-edit bigger-130"></i>
                                             </a>
+                                            <a class="red"
+                                               href="#"
+                                               onclick="deleteEvent('<?php echo $value["id"]; ?>')"
+                                               id="deleteEvent"
+                                               title="eliminar">
+                                                <i class="ace-icon fa fa-times bigger-130"></i>
+                                            </a>
                                         </div>
                                         <div class="hidden-md hidden-lg">
                                             <div class="inline pos-rel">
@@ -130,6 +160,18 @@
                                                         <a href="<?php echo URL ?>events/edit?id<?php echo $value["id"]; ?>"
                                                            class="tooltip-info" data-rel="tooltip" title="editar"
                                                            data-original-title="View">
+                                                        <span class="blue" user="<?php echo $value["id"]; ?>"
+                                                              id="edit_user">
+                                                            <i class="ace-icon fa fa-edit bigger-120"></i>
+                                                        </span>
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="#"
+                                                           onclick="deleteEvent('<?php echo $value["id"]; ?>')"
+                                                        <!--                                                           id="deleteEvent"-->
+                                                        class="tooltip-info" data-rel="tooltip" title="delete"
+                                                        data-original-title="View">
                                                         <span class="blue" user="<?php echo $value["id"]; ?>"
                                                               id="edit_user">
                                                             <i class="ace-icon fa fa-edit bigger-120"></i>
@@ -182,12 +224,13 @@
         })
 
         $('#example').DataTable({
-            "order": [[ 0, "desc" ]]
+            "order": [[0, "desc"]]
         });
 
         $("#span_calendar").click(function () {
             window.location.href = "<?php echo URL ?>events/calendar";
         })
+
 
     });
 

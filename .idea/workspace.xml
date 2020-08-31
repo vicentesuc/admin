@@ -21,7 +21,11 @@
   <component name="ChangeListManager">
     <list default="true" id="da35a530-2b5e-45e3-a290-2dd5b36fad21" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/controller/events.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/controller/events.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/application/controller/media.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/controller/media.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/repository/DaoEventSpeaker.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/repository/DaoEventSpeaker.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/view/events/edit.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/view/events/edit.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/view/events/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/view/events/index.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -96,7 +100,7 @@
       <workItem from="1598569793584" duration="13150000" />
       <workItem from="1598624175635" duration="14286000" />
       <workItem from="1598657698634" duration="7145000" />
-      <workItem from="1598831093294" duration="1703000" />
+      <workItem from="1598831093294" duration="5389000" />
     </task>
     <servers />
   </component>

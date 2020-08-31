@@ -195,7 +195,7 @@
                                         <label class="col-sm-3 control-label no-padding-right" for="form-field-tags">Diploma</label>
                                         <div class="col-sm-9">
                                             <div class="inline">
-                                                <input type="file" name="filed" id="filed" />
+                                                <input type="file" name="filed" id="filed"/>
                                             </div>
                                         </div>
                                     </div>
@@ -241,7 +241,7 @@
                                         <div id="div_stands"></div>
                                     </div>
                                     <div class="col-md-9">
-                                        <div id="div_stands_tabs" ></div>
+                                        <div id="div_stands_tabs"></div>
                                     </div>
                                 </div>
                             </div>
@@ -410,6 +410,7 @@
         })
 
         $("#tabStand").click(function () {
+            $("#div_stands_tabs").html("");
             var arreglo = {
                 url: "<?php echo URL ?>stand",
                 method: "POST",

@@ -154,6 +154,9 @@ class Media extends controller
             $id = $value["media_id"];
             $rowCount = $this->media->delete($id);
 
+            if (file_exists($value["media_url"]))
+                unlink($value["media_url"]);
+
             $paramsDelete["stand_id"] = $value["stand_id"];
             $paramsDelete["media_id"] = $value["media_id"];
             $rowCount = $this->standMedia->delete($paramsDelete);

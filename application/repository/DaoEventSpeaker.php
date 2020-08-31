@@ -41,6 +41,32 @@ class DaoEventSpeaker
 
     }
 
+    function getAllEvents($id = array())
+    {
+        $data = $this->database->select(
+            "event_speakers",
+            [
+                "event_id",
+                "speaker_id",
+                "profile_id"
+            ],
+            [
+                "AND" => [
+                    "event_id" => $id
+                ]
+            ]);
+
+        $arrayReturn = array();
+        foreach ($data as $key => $value) {
+            $arrayReturn[$value["speaker_id"]]["speaker_id"] = $value["speaker_id"];
+            $arrayReturn[$value["speaker_id"]]["event_id"] = $value["event_id"];
+            $arrayReturn[$value["speaker_id"]]["profile_id"] = $value["profile_id"];
+        }
+
+        return $arrayReturn;
+
+    }
+
     function getById($params = array())
     {
         return $this->database->get(
@@ -83,5 +109,6 @@ class DaoEventSpeaker
         ]);
         return $data->rowCount();
     }
+
 
 }

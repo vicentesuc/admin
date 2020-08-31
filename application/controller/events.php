@@ -5,6 +5,8 @@ require APP . 'repository/DaoFranchise.php';
 require APP . 'repository/DaoEventMedia.php';
 require APP . 'repository/DaoSpeaker.php';
 require APP . 'repository/DaoEventSpeaker.php';
+require APP . 'repository/DaoEventStand.php';
+require APP . 'repository/DaoStandMedia.php';
 
 class Events extends controller
 {
@@ -14,6 +16,8 @@ class Events extends controller
     private $eventMedia;
     private $speaker;
     private $eventSpeaker;
+    private $eventStand;
+    private $standMedia;
 
     function __construct()
     {
@@ -25,6 +29,8 @@ class Events extends controller
         $this->eventMedia = new DaoEventMedia($this->db);
         $this->speaker = new DaoSpeaker($this->db);
         $this->eventSpeaker = new DaoEventSpeaker($this->db);
+        $this->eventStand = new DaoEventStand($this->db);
+        $this->standMedia = new DaoStandMedia($this->db);
     }
 
     function index()
@@ -266,6 +272,7 @@ class Events extends controller
         }
     }
 
+
     function editPost()
     {
 
@@ -434,5 +441,65 @@ class Events extends controller
                 }
             }
         }
+    }
+
+    function delete()
+    {
+        $arrEventMedia = $this->eventMedia->getAll($_REQUEST["event"]);
+
+        /*delete event media*/
+        foreach ($arrEventMedia as $key => $value) {
+
+            if (file_exists($value["media_url"]))
+                unlink($value["media_url"]);
+
+            $rowCount = $this->media->delete($value["media_id"]);
+
+            $arrEventMediaParams["event_id"] = $_REQUEST["event"];
+            $arrEventMediaParams["media_id"] = $value["media_id"];
+            $this->eventMedia->delete($arrEventMediaParams);
+        }
+
+        /*delete event speaker*/
+        if (isset($_REQUEST["event"])) {
+
+            $arrEventMediaParams["event_id"] = $_REQUEST["event"];
+            $arrEventMediaParams["profile_id"] = 1;
+            $this->eventSpeaker->delete($arrEventMediaParams);
+
+            $arrEventMediaParams["event_id"] = $_REQUEST["event"];
+            $arrEventMediaParams["profile_id"] = 2;
+            $this->eventSpeaker->delete($arrEventMediaParams);
+        }
+
+        /*delete from stand and event */
+        $arrEventStandParams["event_id"] = $_REQUEST["event"];
+        $arrEventStand = $this->eventStand->getAll($arrEventStandParams);
+
+        foreach ($arrEventStand as $key => $value) {
+
+            $arrStandsParams["stand_id"] = $value["stand_id"];
+
+            $arrStands = $this->standMedia->getAll($arrStandsParams);
+
+            foreach ($arrStands as $key => $value) {
+                $rowCount = 0;
+                $id = $value["media_id"];
+                $rowCount = $this->media->delete($id);
+
+                if (file_exists($value["media_url"]))
+                    unlink($value["media_url"]);
+
+                $paramsDelete["stand_id"] = $value["stand_id"];
+                $paramsDelete["media_id"] = $value["media_id"];
+                $rowCount = $this->standMedia->delete($paramsDelete);
+            }
+
+            $paramsEventStand["event_id"] = $value["event_id"];
+            $paramsEventStand["stand_id"] = $value["stand_id"];
+            $rowCount = $this->eventStand->delete($paramsEventStand);
+        }
+
+        print_r(Helper::setMessage("Eliminado Exitosamente", "OK", "success"));
     }
 }
