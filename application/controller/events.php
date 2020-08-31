@@ -7,6 +7,8 @@ require APP . 'repository/DaoSpeaker.php';
 require APP . 'repository/DaoEventSpeaker.php';
 require APP . 'repository/DaoEventStand.php';
 require APP . 'repository/DaoStandMedia.php';
+require APP . 'repository/DaoUser.php';
+require APP . 'repository/DaoUserDiploma.php';
 
 class Events extends controller
 {
@@ -18,6 +20,8 @@ class Events extends controller
     private $eventSpeaker;
     private $eventStand;
     private $standMedia;
+    private $user;
+    private $userDiploma;
 
     function __construct()
     {
@@ -31,6 +35,8 @@ class Events extends controller
         $this->eventSpeaker = new DaoEventSpeaker($this->db);
         $this->eventStand = new DaoEventStand($this->db);
         $this->standMedia = new DaoStandMedia($this->db);
+        $this->user = new DaoUser($this->db);
+        $this->userDiploma = new DaoUserDiploma($this->db);
     }
 
     function index()
@@ -501,5 +507,117 @@ class Events extends controller
         }
 
         print_r(Helper::setMessage("Eliminado Exitosamente", "OK", "success"));
+    }
+
+    function diploma()
+    {
+
+        $arrEvents = $arrEvents = $this->model->getAll();
+        require APP . 'view/_templates/header.php';
+        require APP . 'view/events/diploma/index.php';
+        require APP . 'view/_templates/footer.php';
+    }
+
+    function uploadDiploma()
+    {
+        header("Content-Type:  application/vnd.ms-excel; charset=utf-8");
+        header("Content-Disposition: attachment; filename=" . $_FILES["file"]["name"] . "_R.xls");
+        header("Expires: 0");
+        header("Cache-Control: must-revalidate, post-check=0, pre-check=0");
+        header("Cache-Control: private", false);
+
+        $directory = DIRECTORY_EVENTS_MEDIA . $_REQUEST["input_event_id"] . "/" . DIRECTORY_EVENTS_MEDIA_DIPLOMA;
+        $arryExtension = array("csv", "xlsx");
+        $target_file = $directory . basename($_FILES["file"]["name"]);
+        $csvFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
+
+        $arrEvent = $this->model->getById($_REQUEST["input_event_id"]);
+
+        $directoryDiploma = DIRECTORY_EVENTS_MEDIA . $_REQUEST["input_event_id"] . "/" . DIRECTORY_EVENTS_MEDIA_USER_DIPLOMA;
+
+        //revisamos la carpeta tenga permisos
+        if (!file_exists($directory)) {
+            mkdir($directory, 0777, true);
+        }
+
+        /*mover el archivo csv*/
+        move_uploaded_file($_FILES["file"]["tmp_name"], $target_file);
+
+        $columnas = array(array("columnaNombre" => "email"), array("columnaNombre" => "nota"));
+
+        $headersFromFile = array_flip(fgetcsv(fopen($target_file, "r"), ","));
+
+        $arrayHeader["code"] = "OK";
+        $arrayHeader["msg"] = "Todo bien con los encabezados";
+        foreach ($columnas as $key => $value) {
+            if (!array_key_exists($value["columnaNombre"], $headersFromFile)) {
+                $arrayHeader["code"] = "FAIL";
+                $arrayHeader["msg"] = "Falta la columna " . $value["columnaNombre"];
+            }
+        }
+
+        $arrayConsolidado = array();
+        $arrReporte = array();
+        if ($arrayHeader["code"] == "OK") {
+            $row = 0;
+            if (($handle = fopen($target_file, "r")) !== FALSE) {
+                while (($data = fgetcsv($handle, 1000, ",")) !== FALSE) {
+
+                    if ($row > 0) {
+                        $arrUserParams["email"] = $data[0];
+                        $arrReporte["email"] = $arrUserParams["email"];
+                        if ($this->user->findByEmail($arrUserParams)) {
+                            $arrUserParams = $this->user->getByEmail($arrUserParams);
+
+                            $directoryDiploma .= "/" . $arrUserParams["id"];
+                            $target_file_diploma = $directoryDiploma . "/" . str_replace(" ", "_", $arrEvent["title"]) . "_diploma.pdf";
+
+                            //revisamos la carpeta tenga permisos
+                            if (!file_exists($directoryDiploma)) {
+                                mkdir($directoryDiploma, 0777, true);
+                            }
+
+                            $arrMediaParams["name"] = "diploma -" . $arrUserParams["name"];
+                            $arrMediaParams["description"] = "%";
+                            $arrMediaParams["url"] = $target_file_diploma;
+                            $media_id = $this->media->persist($arrMediaParams);
+
+                            $arrUserDiplomaParams["user_id"] = $arrUserParams["id"];
+                            $arrUserDiplomaParams["media_id"] = $media_id;
+                            $diploma = $this->userDiploma->persist($arrUserDiplomaParams);
+
+                            if ($arrEvent["media_url_diploma"] != null || !empty($arrEvent["media_url_diploma"])) {
+
+                                $pdf = new PDF();
+                                $pdf->AddPage('L');
+                                $pdf->addImage($arrEvent["media_url_diploma"]);
+                                $pdf->SetFont('Times', '', 12);
+
+                                /*aqui puede ir el nombre*/
+                                $pdf->addText("Edgar Vicente Suc Sis", 270, 155);
+
+                                /*aqui puede ir la nota*/
+                                $pdf->addText("vicente.suc@gmail.com", 225, 135);
+
+                                $pdf->Output('F', $target_file_diploma);
+
+                                $arrReporte["msg"] = "success";
+                            }
+                        } else {
+                            $arrReporte["msg"] = "Fail";
+                        }
+
+                        $arrayConsolidado[$row] = $arrReporte;
+                    }
+
+
+                    $row++;
+                }
+            }
+            /*eliminar el csv*/
+            unlink($target_file);
+
+            require APP . 'view/report/auto.php';
+        }
     }
 }

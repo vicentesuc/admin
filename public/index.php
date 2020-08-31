@@ -9,6 +9,8 @@ define('APP', ROOT . 'application' . DIRECTORY_SEPARATOR);
 require APP . 'libs/medoo.php';
 require APP . 'config/config.php';
 require APP . 'libs/helper.php';
+require APP . 'libs/pdf/fpdf.php';
+require APP . 'libs/PDF.php';
 require APP . 'core/application.php';
 require APP . 'core/controller.php';
 

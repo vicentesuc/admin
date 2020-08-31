@@ -67,6 +67,16 @@ class DaoUser
         );
     }
 
+    function findByEmail($paramas = array())
+    {
+        return $this->database->has("users",
+            [
+                "email" => $paramas["email"]
+            ]
+        );
+    }
+
+
     function getByEmailAndPass($params = array())
     {
         return $this->database->get("users",

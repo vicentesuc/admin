@@ -168,6 +168,12 @@ if(empty($_SESSION))
                         </a>
                         <b class="arrow"></b>
                     </li>
+                    <li class="<?php echo ((isset($_REQUEST["url"]) ? $_REQUEST["url"] : "") == "events/diplomas") ? "active" : ""; ?>">
+                        <a href="<?php echo URL ?>events/diploma">
+                            <i class="menu-icon fa fa-diamond "></i> Diplomas
+                        </a>
+                        <b class="arrow"></b>
+                    </li>
                 </ul>
             </li>
             <li class="<?php echo ((isset($_REQUEST["url"]) ? $_REQUEST["url"] : "") == "user") ? "active" : ""; ?>">
