@@ -36,7 +36,8 @@
                 <div class="form-group">
                     <label class="col-sm-3 control-label no-padding-right" for="input_event_language">Idioma</label>
                     <div class="col-sm-9">
-                        <select class="col-xs-10 col-sm-5" id="input_event_id" name="input_event_id"
+                        <select class="col-xs-10 col-sm-5 chosen-select " id="input_event_id" name="input_event_id"
+                                data-placeholder="Choose a State..."
                                 required>
                             <?php foreach ($arrEvents as $key => $value) {
                                 $selected = (((isset($_REQUEST["event"])) ? $_REQUEST["event"] : null) == $value["id"]) ? "selected" : "";
@@ -84,5 +85,7 @@
             }
             return false;
         })
+
+        $('.chosen-select').chosen({allow_single_deselect:true});
     })
 </script>

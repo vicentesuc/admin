@@ -20,107 +20,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="da35a530-2b5e-45e3-a290-2dd5b36fad21" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/application/libs/PDF.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/application/libs/pdf/doc/__construct.htm" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/application/libs/pdf/doc/acceptpagebreak.htm" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/application/libs/pdf/doc/addfont.htm" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/application/libs/pdf/doc/addlink.htm" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/application/libs/pdf/doc/addpage.htm" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/application/libs/pdf/doc/aliasnbpages.htm" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/application/libs/pdf/doc/cell.htm" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/application/libs/pdf/doc/close.htm" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/application/libs/pdf/doc/error.htm" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/application/libs/pdf/doc/footer.htm" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/application/libs/pdf/doc/getpageheight.htm" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/application/libs/pdf/doc/getpagewidth.htm" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/application/libs/pdf/doc/getstringwidth.htm" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/application/libs/pdf/doc/getx.htm" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/application/libs/pdf/doc/gety.htm" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/application/libs/pdf/doc/header.htm" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/application/libs/pdf/doc/image.htm" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/application/libs/pdf/doc/index.htm" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/application/libs/pdf/doc/line.htm" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/application/libs/pdf/doc/link.htm" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/application/libs/pdf/doc/ln.htm" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/application/libs/pdf/doc/multicell.htm" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/application/libs/pdf/doc/output.htm" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/application/libs/pdf/doc/pageno.htm" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/application/libs/pdf/doc/rect.htm" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/application/libs/pdf/doc/setauthor.htm" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/application/libs/pdf/doc/setautopagebreak.htm" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/application/libs/pdf/doc/setcompression.htm" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/application/libs/pdf/doc/setcreator.htm" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/application/libs/pdf/doc/setdisplaymode.htm" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/application/libs/pdf/doc/setdrawcolor.htm" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/application/libs/pdf/doc/setfillcolor.htm" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/application/libs/pdf/doc/setfont.htm" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/application/libs/pdf/doc/setfontsize.htm" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/application/libs/pdf/doc/setkeywords.htm" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/application/libs/pdf/doc/setleftmargin.htm" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/application/libs/pdf/doc/setlinewidth.htm" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/application/libs/pdf/doc/setlink.htm" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/application/libs/pdf/doc/setmargins.htm" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/application/libs/pdf/doc/setrightmargin.htm" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/application/libs/pdf/doc/setsubject.htm" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/application/libs/pdf/doc/settextcolor.htm" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/application/libs/pdf/doc/settitle.htm" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/application/libs/pdf/doc/settopmargin.htm" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/application/libs/pdf/doc/setx.htm" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/application/libs/pdf/doc/setxy.htm" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/application/libs/pdf/doc/sety.htm" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/application/libs/pdf/doc/text.htm" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/application/libs/pdf/doc/write.htm" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/application/libs/pdf/font/courier.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/application/libs/pdf/font/courierb.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/application/libs/pdf/font/courierbi.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/application/libs/pdf/font/courieri.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/application/libs/pdf/font/helvetica.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/application/libs/pdf/font/helveticab.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/application/libs/pdf/font/helveticabi.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/application/libs/pdf/font/helveticai.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/application/libs/pdf/font/symbol.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/application/libs/pdf/font/times.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/application/libs/pdf/font/timesb.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/application/libs/pdf/font/timesbi.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/application/libs/pdf/font/timesi.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/application/libs/pdf/font/zapfdingbats.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/application/libs/pdf/fpdf.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/application/libs/pdf/fpdf.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/application/libs/pdf/makefont/cp1250.map" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/application/libs/pdf/makefont/cp1251.map" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/application/libs/pdf/makefont/cp1252.map" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/application/libs/pdf/makefont/cp1253.map" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/application/libs/pdf/makefont/cp1254.map" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/application/libs/pdf/makefont/cp1255.map" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/application/libs/pdf/makefont/cp1257.map" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/application/libs/pdf/makefont/cp1258.map" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/application/libs/pdf/makefont/cp874.map" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/application/libs/pdf/makefont/iso-8859-1.map" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/application/libs/pdf/makefont/iso-8859-11.map" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/application/libs/pdf/makefont/iso-8859-15.map" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/application/libs/pdf/makefont/iso-8859-16.map" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/application/libs/pdf/makefont/iso-8859-2.map" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/application/libs/pdf/makefont/iso-8859-4.map" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/application/libs/pdf/makefont/iso-8859-5.map" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/application/libs/pdf/makefont/iso-8859-7.map" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/application/libs/pdf/makefont/iso-8859-9.map" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/application/libs/pdf/makefont/koi8-r.map" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/application/libs/pdf/makefont/koi8-u.map" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/application/libs/pdf/makefont/makefont.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/application/libs/pdf/makefont/ttfparser.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/application/repository/DaoUserDiploma.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/application/resources/db/V2__add_new_column.sql" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/application/view/events/diploma/index.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/application/view/report/auto.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/sqldialects.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/sqldialects.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/application/config/config.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/config/config.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/application/controller/events.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/controller/events.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/application/repository/DaoUser.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/repository/DaoUser.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/view/_templates/footer.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/view/_templates/footer.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/application/view/_templates/header.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/view/_templates/header.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/application/view/events/create.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/view/events/create.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/public/index.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/view/events/diploma/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/view/events/diploma/index.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -201,7 +104,7 @@
       <workItem from="1598657698634" duration="7145000" />
       <workItem from="1598831093294" duration="5749000" />
       <workItem from="1598884897699" duration="329000" />
-      <workItem from="1598902204118" duration="10492000" />
+      <workItem from="1598902204118" duration="10839000" />
     </task>
     <servers />
   </component>

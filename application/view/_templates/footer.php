@@ -49,5 +49,7 @@
         <script src="<?php echo URL ?>js/jquery.colorbox.min.js"></script>
         <script src="<?php echo URL ?>js/fullcalendar/lang.js"></script>
         <script src="<?php echo URL ?>js/dualist/jquery.bootstrap-duallistbox.js"></script>
+        <script src="<?php echo URL ?>js/select2.min.js"></script>
+        <script src="<?php echo URL ?>js/chosen.jquery.min.js"></script>
     </body>
 </html>

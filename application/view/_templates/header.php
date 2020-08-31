@@ -24,6 +24,8 @@ if(empty($_SESSION))
     <link rel="stylesheet" href="<?php echo URL; ?>css/jquery.gritter.min.css"/>
     <link rel="stylesheet" href="<?php echo URL; ?>css/bootstrap-datetimepicker.min.css"/>
     <link rel="stylesheet" href="<?php echo URL; ?>css/dualist/bootstrap-duallistbox.min.css"/>
+    <link rel="stylesheet" href="<?php echo URL; ?>css/select2.min.css"/>
+    <link rel="stylesheet" href="<?php echo URL; ?>css/chosen.min.css" />
 
 
     <link rel="stylesheet" href="<?php echo URL; ?>css/dropzone.min.css"/>
