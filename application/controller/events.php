@@ -594,10 +594,10 @@ class Events extends controller
                                 $pdf->SetFont('Times', '', 12);
 
                                 /*aqui puede ir el nombre*/
-                                $pdf->addText("Edgar Vicente Suc Sis", 270, 155);
+                                $pdf->addText($data[0], 270, 155);
 
                                 /*aqui puede ir la nota*/
-                                $pdf->addText("vicente.suc@gmail.com", 225, 135);
+                                $pdf->addText($data[1], 225, 135);
 
                                 $pdf->Output('F', $target_file_diploma);
 
