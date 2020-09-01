@@ -21,7 +21,6 @@
   <component name="ChangeListManager">
     <list default="true" id="da35a530-2b5e-45e3-a290-2dd5b36fad21" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/application/view/events/diploma/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/view/events/diploma/index.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -102,7 +101,8 @@
       <workItem from="1598657698634" duration="7145000" />
       <workItem from="1598831093294" duration="5749000" />
       <workItem from="1598884897699" duration="329000" />
-      <workItem from="1598902204118" duration="11171000" />
+      <workItem from="1598902204118" duration="11206000" />
+      <workItem from="1598969444087" duration="293000" />
     </task>
     <servers />
   </component>
