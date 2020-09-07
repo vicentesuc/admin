@@ -17,7 +17,7 @@ class PDF extends FPDF
     }
 
     function addText($name = "", $x = 0, $y = 0)
-    {
+    {   $this->Ln(45);
         $this->Cell($x, $y, $name, 0, 0, 'C');
         $this->Ln(20);
     }

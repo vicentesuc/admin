@@ -591,13 +591,13 @@ class Events extends controller
                                 $pdf = new PDF();
                                 $pdf->AddPage('L');
                                 $pdf->addImage($arrEvent["media_url_diploma"]);
-                                $pdf->SetFont('Times', '', 12);
+                                $pdf->SetFont('Times', '', 48);
 
                                 /*aqui puede ir el nombre*/
-                                $pdf->addText($data[0], 270, 155);
+                                $pdf->addText($arrUserParams["name"], 0, 100);
 
                                 /*aqui puede ir la nota*/
-                                $pdf->addText($data[1], 225, 135);
+//                                $pdf->addText($data[1], 225, 135);
 
                                 $pdf->Output('F', $target_file_diploma);
 
