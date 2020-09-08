@@ -17,7 +17,12 @@ class PDF extends FPDF
     }
 
     function addText($name = "", $x = 0, $y = 0)
-    {   $this->Ln(45);
+    {
+        $this->AddFont("verdana", "B", "verdanab.php");
+        $this->SetFont('verdana', 'B', 38);
+        $this->SetTextColor(127,128,130);
+
+        $this->Ln(45);
         $this->Cell($x, $y, $name, 0, 0, 'C');
         $this->Ln(20);
     }
