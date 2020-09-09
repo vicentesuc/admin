@@ -200,9 +200,8 @@ class Events extends controller
         }
 
 
-
         /* Valid Extensions */
-        $valid_extensions = array("jpg", "jpeg", "png","mp4","avi");
+        $valid_extensions = array("jpg", "jpeg", "png", "mp4", "avi");
         /* Check file extension */
         if (!in_array(strtolower($imageFileType), $valid_extensions)) {
             $uploadOk = 0;
@@ -378,6 +377,34 @@ class Events extends controller
             move_uploaded_file($_FILES['filed']['tmp_name'], $targetd);
         }
 
+        $arrMediaVideoParams["id"] = 0;
+        if (isset($_FILES) and isset($_FILES["filev"])) {
+
+            $directoryv = DIRECTORY_EVENTS_MEDIA . $_REQUEST["input_event_id"] . "/" . DIRECTORY_EVENTS_MEDIA_VIDEO;
+            $targetv = $directoryv . $_FILES["filev"]["name"];
+
+            $uploadOk = 1;
+            $arrMediaVideoParams["name"] = basename($_FILES["filev"]["name"]);
+            $arrMediaVideoParams["url"] = $targetv;
+            $arrMediaVideoParams["description"] = "%";
+            $arrMediaVideoParams["id"] = $this->media->persist($arrMediaVideoParams);
+
+            $videoFileType = pathinfo($targetv, PATHINFO_EXTENSION);
+
+            /* Valid Extensions */
+            $valid_extensions = array("mp4", "avi");
+            /* Check file extension */
+            if (!in_array(strtolower($videoFileType), $valid_extensions)) {
+                $uploadOk = 0;
+            }
+
+            if (!file_exists($directoryv)) {
+                mkdir($directoryv, 0777, true);
+            }
+
+            move_uploaded_file($_FILES['filev']['tmp_name'], $targetv);
+        }
+
 
         if ($uploadOk == 0) {
 
@@ -401,7 +428,11 @@ class Events extends controller
 
                 if ((int)$arrMediaParams["id"] > 0) {
                     $arrEventParams["image_id"] = $arrMediaParams["id"];
-                    $arrEventParams["video_id"] = $arrMediaParams["id"];
+
+                }
+
+                if ((int)$arrMediaVideoParams["id"] > 0) {
+                    $arrEventParams["video_id"] = $arrMediaVideoParams["id"];
                 }
 
                 if ((int)$arrMediaDiplomaParams["id"] > 0) {

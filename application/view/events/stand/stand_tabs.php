@@ -107,7 +107,7 @@
         var myDropzone = new Dropzone("#dropzoneStand", {
 
             paramName: "file", // The name that will be used to transfer the file
-            maxFilesize: 10.0, // MB
+            maxFilesize: 40.0, // MB
             addRemoveLinks: true,
             acceptedFiles: ".jpeg,.jpg,.png,.gif,.JPEG,.JPG,.PNG,.GIF,.pdf,.mp4",
             maxFiles: 1,

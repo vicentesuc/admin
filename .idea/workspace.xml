@@ -22,10 +22,8 @@
     <list default="true" id="da35a530-2b5e-45e3-a290-2dd5b36fad21" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/application/controller/events.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/controller/events.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/application/repository/DaoEvents.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/repository/DaoEvents.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/application/view/events/create.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/view/events/create.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/application/view/events/edit.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/view/events/edit.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/js/custom/jquery.crm.functions.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/custom/jquery.crm.functions.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/view/events/stand/stand_tabs.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/view/events/stand/stand_tabs.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -113,7 +111,7 @@
       <workItem from="1599488207997" duration="729000" />
       <workItem from="1599491256076" duration="151000" />
       <workItem from="1599590686643" duration="5018000" />
-      <workItem from="1599676564063" duration="2581000" />
+      <workItem from="1599676564063" duration="2928000" />
     </task>
     <servers />
   </component>
