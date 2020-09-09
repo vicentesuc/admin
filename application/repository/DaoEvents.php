@@ -59,7 +59,8 @@ class DaoEvents
             [
                 "[><]franchises" => ["events.franchise_id" => "id"],
                 "[><]media" => ["events.image_id" => "id"],
-                "[>]media(media_diploma)" => ["events.diploma_image_id" => "id"]
+                "[>]media(media_diploma)" => ["events.diploma_image_id" => "id"],
+                "[>]media(media_video)" => ["events.video_id" => "id"]
             ],
             [
                 "events.id",
@@ -76,7 +77,7 @@ class DaoEvents
                 "events.date",
                 "media.url(media_url)",
                 "media_diploma.url(media_url_diploma)",
-
+                "media_video.url(video_url)"
             ],
             [
                 "events.id" => $id

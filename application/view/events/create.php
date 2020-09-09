@@ -101,7 +101,7 @@
                     <label class="col-sm-3 control-label no-padding-right" for="form-field-tags">Foto</label>
                     <div class="col-sm-9">
                         <div class="inline">
-                            <input type="file" name="file" id="file" required/>
+                            <input type="file" name="file" id="file" accept=".img,.jpg,.png,.jpeg" required/>
                         </div>
                     </div>
                 </div>
@@ -117,7 +117,7 @@
                     <label class="col-sm-3 control-label no-padding-right" for="form-field-tags">Diploma</label>
                     <div class="col-sm-9">
                         <div class="inline">
-                            <input type="file" name="filed" id="filed" required/>
+                            <input type="file" name="filed" id="filed"  accept=".img,.jpg,.png,.jpeg" required/>
                         </div>
                     </div>
                 </div>
@@ -125,8 +125,26 @@
                     <label class="col-sm-3 control-label no-padding-right" for="form-field-tags">Vista
                         Previa(Diploma)</label>
                     <div class="col-sm-9">
-                        <img id="prev_image_d" class="img img-responsive " src="#" alt="your image" width="100"
+                        <img id="prev_image_d" class="img img-responsive"   src="#" alt="your image" width="100"
                              height="75"/>
+                    </div>
+                </div>
+                <hr>
+                <div class="form-group">
+                    <label class="col-sm-3 control-label no-padding-right" for="form-field-tags">Video</label>
+                    <div class="col-sm-9">
+                        <div class="inline">
+                            <input type="file" name="filev" id="filev" accept=".mp4,.avi"  required/>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-3 control-label no-padding-right" for="form-field-tags">Vista
+                        Previa(Video)</label>
+                    <div  class="col-sm-9">
+                        <video  id="prev_video" width="400" controls>
+                            <source src="#" type="video/mp4">
+                        </video>
                     </div>
                 </div>
             </form>
@@ -156,6 +174,8 @@
         }
     }
 
+
+
     $("#btn_event").click(function () {
 
         valid_form("form-event", () => {
@@ -164,8 +184,10 @@
                 params: form_to_json("form-event"),
                 image: "file",
                 image_d: "filed",
+                video: "filev",
                 method: "POST"
             }
+
             ajax_send_file_double(arreglo, (resp) => {
                 var response = JSON.parse(resp);
                 messages(response)
@@ -183,6 +205,10 @@
 
     $("#filed").change(function () {
         readURL(this, "prev_image_d");
+    });
+
+    $("#filev").change(function () {
+        readURL(this, "prev_video");
     });
 
     $('#input_event_date').datetimepicker({

@@ -176,7 +176,7 @@
                                         <label class="col-sm-3 control-label no-padding-right" for="form-field-tags">Foto</label>
                                         <div class="col-sm-9">
                                             <div class="inline">
-                                                <input type="file" name="file" id="file"/>
+                                                <input type="file" name="file" accept=".img,.jpg,.png,.jpeg" id="file"/>
                                             </div>
                                         </div>
                                     </div>
@@ -195,7 +195,8 @@
                                         <label class="col-sm-3 control-label no-padding-right" for="form-field-tags">Diploma</label>
                                         <div class="col-sm-9">
                                             <div class="inline">
-                                                <input type="file" name="filed" id="filed"/>
+                                                <input type="file" name="filed" accept=".img,.jpg,.png,.jpeg"
+                                                       id="filed"/>
                                             </div>
                                         </div>
                                     </div>
@@ -207,6 +208,25 @@
                                                  src="<?php echo IMAGES . "/" . $arrEvent["media_url_diploma"]; ?>"
                                                  alt="your image" width="100"
                                                  height="75"/>
+                                        </div>
+                                    </div>
+                                    <hr>
+                                    <div class="form-group">
+                                        <label class="col-sm-3 control-label no-padding-right" for="form-field-tags">Video</label>
+                                        <div class="col-sm-9">
+                                            <div class="inline">
+                                                <input type="file" name="filev" id="filev" accept=".mp4,.avi" required/>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-sm-3 control-label no-padding-right" for="form-field-tags">Vista
+                                            Previa(Video)</label>
+                                        <div class="col-sm-9">
+                                            <video id="prev_video" width="400" controls>
+                                                <source  src="<?php echo IMAGES . "/" . $arrEvent["video_url"]; ?>"
+                                                        type="video/mp4">
+                                            </video>
                                         </div>
                                     </div>
                                 </form>
@@ -335,6 +355,7 @@
                     params: form_to_json("form-event"),
                     image: "file",
                     image_d: "filed",
+                    video: "filev",
                     method: "POST"
                 }
 
@@ -355,6 +376,10 @@
 
         $("#filed").change(function () {
             readURL(this, "prev_image_d");
+        });
+
+        $("#filev").change(function () {
+            readURL(this, "prev_video");
         });
 
         $("#tabImages").click(function () {

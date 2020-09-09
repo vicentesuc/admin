@@ -281,6 +281,9 @@ function ajax_send_file_double(arreglo, callback) {
     var files_d = $('#' + arreglo.image_d)[0].files[0];
     fd.append('filed', files_d);
 
+    var files_v = $('#' + arreglo.video)[0].files[0];
+    fd.append('filev', files_v);
+
 
     jQuery.each(arreglo.params, function (i, val) {
         fd.append(i, val);

@@ -172,6 +172,7 @@ class Events extends controller
         $directory = DIRECTORY_EVENTS_MEDIA;
         $target = $directory . $_FILES["file"]["name"];
         $targetd = $directory . $_FILES["filed"]["name"];
+        $targetv = $directory . $_FILES["filev"]["name"];
 
         /*image prinicipal*/
         $uploadOk = 1;
@@ -189,10 +190,19 @@ class Events extends controller
             $arrMediaDiplomaParams["description"] = "%";
         }
 
-//        Helper::binDebug($arrMediaDiplomaParams);
+
+        /* image diploma*/
+        if (isset($_FILES["filev"])) {
+            $uploadOk = 1;
+            $arrMediaVideoParams["name"] = basename($_FILES["filev"]["name"]);
+            $arrMediaVideoParams["url"] = $targetv;
+            $arrMediaVideoParams["description"] = "%";
+        }
+
+
 
         /* Valid Extensions */
-        $valid_extensions = array("jpg", "jpeg", "png");
+        $valid_extensions = array("jpg", "jpeg", "png","mp4","avi");
         /* Check file extension */
         if (!in_array(strtolower($imageFileType), $valid_extensions)) {
             $uploadOk = 0;
@@ -209,6 +219,11 @@ class Events extends controller
                 $arrMediaDiplomaParams["id"] = $this->media->persist($arrMediaDiplomaParams);
             }
 
+            $arrMediaVideoParams["id"] = 0;
+            if (isset($_FILES["filed"])) {
+                $arrMediaVideoParams["id"] = $this->media->persist($arrMediaVideoParams);
+            }
+
 
             if ($arrMediaParams["id"] > 0) {
 
@@ -218,7 +233,7 @@ class Events extends controller
                 $arrEventParams["image_id"] = $arrMediaParams["id"];
                 $arrEventParams["diploma_image_id"] = $arrMediaDiplomaParams["id"];
                 $arrEventParams["event_date"] = $_REQUEST["input_event_date"];
-                $arrEventParams["video_id"] = $arrMediaParams["id"];
+                $arrEventParams["video_id"] = $arrMediaVideoParams["id"];
                 $arrEventParams["survey_url"] = $_REQUEST["input_event_survey"];
                 $arrEventParams["event_link"] = $_REQUEST["input_event_link"];
                 $arrEventParams["language"] = $_REQUEST["input_event_language"];
@@ -235,8 +250,15 @@ class Events extends controller
                 if (isset($_FILES["filed"])) {
                     $targetd = $directory . $event_id . "/" . DIRECTORY_EVENTS_MEDIA_DIPLOMA . $_FILES["filed"]["name"];
                     $directoryd = $directory . $event_id . "/" . DIRECTORY_EVENTS_MEDIA_DIPLOMA;
+
                 }
 
+                $targetv = "";
+                $directoryv = "";
+                if (isset($_FILES["filev"])) {
+                    $targetv = $directory . $event_id . "/" . DIRECTORY_EVENTS_MEDIA_VIDEO . $_FILES["filev"]["name"];
+                    $directoryv = $directory . $event_id . "/" . DIRECTORY_EVENTS_MEDIA_VIDEO;
+                }
 
                 /*move media*/
                 if (!file_exists($directoryp)) {
@@ -249,6 +271,12 @@ class Events extends controller
                     }
                 }
 
+                if (isset($_FILES["filev"])) {
+                    if (!file_exists($directoryv)) {
+                        mkdir($directoryv, 0777, true);
+                    }
+                }
+
                 if (move_uploaded_file($_FILES['file']['tmp_name'], $target)) {
 
                     $arrMediaParams["url"] = $target;
@@ -258,6 +286,12 @@ class Events extends controller
                         move_uploaded_file($_FILES['filed']['tmp_name'], $targetd);
                         $arrMediaDiplomaParams["url"] = $targetd;
                         $mediaDiploma = $this->media->update($arrMediaDiplomaParams);
+                    }
+
+                    if (isset($_FILES["filev"])) {
+                        move_uploaded_file($_FILES['filev']['tmp_name'], $targetv);
+                        $arrMediaVideoParams["url"] = $targetv;
+                        $mediavideo = $this->media->update($arrMediaVideoParams);
                     }
 
                     if ((int)$event_id > 0) {
