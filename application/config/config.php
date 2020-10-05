@@ -49,3 +49,5 @@ define('DIRECTORY_STAND_MEDIA_IMG', 'images/');
 define('DIRECTORY_STAND_MEDIA_DOCS', 'docs/');
 
 define('DIRECTORY_EVENTS_MEDIA_USER_DIPLOMA', 'diploma/user/');
+
+define('APPROVED_NOTE', 75);

@@ -9,6 +9,7 @@ require APP . 'repository/DaoEventStand.php';
 require APP . 'repository/DaoStandMedia.php';
 require APP . 'repository/DaoUser.php';
 require APP . 'repository/DaoUserDiploma.php';
+require APP . 'repository/DaoUserEvent.php';
 
 class Events extends controller
 {
@@ -22,6 +23,7 @@ class Events extends controller
     private $standMedia;
     private $user;
     private $userDiploma;
+    private $userEvent;
 
     function __construct()
     {
@@ -37,6 +39,7 @@ class Events extends controller
         $this->standMedia = new DaoStandMedia($this->db);
         $this->user = new DaoUser($this->db);
         $this->userDiploma = new DaoUserDiploma($this->db);
+        $this->userEvent = new DaoUserEvent($this->db);
     }
 
     function index()
@@ -631,55 +634,65 @@ class Events extends controller
                     if ($row > 0) {
                         $arrUserParams["email"] = $data[0];
                         $arrReporte["email"] = $arrUserParams["email"];
-                        if ($this->user->findByEmail($arrUserParams)) {
-                            $arrUserParams = $this->user->getByEmail($arrUserParams);
+                        if ($data[1] >= APPROVED_NOTE) {
+                            if ($this->user->findByEmail($arrUserParams)) {
+                                $arrUserParams = $this->user->getByEmail($arrUserParams);
 
-                            $directoryDiploma .= "/" . $arrUserParams["id"];
-                            $target_file_diploma = $directoryDiploma . "/" . str_replace(" ", "_", $arrEvent["title"]) . "_diploma.pdf";
+                                $directoryDiplomaUpd = $directoryDiploma . $arrUserParams["id"];
+                                $target_file_diploma = $directoryDiplomaUpd . "/" . str_replace(" ", "_", $arrEvent["title"]) . "_diploma.pdf";
 
-                            //revisamos la carpeta tenga permisos
-                            if (!file_exists($directoryDiploma)) {
-                                mkdir($directoryDiploma, 0777, true);
-                            }
+                                //revisamos la carpeta tenga permisos
+                                if (!file_exists($directoryDiplomaUpd)) {
+                                    mkdir($directoryDiplomaUpd, 0777, true);
+                                }
 
-                            $arrMediaParams["name"] = "diploma -" . $arrUserParams["name"];
-                            $arrMediaParams["description"] = "%";
-                            $arrMediaParams["url"] = $target_file_diploma;
-                            $media_id = $this->media->persist($arrMediaParams);
+                                $arrMediaParams["name"] = "diploma -" . $arrUserParams["name"];
+                                $arrMediaParams["description"] = "%";
+                                $arrMediaParams["url"] = $target_file_diploma;
+                                $media_id = $this->media->persist($arrMediaParams);
 
-                            $arrUserDiplomaParams["user_id"] = $arrUserParams["id"];
-                            $arrUserDiplomaParams["media_id"] = $media_id;
-                            $diploma = $this->userDiploma->persist($arrUserDiplomaParams);
+                                $arrUserDiplomaParams["user_id"] = $arrUserParams["id"];
+                                $arrUserDiplomaParams["media_id"] = $media_id;
+                                $diploma = $this->userDiploma->persist($arrUserDiplomaParams);
 
-                            if ($arrEvent["media_url_diploma"] != null || !empty($arrEvent["media_url_diploma"])) {
+                                if ($arrEvent["media_url_diploma"] != null || !empty($arrEvent["media_url_diploma"])) {
 
-                                $pdf = new PDF();
-                                $pdf->AddPage('L');
-                                $pdf->addImage($arrEvent["media_url_diploma"]);
+                                    $pdf = new PDF();
+                                    $pdf->AddPage('L');
+                                    $pdf->addImage($arrEvent["media_url_diploma"]);
 
-                                /*aqui puede ir el nombre*/
-                                $pdf->addText($arrUserParams["name"], 0, 100);
+                                    /*aqui puede ir el nombre*/
+                                    $pdf->addText(utf8_decode($arrUserParams["name"]), 0, 100);
 
-                                /*aqui puede ir la nota*/
+                                    /*aqui puede ir la nota*/
 //                                $pdf->addText($data[1], 225, 135);
 
-                                $pdf->Output('F', $target_file_diploma);
+                                    $pdf->Output('F', $target_file_diploma);
 
-                                $arrReporte["msg"] = "success";
+                                    $arrUserEvents["user_id"] = $arrUserDiplomaParams["user_id"];
+                                    $arrUserEvents["event_id"] = $_REQUEST["input_event_id"];
+                                    $arrUserEvents["diploma_id"] = $arrUserDiplomaParams["media_id"];
+
+                                    $this->userEvent->persist($arrUserEvents);
+
+                                    $arrReporte["msg"] = "success";
+
+                                }
+                            } else {
+                                $arrReporte["msg"] = "Fail";
                             }
                         } else {
-                            $arrReporte["msg"] = "Fail";
+                            $arrReporte["msg"] = "Nota menor a " . APPROVED_NOTE;
                         }
-
                         $arrayConsolidado[$row] = $arrReporte;
                     }
-
-
                     $row++;
                 }
             }
+
             /*eliminar el csv*/
-            unlink($target_file);
+            if (file_exists($target_file))
+                unlink($target_file);
 
             require APP . 'view/report/auto.php';
         }
