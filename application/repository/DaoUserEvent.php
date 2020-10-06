@@ -13,18 +13,29 @@ class DaoUserEvent
         }
     }
 
-    function persist($params = array())
+    function update($params = array())
     {
-        if ($this->database->has("account", $params))
-            return 0;
-        
-
-        $this->database->insert(
+        if (!$this->database->has(
             "user_events",
-            $params
+            [
+                "event_id" => $params["event_id"],
+                "user_id" => $params["user_id"]
+            ]
+        ))
+            return 0;
+
+        $data = $this->database->update(
+            "user_events",
+            [
+                "diploma_id" => $params["diploma_id"]
+            ],
+            [
+                "event_id" => $params["event_id"],
+                "user_id" => $params["user_id"]
+            ]
         );
 
-        return $this->database->id();
+        return 1;
     }
 
 }

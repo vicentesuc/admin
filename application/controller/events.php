@@ -673,7 +673,7 @@ class Events extends controller
                                     $arrUserEvents["event_id"] = $_REQUEST["input_event_id"];
                                     $arrUserEvents["diploma_id"] = $arrUserDiplomaParams["media_id"];
 
-                                    $this->userEvent->persist($arrUserEvents);
+                                    $this->userEvent->update($arrUserEvents);
 
                                     $arrReporte["msg"] = "success";
 
